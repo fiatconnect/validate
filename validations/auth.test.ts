@@ -59,7 +59,7 @@ describe('/auth/login', () => {
       message,
       signature,
     })
-    expect(response2.status).to.equal(403)
+    expect(response2.status).to.equal(401)
     expect(response2.data.error).to.equal('NonceInUse')
   })
   it('rejects login signed by different wallet', async () => {
