@@ -27,9 +27,9 @@ describe('/quote', () => {
         baseURL: config.baseUrl,
         validateStatus: () => true,
       })
-      const params = new URLSearchParams(quoteParams)
-      const response = await client.get(`/quote/out?${params.toString()}`, {
+      const response = await client.post(`/quote/out`, {
         headers,
+        body: JSON.stringify(quoteParams)
       })
       expect(response).to.have.status(200)
       checkResponseSchema(response)
@@ -39,9 +39,9 @@ describe('/quote', () => {
         baseURL: config.baseUrl,
         validateStatus: () => true,
       })
-      const params = new URLSearchParams(quoteParams)
-      const response = await client.get(`/quote/out?${params.toString()}`, {
+      const response = await client.post(`/quote/out`, {
         headers,
+        body: JSON.stringify(quoteParams)
       })
       expect(response).to.have.status(400)
       expect(response.data.error).to.be.equal('CryptoAmountTooHigh')
