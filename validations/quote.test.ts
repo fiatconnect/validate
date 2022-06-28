@@ -45,7 +45,6 @@ describe('/quote', () => {
       })
       expect(response).to.have.status(400)
       expect(response.data.error).to.be.equal('CryptoAmountTooHigh')
-      expect(!!response.data.maximumCryptoAmount).to.be.true
     })
   })
 })
