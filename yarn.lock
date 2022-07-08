@@ -747,12 +747,7 @@
     siwe "^1.1.6"
     tslib "^2.4.0"
 
-"@fiatconnect/fiatconnect-types@^6.0.0":
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-types/-/fiatconnect-types-6.0.0.tgz#ce458140a5af589248460c5270e29aeddc27cf28"
-  integrity sha512-rBYe2Mbjyw6WlP6GY2BzY7jac/aP4VxccDJzbCFkx17aYqj724Bj2yLhBeF9znL44sQoAuYLJeyT0f80xGQR2w==
-
-"@fiatconnect/fiatconnect-types@^6.0.1":
+"@fiatconnect/fiatconnect-types@^6.0.0", "@fiatconnect/fiatconnect-types@^6.0.1":
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-types/-/fiatconnect-types-6.0.1.tgz#87f31ed14fb87671cae1f4d00005e11ba8deb892"
   integrity sha512-6/rhX644336ylzvqD3FWuvVsnKxNRVv2H/naFb7hki8fxY2+TAbDgrDrh1Zk6zkBDqNaR3qVV/lLqbkXpNjlOA==
