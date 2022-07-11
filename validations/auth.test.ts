@@ -23,6 +23,7 @@ describe('/auth/login', () => {
         baseUrl: config.baseUrl,
         network: Network.Alfajores,
         accountAddress: wallet.address,
+        apiKey: config.clientApiKey
       },
       (message: string) => wallet.signMessage(message),
     )
@@ -69,6 +70,7 @@ describe('/auth/login', () => {
         baseUrl: config.baseUrl,
         network: Network.Alfajores,
         accountAddress: '0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+        apiKey: config.clientApiKey
       },
       (message: string) => wallet.signMessage(message),
     )
