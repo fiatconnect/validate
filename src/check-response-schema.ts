@@ -10,12 +10,13 @@ use(chaiPlugin({ apiDefinitionsPath }))
 /**
  * Check that the response matches the API schema.
  *
- * Ignores /v1 prefix
+ * Ignores /vX prefix
  */
 export function checkResponseSchema(response: AxiosResponse) {
-  if (response.request.path.slice(0, 3) === '/v1') {
-    // removes /v1 prefix, total hack to get api schema matcher to work
-    response.request.path = response.request.path.slice(3)
+  const versionPrefixMatch = response.request.path.match(/\/v([0-9]+)/)
+  if (versionPrefixMatch) {
+    // removes /vX prefix, total hack to get api schema matcher to work
+    response.request.path = response.request.path.slice(versionPrefixMatch[0].length)
   }
-  expect(response).to.have.status(200).and.to.matchApiSchema()
+  expect(response).to.matchApiSchema()
 }
