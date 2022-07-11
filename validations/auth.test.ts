@@ -5,7 +5,7 @@ import { KycSchema, Network } from '@fiatconnect/fiatconnect-types'
 import { expect, use } from 'chai'
 import { ALFAJORES_CHAIN_ID } from '../src/constants'
 import { generateNonce, SiweMessage } from 'siwe'
-import axios from 'axios'
+import axios, {AxiosRequestHeaders} from 'axios'
 import path from 'path'
 import { chaiPlugin } from 'api-contract-validator'
 import { checkResponseSchema } from '../src/check-response-schema'
@@ -16,6 +16,9 @@ const apiDefinitionsPath = path.join(config.openapiSpec)
 use(chaiPlugin({ apiDefinitionsPath }))
 
 describe('/auth/login', () => {
+  const headers: AxiosRequestHeaders = config.clientApiKey
+    ? { Authorization: `Bearer ${config.clientApiKey}` }
+    : {}
   const wallet = new ethers.Wallet(config.testPrivateKey)
   it('able to login', async () => {
     const fiatConnectClient = new FiatConnectClient(
@@ -48,6 +51,7 @@ describe('/auth/login', () => {
     const client = axios.create({
       baseURL: config.baseUrl,
       validateStatus: () => true,
+      headers
     })
     const response = await client.post(`/auth/login`, {
       message,
@@ -125,6 +129,7 @@ describe('/auth/login', () => {
       const client = axios.create({
         baseURL: config.baseUrl,
         validateStatus: () => true,
+        headers
       })
       const response = await client[method](endpoint, data)
       expect(response).to.have.status(401)
