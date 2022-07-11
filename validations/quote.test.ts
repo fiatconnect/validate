@@ -28,9 +28,7 @@ describe('/quote', () => {
         validateStatus: () => true,
         headers
       })
-      const response = await client.post(`/quote/out`, {
-        body: JSON.stringify(quoteParams)
-      })
+      const response = await client.post(`/quote/out`, quoteParams)
       expect(response).to.have.status(200)
       checkResponseSchema(response)
     })
@@ -40,9 +38,7 @@ describe('/quote', () => {
         validateStatus: () => true,
         headers
       })
-      const response = await client.post(`/quote/out`, {
-        body: JSON.stringify(quoteParams)
-      })
+      const response = await client.post(`/quote/out`, quoteParams)
       expect(response).to.have.status(400)
       expect(response.data.error).to.be.equal('CryptoAmountTooHigh')
     })
