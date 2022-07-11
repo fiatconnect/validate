@@ -26,9 +26,9 @@ describe('/quote', () => {
       const client = axios.create({
         baseURL: config.baseUrl,
         validateStatus: () => true,
+        headers
       })
       const response = await client.post(`/quote/out`, {
-        headers,
         body: JSON.stringify(quoteParams)
       })
       expect(response).to.have.status(200)
@@ -38,9 +38,9 @@ describe('/quote', () => {
       const client = axios.create({
         baseURL: config.baseUrl,
         validateStatus: () => true,
+        headers
       })
       const response = await client.post(`/quote/out`, {
-        headers,
         body: JSON.stringify(quoteParams)
       })
       expect(response).to.have.status(400)
