@@ -11,6 +11,14 @@ const quoteOutNigeriaCUSD: QuoteRequestBody = {
   country: 'NG',
 }
 
+const quoteInNigeriaCUSD: QuoteRequestBody = {
+  cryptoType: CryptoType.cUSD,
+  fiatType: FiatType.NGN,
+  cryptoAmount: '.01',
+  country: 'NG',
+}
+
 export const MOCK_QUOTE: Record<string, QuoteRequestBody> = {
+  quoteInNigeriaCUSD,
   quoteOutNigeriaCUSD,
 }
