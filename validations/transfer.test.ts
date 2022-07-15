@@ -1,5 +1,5 @@
 import { expect, use } from 'chai'
-import { Wallet, ethers } from 'ethers'
+import { ethers } from 'ethers'
 import path from 'path'
 import { randomUUID } from 'crypto'
 import { AddKycParams, FiatConnectClient } from '@fiatconnect/fiatconnect-sdk'
@@ -26,59 +26,61 @@ describe('/transfer', () => {
   const mockKYCInfo: AddKycParams<KycSchema> =
     MOCK_KYC[config.kycMock as keyof typeof MOCK_KYC]
 
-  describe('/in', () => {
-    const wallet = Wallet.createRandom()
+  if (config.quoteInMock) {
+    describe('/in', () => {
+      const wallet = new ethers.Wallet(config.testPrivateKey)
 
-    const fiatConnectClient = new FiatConnectClient(
-      {
-        baseUrl: config.baseUrl,
-        network: Network.Alfajores,
-        accountAddress: wallet.address,
-      },
-      (message: string) => wallet.signMessage(message),
-    )
-
-    const quoteInParams = {
-      ...MOCK_QUOTE[config.quoteInMock],
-      address: wallet.address,
-    }
-
-    it('able to transfer fiat in for crypto', async () => {
-      const loginResult = await fiatConnectClient.login()
-      expect(loginResult.isOk).to.be.ok
-
-      const quoteInResponse = await fiatConnectClient.createQuoteIn(
-        quoteInParams,
-      )
-      expect(quoteInResponse.isOk).to.be.ok
-      const quoteId = quoteInResponse.unwrap().quote.quoteId
-
-      const addKycResult = await fiatConnectClient.addKyc(mockKYCInfo)
-      expect(addKycResult.isOk).to.be.true
-
-      const addAccountResult = await fiatConnectClient.addFiatAccount(
-        mockAccountData,
-      )
-      expect(addAccountResult.isOk).to.be.true
-      const fiatAccountId = addAccountResult.unwrap().fiatAccountId
-
-      const transferInParams = {
-        idempotencyKey: randomUUID(),
-        data: {
-          fiatAccountId: fiatAccountId,
-          quoteId: quoteId,
+      const fiatConnectClient = new FiatConnectClient(
+        {
+          baseUrl: config.baseUrl,
+          network: Network.Alfajores,
+          accountAddress: wallet.address,
         },
+        (message: string) => wallet.signMessage(message),
+      )
+
+      const quoteInParams = {
+        ...MOCK_QUOTE[config.quoteInMock],
+        address: wallet.address,
       }
 
-      const transferInResponse = await fiatConnectClient.transferIn(
-        transferInParams,
-      )
-      expect(transferInResponse.isOk).to.be.ok
-      expect(transferInResponse.unwrap().transferStatus).to.be.oneOf(
-        Object.values(TransferStatus),
-      )
+      it('able to transfer fiat in for crypto', async () => {
+        const loginResult = await fiatConnectClient.login()
+        expect(loginResult.isOk).to.be.ok
+
+        const quoteInResponse = await fiatConnectClient.createQuoteIn(
+          quoteInParams,
+        )
+        expect(quoteInResponse.isOk).to.be.ok
+        const quoteId = quoteInResponse.unwrap().quote.quoteId
+
+        const addKycResult = await fiatConnectClient.addKyc(mockKYCInfo)
+        expect(addKycResult.isOk).to.be.true
+
+        const addAccountResult = await fiatConnectClient.addFiatAccount(
+          mockAccountData,
+        )
+        expect(addAccountResult.isOk).to.be.true
+        const fiatAccountId = addAccountResult.unwrap().fiatAccountId
+
+        const transferInParams = {
+          idempotencyKey: randomUUID(),
+          data: {
+            fiatAccountId: fiatAccountId,
+            quoteId: quoteId,
+          },
+        }
+
+        const transferInResponse = await fiatConnectClient.transferIn(
+          transferInParams,
+        )
+        expect(transferInResponse.isOk).to.be.ok
+        expect(transferInResponse.unwrap().transferStatus).to.be.oneOf(
+          Object.values(TransferStatus),
+        )
+      })
     })
-  })
+  }
 
   describe('/out', () => {
     const wallet = new ethers.Wallet(config.testPrivateKey)

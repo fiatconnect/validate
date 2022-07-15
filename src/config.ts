@@ -40,6 +40,7 @@ export const config = yargs
     demandOption: true,
     example: 'quoteInNigeriaCUSD',
     options: Object.keys(MOCK_QUOTE),
+    default: "",
   })
   .option('quote-out-mock', {
     description:
