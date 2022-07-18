@@ -35,6 +35,7 @@ describe('/transfer', () => {
           baseUrl: config.baseUrl,
           network: Network.Alfajores,
           accountAddress: wallet.address,
+          apiKey: config.clientApiKey,
         },
         (message: string) => wallet.signMessage(message),
       )
@@ -46,12 +47,12 @@ describe('/transfer', () => {
 
       it('able to transfer fiat in for crypto', async () => {
         const loginResult = await fiatConnectClient.login()
-        expect(loginResult.isOk).to.be.ok
+        expect(loginResult.isOk).to.be.true
 
         const quoteInResponse = await fiatConnectClient.createQuoteIn(
           quoteInParams,
         )
-        expect(quoteInResponse.isOk).to.be.ok
+        expect(quoteInResponse.isOk).to.be.true
         const quoteId = quoteInResponse.unwrap().quote.quoteId
 
         const addKycResult = await fiatConnectClient.addKyc(mockKYCInfo)
@@ -63,8 +64,9 @@ describe('/transfer', () => {
         expect(addAccountResult.isOk).to.be.true
         const fiatAccountId = addAccountResult.unwrap().fiatAccountId
 
+        const idempotencyKey = randomUUID()
         const transferInParams = {
-          idempotencyKey: randomUUID(),
+          idempotencyKey,
           data: {
             fiatAccountId: fiatAccountId,
             quoteId: quoteId,
@@ -74,65 +76,80 @@ describe('/transfer', () => {
         const transferInResponse = await fiatConnectClient.transferIn(
           transferInParams,
         )
-        expect(transferInResponse.isOk).to.be.ok
+        expect(transferInResponse.isOk).to.be.true
         expect(transferInResponse.unwrap().transferStatus).to.be.oneOf(
           Object.values(TransferStatus),
         )
+
+        const duplicateTransferResponse = await fiatConnectClient.transferIn(
+          transferInParams,
+        )
+        expect(duplicateTransferResponse.isOk).to.be.true
+        expect(duplicateTransferResponse.unwrap().transferId).to.equal(transferInResponse.unwrap().transferId)
       })
     })
   }
 
-  describe('/out', () => {
-    const wallet = new ethers.Wallet(config.testPrivateKey)
+  if (config.quoteOutMock) {
+    describe('/out', () => {
+      const wallet = new ethers.Wallet(config.testPrivateKey)
 
-    const fiatConnectClient = new FiatConnectClient(
-      {
-        baseUrl: config.baseUrl,
-        network: Network.Alfajores,
-        accountAddress: wallet.address,
-      },
-      (message: string) => wallet.signMessage(message),
-    )
-
-    const quoteOutParams = {
-      ...MOCK_QUOTE[config.quoteOutMock],
-      address: wallet.address,
-    }
-
-    it('able to transfer crypto in for fiat out', async () => {
-      const loginResult = await fiatConnectClient.login()
-      expect(loginResult.isOk).to.be.ok
-
-      const addKycResult = await fiatConnectClient.addKyc(mockKYCInfo)
-      expect(addKycResult.isOk).to.be.true
-
-      const addAccountResult = await fiatConnectClient.addFiatAccount(
-        mockAccountData,
-      )
-      expect(addAccountResult.isOk).to.be.true
-      const fiatAccountId = addAccountResult.unwrap().fiatAccountId
-
-      const quoteOutResponse = await fiatConnectClient.createQuoteOut(
-        quoteOutParams,
-      )
-      expect(quoteOutResponse.isOk).to.be.ok
-      const quoteOutId = quoteOutResponse.unwrap().quote.quoteId
-
-      const transferOutParams = {
-        idempotencyKey: randomUUID(),
-        data: {
-          fiatAccountId: fiatAccountId,
-          quoteId: quoteOutId,
+      const fiatConnectClient = new FiatConnectClient(
+        {
+          baseUrl: config.baseUrl,
+          network: Network.Alfajores,
+          accountAddress: wallet.address,
+          apiKey: config.clientApiKey,
         },
+        (message: string) => wallet.signMessage(message),
+      )
+
+      const quoteOutParams = {
+        ...MOCK_QUOTE[config.quoteOutMock],
+        address: wallet.address,
       }
 
-      const transferOutResponse = await fiatConnectClient.transferOut(
-        transferOutParams,
-      )
-      expect(transferOutResponse.isOk).to.be.ok
-      expect(transferOutResponse.unwrap().transferStatus).to.be.oneOf(
-        Object.values(TransferStatus),
-      )
+      it('able to transfer crypto in for fiat out', async () => {
+        const loginResult = await fiatConnectClient.login()
+        expect(loginResult.isOk).to.be.true
+
+        const addKycResult = await fiatConnectClient.addKyc(mockKYCInfo)
+        expect(addKycResult.isOk).to.be.true
+
+        const addAccountResult = await fiatConnectClient.addFiatAccount(
+          mockAccountData,
+        )
+        expect(addAccountResult.isOk).to.be.true
+        const fiatAccountId = addAccountResult.unwrap().fiatAccountId
+
+        const quoteOutResponse = await fiatConnectClient.createQuoteOut(
+          quoteOutParams,
+        )
+        expect(quoteOutResponse.isOk).to.be.true
+        const quoteOutId = quoteOutResponse.unwrap().quote.quoteId
+
+        const transferOutParams = {
+          idempotencyKey: randomUUID(),
+          data: {
+            fiatAccountId: fiatAccountId,
+            quoteId: quoteOutId,
+          },
+        }
+
+        const transferOutResponse = await fiatConnectClient.transferOut(
+          transferOutParams,
+        )
+        expect(transferOutResponse.isOk).to.be.true
+        expect(transferOutResponse.unwrap().transferStatus).to.be.oneOf(
+          [TransferStatus.TransferStarted, TransferStatus.TransferReadyForUserToSendCryptoFunds]
+        )
+
+        const duplicateTransferResponse = await fiatConnectClient.transferOut(
+          transferOutParams,
+        )
+        expect(duplicateTransferResponse.isOk).to.be.true
+        expect(duplicateTransferResponse.unwrap().transferId).to.equal(transferOutResponse.unwrap().transferId)
+      })
     })
-  })
+  }
 })
