@@ -33,6 +33,15 @@ export const config = yargs
     type: 'string',
     demandOption: false,
   })
+  .option('quote-in-mock', {
+    description:
+      'Mock data to use for a transfer in quote that should be offered',
+    type: 'string',
+    demandOption: true,
+    example: 'quoteInNigeriaCUSD',
+    options: Object.keys(MOCK_QUOTE),
+    default: "",
+  })
   .option('quote-out-mock', {
     description:
       'Mock data to use for a transfer out quote that should be offered',
