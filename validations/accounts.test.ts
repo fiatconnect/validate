@@ -17,7 +17,7 @@ describe('accounts', () => {
     ]
 
   it('gives empty list of accounts when none are posted yet', async () => {
-    const wallet = new ethers.Wallet(config.testPrivateKey)
+    const wallet = ethers.Wallet.createRandom()
     const fiatConnectClient = new FiatConnectClient(
       {
         baseUrl: config.baseUrl,
@@ -35,7 +35,7 @@ describe('accounts', () => {
     expect(!!getAccountsResult.unwrap().BankAccount?.length).to.be.false
   })
   it('able to post and get', async () => {
-    const wallet = new ethers.Wallet(config.testPrivateKey)
+    const wallet = ethers.Wallet.createRandom()
     const fiatConnectClient = new FiatConnectClient(
       {
         baseUrl: config.baseUrl,

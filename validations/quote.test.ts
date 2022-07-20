@@ -17,7 +17,7 @@ const headers: AxiosRequestHeaders = config.clientApiKey
 
 describe('/quote', () => {
   describe('/out', () => {
-    const wallet = new ethers.Wallet(config.testPrivateKey)
+    const wallet = ethers.Wallet.createRandom()
     const quoteParams = {
       ...MOCK_QUOTE[config.quoteOutMock],
       address: wallet.address,
@@ -38,6 +38,7 @@ describe('/quote', () => {
         validateStatus: () => true,
         headers
       })
+      quoteParams.cryptoAmount = Number.MAX_VALUE.toString()
       const response = await client.post(`/quote/out`, quoteParams)
       expect(response).to.have.status(400)
       expect(response.data.error).to.be.equal('CryptoAmountTooHigh')
