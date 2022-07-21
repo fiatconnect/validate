@@ -28,7 +28,7 @@ describe('/transfer', () => {
 
   if (config.quoteInMock) {
     describe('/in', () => {
-      const wallet = new ethers.Wallet(config.testPrivateKey)
+      const wallet = ethers.Wallet.createRandom()
 
       const fiatConnectClient = new FiatConnectClient(
         {
@@ -92,7 +92,7 @@ describe('/transfer', () => {
 
   if (config.quoteOutMock) {
     describe('/out', () => {
-      const wallet = new ethers.Wallet(config.testPrivateKey)
+      const wallet = ethers.Wallet.createRandom()
 
       const fiatConnectClient = new FiatConnectClient(
         {

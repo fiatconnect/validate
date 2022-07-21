@@ -14,7 +14,7 @@ describe('/kyc', () => {
   const mockKYCInfo: AddKycParams<KycSchema> =
     MOCK_KYC[config.kycMock as keyof typeof MOCK_KYC]
   it('able to post kyc data if logged in first', async () => {
-    const wallet = new ethers.Wallet(config.testPrivateKey)
+    const wallet = ethers.Wallet.createRandom()
     const fiatConnectClient = new FiatConnectClient(
       {
         baseUrl: config.baseUrl,
@@ -34,7 +34,7 @@ describe('/kyc', () => {
     )
   })
   it('GET /kyc/:kycSchema/status', async () => {
-    const wallet = new ethers.Wallet(config.testPrivateKey)
+    const wallet = ethers.Wallet.createRandom()
     const fiatConnectClient = new FiatConnectClient(
       {
         baseUrl: config.baseUrl,
@@ -60,7 +60,7 @@ describe('/kyc', () => {
   })
 
   it('able to delete kyc data if logged in first', async () => {
-    const wallet = new ethers.Wallet(config.testPrivateKey)
+    const wallet = ethers.Wallet.createRandom()
     const fiatConnectClient = new FiatConnectClient(
       {
         baseUrl: config.baseUrl,
@@ -73,7 +73,8 @@ describe('/kyc', () => {
     const loginResult = await fiatConnectClient.login()
     expect(loginResult.isOk).to.be.ok
 
-    await fiatConnectClient.addKyc(mockKYCInfo)
+    const addKycResult = await fiatConnectClient.addKyc(mockKYCInfo)
+    expect(addKycResult.isOk).to.be.true
 
     const deleteKycResult = await fiatConnectClient.deleteKyc({
       kycSchema: mockKYCInfo.kycSchemaName,

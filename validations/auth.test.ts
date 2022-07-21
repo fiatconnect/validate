@@ -19,7 +19,7 @@ describe('/auth/login', () => {
   const headers: AxiosRequestHeaders = config.clientApiKey
     ? { Authorization: `Bearer ${config.clientApiKey}` }
     : {}
-  const wallet = new ethers.Wallet(config.testPrivateKey)
+  const wallet = ethers.Wallet.createRandom()
   it('able to login', async () => {
     const fiatConnectClient = new FiatConnectClient(
       {
@@ -68,7 +68,6 @@ describe('/auth/login', () => {
     expect(response2.data.error).to.equal('NonceInUse')
   })
   it('rejects login signed by different wallet', async () => {
-    const wallet = new ethers.Wallet(config.testPrivateKey)
     const fiatConnectClient = new FiatConnectClient(
       {
         baseUrl: config.baseUrl,
