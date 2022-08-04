@@ -6,6 +6,8 @@ import { FiatConnectClient } from '@fiatconnect/fiatconnect-sdk'
 import path from 'path'
 import { chaiPlugin } from 'api-contract-validator'
 import { MOCK_FIAT_ACCOUNTS } from '../src/mock-data/fiat-account'
+import { checkObjectAgainstModel } from '../src/check-response-schema'
+
 
 const apiDefinitionsPath = path.join(config.openapiSpec)
 use(chaiPlugin({ apiDefinitionsPath }))
@@ -33,6 +35,7 @@ describe('accounts', () => {
     const getAccountsResult = await fiatConnectClient.getFiatAccounts()
     expect(getAccountsResult.isOk).to.be.true
     expect(!!getAccountsResult.unwrap().BankAccount?.length).to.be.false
+    await checkObjectAgainstModel(getAccountsResult.unwrap(), 'GetFiatAccountsResponse')
   })
   it('able to post and get', async () => {
     const wallet = ethers.Wallet.createRandom()
@@ -52,9 +55,12 @@ describe('accounts', () => {
       mockAccountData,
     )
     expect(addAccountResult.isOk).to.be.true
+    await checkObjectAgainstModel(addAccountResult.unwrap(), 'FiatAccountInfoResponse')
 
     const getAccountsResult = await fiatConnectClient.getFiatAccounts()
     expect(getAccountsResult.isOk).to.be.true
+    await checkObjectAgainstModel(getAccountsResult.unwrap(), 'GetFiatAccountsResponse')
+
     expect(getAccountsResult.unwrap().BankAccount?.length).to.be.gt(0)
   })
   // TODO test DELETE /accounts/:fiatAccountId (once a working POST endpoint exists...)
