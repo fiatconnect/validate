@@ -13,6 +13,7 @@ import { chaiPlugin } from 'api-contract-validator'
 import { MOCK_QUOTE } from '../src/mock-data/quote'
 import { MOCK_KYC } from '../src/mock-data/kyc'
 import { MOCK_FIAT_ACCOUNTS } from '../src/mock-data/fiat-account'
+import { checkObjectAgainstModel } from '../src/check-response-schema'
 
 const apiDefinitionsPath = path.join(config.openapiSpec)
 use(chaiPlugin({ apiDefinitionsPath }))
@@ -20,8 +21,8 @@ use(chaiPlugin({ apiDefinitionsPath }))
 describe('/transfer', () => {
   const mockAccountData =
     MOCK_FIAT_ACCOUNTS[
-    config.fiatAccountMock as keyof typeof MOCK_FIAT_ACCOUNTS
-  ]
+      config.fiatAccountMock as keyof typeof MOCK_FIAT_ACCOUNTS
+    ]
 
   const mockKYCInfo: AddKycParams<KycSchema> =
     MOCK_KYC[config.kycMock as keyof typeof MOCK_KYC]
@@ -85,7 +86,19 @@ describe('/transfer', () => {
           transferInParams,
         )
         expect(duplicateTransferResponse.isOk).to.be.true
-        expect(duplicateTransferResponse.unwrap().transferId).to.equal(transferInResponse.unwrap().transferId)
+        expect(duplicateTransferResponse.unwrap().transferId).to.equal(
+          transferInResponse.unwrap().transferId,
+        )
+
+        const transferStatusResponse =
+          await fiatConnectClient.getTransferStatus({
+            transferId: transferInResponse.unwrap().transferId,
+          })
+        expect(transferStatusResponse.isOk).to.be.true
+        await checkObjectAgainstModel(
+          transferStatusResponse.unwrap(),
+          'TransferStatusResponse',
+        )
       })
     })
   }
@@ -140,15 +153,28 @@ describe('/transfer', () => {
           transferOutParams,
         )
         expect(transferOutResponse.isOk).to.be.true
-        expect(transferOutResponse.unwrap().transferStatus).to.be.oneOf(
-          [TransferStatus.TransferStarted, TransferStatus.TransferReadyForUserToSendCryptoFunds]
-        )
+        expect(transferOutResponse.unwrap().transferStatus).to.be.oneOf([
+          TransferStatus.TransferStarted,
+          TransferStatus.TransferReadyForUserToSendCryptoFunds,
+        ])
 
         const duplicateTransferResponse = await fiatConnectClient.transferOut(
           transferOutParams,
         )
         expect(duplicateTransferResponse.isOk).to.be.true
-        expect(duplicateTransferResponse.unwrap().transferId).to.equal(transferOutResponse.unwrap().transferId)
+        expect(duplicateTransferResponse.unwrap().transferId).to.equal(
+          transferOutResponse.unwrap().transferId,
+        )
+
+        const transferStatusResponse =
+          await fiatConnectClient.getTransferStatus({
+            transferId: transferOutResponse.unwrap().transferId,
+          })
+        expect(transferStatusResponse.isOk).to.be.true
+        await checkObjectAgainstModel(
+          transferStatusResponse.unwrap(),
+          'TransferStatusResponse',
+        )
       })
     })
   }
