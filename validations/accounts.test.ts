@@ -80,6 +80,11 @@ describe('accounts', () => {
     })
     expect(deleteAccountResult.isOk).to.be.true
 
+    // Getting accounts should now yield empty response
+    const getAccountsResultDuplicate = await fiatConnectClient.getFiatAccounts()
+    expect(getAccountsResultDuplicate.isOk).to.be.true
+    expect(getAccountsResultDuplicate.unwrap()).to.eql({})
+
     // Should fail when attempting to delete account a second time
     const deleteAccountResultDuplicate =
       await fiatConnectClient.deleteFiatAccount({ fiatAccountId })
@@ -90,10 +95,5 @@ describe('accounts', () => {
         FiatConnectError.ResourceNotFound,
       )
     }
-
-    // Getting accounts should now yield empty response
-    const getAccountsResultDuplicate = await fiatConnectClient.getFiatAccounts()
-    expect(getAccountsResultDuplicate.isOk).to.be.true
-    expect(getAccountsResultDuplicate.unwrap()).to.eql({})
   })
 })

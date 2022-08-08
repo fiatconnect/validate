@@ -82,15 +82,7 @@ describe('/transfer', () => {
           Object.values(TransferStatus),
         )
 
-        const duplicateTransferResponse = await fiatConnectClient.transferIn(
-          transferInParams,
-        )
-        expect(duplicateTransferResponse.isOk).to.be.true
-        expect(duplicateTransferResponse.unwrap().transferId).to.equal(
-          transferInResponse.unwrap().transferId,
-        )
-
-        const transferStatusResponse =
+	const transferStatusResponse =
           await fiatConnectClient.getTransferStatus({
             transferId: transferInResponse.unwrap().transferId,
           })
@@ -98,6 +90,14 @@ describe('/transfer', () => {
         await checkObjectAgainstModel(
           transferStatusResponse.unwrap(),
           'TransferStatusResponse',
+        )
+
+        const duplicateTransferResponse = await fiatConnectClient.transferIn(
+          transferInParams,
+        )
+        expect(duplicateTransferResponse.isOk).to.be.true
+        expect(duplicateTransferResponse.unwrap().transferId).to.equal(
+          transferInResponse.unwrap().transferId,
         )
       })
     })
@@ -158,15 +158,7 @@ describe('/transfer', () => {
           TransferStatus.TransferReadyForUserToSendCryptoFunds,
         ])
 
-        const duplicateTransferResponse = await fiatConnectClient.transferOut(
-          transferOutParams,
-        )
-        expect(duplicateTransferResponse.isOk).to.be.true
-        expect(duplicateTransferResponse.unwrap().transferId).to.equal(
-          transferOutResponse.unwrap().transferId,
-        )
-
-        const transferStatusResponse =
+	const transferStatusResponse =
           await fiatConnectClient.getTransferStatus({
             transferId: transferOutResponse.unwrap().transferId,
           })
@@ -174,6 +166,14 @@ describe('/transfer', () => {
         await checkObjectAgainstModel(
           transferStatusResponse.unwrap(),
           'TransferStatusResponse',
+        )
+
+        const duplicateTransferResponse = await fiatConnectClient.transferOut(
+          transferOutParams,
+        )
+        expect(duplicateTransferResponse.isOk).to.be.true
+        expect(duplicateTransferResponse.unwrap().transferId).to.equal(
+          transferOutResponse.unwrap().transferId,
         )
       })
     })
