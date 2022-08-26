@@ -58,9 +58,6 @@ describe('accounts', () => {
     const addAccountResult = await fiatConnectClient.addFiatAccount(
       mockAccountData,
     )
-    if (addAccountResult.isErr) {
-      console.log(addAccountResult.error)
-    }
     expect(addAccountResult.isOk).to.be.true
     await checkObjectAgainstModel(
       addAccountResult.unwrap(),
