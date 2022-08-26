@@ -71,7 +71,7 @@ describe('accounts', () => {
       {
         baseUrl: config.baseUrl,
         network: Network.Alfajores,
-        accountAddress: wallet.address,
+        accountAddress: wallet2.address,
         apiKey: config.clientApiKey,
       },
       (message: string) => wallet2.signMessage(message),
