@@ -58,35 +58,12 @@ describe('accounts', () => {
     const addAccountResult = await fiatConnectClient.addFiatAccount(
       mockAccountData,
     )
+    if (addAccountResult.isErr) {
+      console.log(addAccountResult.error)
+    }
     expect(addAccountResult.isOk).to.be.true
     await checkObjectAgainstModel(
       addAccountResult.unwrap(),
-      'FiatAccountInfoResponse',
-    )
-
-    // Another address should be able to add the same exact account
-    // without a collision
-    const wallet2 = ethers.Wallet.createRandom()
-    const fiatConnectClient2 = new FiatConnectClient(
-      {
-        baseUrl: config.baseUrl,
-        network: Network.Alfajores,
-        accountAddress: wallet2.address,
-        apiKey: config.clientApiKey,
-      },
-      (message: string) => wallet2.signMessage(message),
-    )
-    const loginResult2 = await fiatConnectClient2.login()
-    expect(loginResult2.isOk).to.be.ok
-
-    // Add the same account to the new address and verify response
-    const addAccountResult2 = await fiatConnectClient2.addFiatAccount(
-      mockAccountData,
-    )
-    expect(addAccountResult2.isOk).to.be.true
-
-    await checkObjectAgainstModel(
-      addAccountResult2.unwrap(),
       'FiatAccountInfoResponse',
     )
 
@@ -121,5 +98,54 @@ describe('accounts', () => {
         FiatConnectError.ResourceNotFound,
       )
     }
+  })
+  it('able to add same account to multiple addresses', async () => {
+    const wallet = ethers.Wallet.createRandom()
+    const fiatConnectClient = new FiatConnectClient(
+      {
+        baseUrl: config.baseUrl,
+        network: Network.Alfajores,
+        accountAddress: wallet.address,
+        apiKey: config.clientApiKey,
+      },
+      (message: string) => wallet.signMessage(message),
+    )
+    const loginResult = await fiatConnectClient.login()
+    expect(loginResult.isOk).to.be.ok
+
+    // Add an account and verify response
+    const addAccountResult = await fiatConnectClient.addFiatAccount(
+      mockAccountData,
+    )
+    expect(addAccountResult.isOk).to.be.ok
+    await checkObjectAgainstModel(
+      addAccountResult.unwrap(),
+      'FiatAccountInfoResponse',
+    )
+
+    // Another address should be able to add the same exact account
+    // without a collision
+    const wallet2 = ethers.Wallet.createRandom()
+    const fiatConnectClient2 = new FiatConnectClient(
+      {
+        baseUrl: config.baseUrl,
+        network: Network.Alfajores,
+        accountAddress: wallet2.address,
+        apiKey: config.clientApiKey,
+      },
+      (message: string) => wallet2.signMessage(message),
+    )
+    const loginResult2 = await fiatConnectClient2.login()
+    expect(loginResult2.isOk).to.be.true
+
+    // Add the same account to the new address and verify response
+    const addAccountResult2 = await fiatConnectClient2.addFiatAccount(
+      mockAccountData,
+    )
+    expect(addAccountResult2.isOk).to.be.ok
+    await checkObjectAgainstModel(
+      addAccountResult2.unwrap(),
+      'FiatAccountInfoResponse',
+    )
   })
 })
