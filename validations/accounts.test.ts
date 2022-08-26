@@ -86,7 +86,7 @@ describe('accounts', () => {
     expect(addAccountResult2.isOk).to.be.true
 
     await checkObjectAgainstModel(
-      addAccountResult.unwrap(),
+      addAccountResult2.unwrap(),
       'FiatAccountInfoResponse',
     )
 
