@@ -26,7 +26,7 @@ describe('/quote', () => {
       const client = axios.create({
         baseURL: config.baseUrl,
         validateStatus: () => true,
-        headers
+        headers,
       })
       const response = await client.post(`/quote/out`, quoteParams)
       expect(response).to.have.status(200)
@@ -36,7 +36,7 @@ describe('/quote', () => {
       const client = axios.create({
         baseURL: config.baseUrl,
         validateStatus: () => true,
-        headers
+        headers,
       })
       quoteParams.cryptoAmount = Number.MAX_VALUE.toString()
       const response = await client.post(`/quote/out`, quoteParams)

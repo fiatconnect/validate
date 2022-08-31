@@ -50,10 +50,11 @@ yarn validate --testNamePattern='quote'
 ### Validating Webhooks
 
 Validating webhooks takes a few additional steps that need to be done prior to running the script:
-1. Register a [client api key](https://github.com/fiatconnect/specification/blob/main/fiatconnect-api.md#332-client-api-key) for the validate script with your API and add the key to the config as an environment variable `CLIENT_API_KEY=<insert-key>`. Send webhooks for this API key to `https://liquidity-dot-celo-mobile-alfajores.appspot.com/fiatconnect/webhook/history/<provider-id>`.
-1. Add `provider-id` and `client api key` as environment variables. ex:  `CLIENT_API_KEY=<insert-key>`, `PROVIDER_ID=<provider-id>`
+
+1. Register a [client api key](https://github.com/fiatconnect/specification/blob/main/fiatconnect-api.md#332-client-api-key) for the validate script with your API. Send webhooks for this client api key to `https://liquidity-dot-celo-mobile-alfajores.appspot.com/fiatconnect/webhook/history/<provider-id>`.
+1. Add `provider-id` and `client api key` as environment variables to this script. ex: `CLIENT_API_KEY=<insert-key>`, `PROVIDER_ID=<provider-id>`
 1. On discord, reach out to a Valora Engineer and request that they add your API to the allow list. Privately supply them with your [Webhook Signing Private Key](https://github.com/fiatconnect/specification/blob/main/fiatconnect-api.md#52-webhook-request-signing) and the `<provider-id>`.
-1. After a Valora Engineer has added your API to the allow list you may run the validation script with the `CLIENT_API_KEY` and `PROVIDER_ID` variables to validate webhooks. 
+1. After a Valora Engineer has added your API to the allow list you may run the validation script with the `CLIENT_API_KEY` and `PROVIDER_ID` variables to validate webhooks.
 
 ## Contributing
 

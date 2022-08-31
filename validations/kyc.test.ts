@@ -7,6 +7,10 @@ import path from 'path'
 import { chaiPlugin } from 'api-contract-validator'
 import { MOCK_KYC } from '../src/mock-data/kyc'
 import axios from 'axios'
+import {
+  VALORA_BASE_URL,
+  VALORA_WEBHOOK_HISTORY_ENDPOINT,
+} from '../src/constants'
 
 const apiDefinitionsPath = path.join(config.openapiSpec)
 use(chaiPlugin({ apiDefinitionsPath }))
@@ -22,7 +26,7 @@ describe('/kyc', () => {
         baseUrl: config.baseUrl,
         network: Network.Alfajores,
         accountAddress: wallet.address,
-        apiKey: config.clientApiKey
+        apiKey: config.clientApiKey,
       },
       (message: string) => wallet.signMessage(message),
     )
@@ -42,7 +46,7 @@ describe('/kyc', () => {
         baseUrl: config.baseUrl,
         network: Network.Alfajores,
         accountAddress: wallet.address,
-        apiKey: config.clientApiKey
+        apiKey: config.clientApiKey,
       },
       (message: string) => wallet.signMessage(message),
     )
@@ -60,16 +64,16 @@ describe('/kyc', () => {
       Object.values(KycStatus),
     )
   })
-  if(config.clientApiKey && config.providerId) {
+  if (config.clientApiKey && config.providerId) {
     it('sends kyc webhooks', async () => {
-      const beforeKycAdd =  new Date().toISOString()
+      const beforeKycAdd = new Date().toISOString()
       const wallet = ethers.Wallet.createRandom()
       const fiatConnectClient = new FiatConnectClient(
         {
           baseUrl: config.baseUrl,
           network: Network.Alfajores,
           accountAddress: wallet.address,
-          apiKey: config.clientApiKey
+          apiKey: config.clientApiKey,
         },
         (message: string) => wallet.signMessage(message),
       )
@@ -88,15 +92,21 @@ describe('/kyc', () => {
       )
       await new Promise((resolve) => setTimeout(resolve, 3000)) // Wait a bit for API requests to process
       const client = axios.create({
-        baseURL: 'https://liquidity-dot-celo-mobile-alfajores.appspot.com',
+        baseURL: VALORA_BASE_URL,
         validateStatus: () => true,
       })
-      const response = await client.get(`/fiatconnect/webhook/history/${config.providerId}`)
-      expect(response.status).to.equal(200, `Error fetching webhook history: ${JSON.stringify(response.data)}`)
-      const coorespondingWebhook = response.data.kycHistory.find((kyc: any) => 
-        kyc.kyc_status === getKycResult.unwrap().kycStatus &&
-        kyc.event_timestamp > beforeKycAdd
-        )
+      const response = await client.get(
+        `${VALORA_WEBHOOK_HISTORY_ENDPOINT}/${config.providerId}`,
+      )
+      expect(response.status).to.equal(
+        200,
+        `Error fetching webhook history: ${JSON.stringify(response.data)}`,
+      )
+      const coorespondingWebhook = response.data.kycHistory.find(
+        (kyc: any) =>
+          kyc.kyc_status === getKycResult.unwrap().kycStatus &&
+          kyc.event_timestamp > beforeKycAdd,
+      )
       expect(coorespondingWebhook).to.exist
     })
   }
@@ -108,7 +118,7 @@ describe('/kyc', () => {
         baseUrl: config.baseUrl,
         network: Network.Alfajores,
         accountAddress: wallet.address,
-        apiKey: config.clientApiKey
+        apiKey: config.clientApiKey,
       },
       (message: string) => wallet.signMessage(message),
     )
