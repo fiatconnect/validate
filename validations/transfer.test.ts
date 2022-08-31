@@ -14,6 +14,7 @@ import { MOCK_QUOTE } from '../src/mock-data/quote'
 import { MOCK_KYC } from '../src/mock-data/kyc'
 import { MOCK_FIAT_ACCOUNTS } from '../src/mock-data/fiat-account'
 import { checkObjectAgainstModel } from '../src/check-response-schema'
+import axios from 'axios'
 
 const apiDefinitionsPath = path.join(config.openapiSpec)
 use(chaiPlugin({ apiDefinitionsPath }))
@@ -47,6 +48,7 @@ describe('/transfer', () => {
       }
 
       it('able to transfer fiat in for crypto', async () => {
+        const beforeTransfer = new Date().toISOString()
         const loginResult = await fiatConnectClient.login()
         expect(loginResult.isOk).to.be.true
 
@@ -81,16 +83,33 @@ describe('/transfer', () => {
         expect(transferInResponse.unwrap().transferStatus).to.be.oneOf(
           Object.values(TransferStatus),
         )
-
+        const transferId = transferInResponse.unwrap().transferId
 	const transferStatusResponse =
           await fiatConnectClient.getTransferStatus({
-            transferId: transferInResponse.unwrap().transferId,
+            transferId
           })
         expect(transferStatusResponse.isOk).to.be.true
         await checkObjectAgainstModel(
           transferStatusResponse.unwrap(),
           'TransferStatusResponse',
         )
+
+        // Webhook validation
+        if(config.clientApiKey && config.providerId) {
+          await new Promise((resolve) => setTimeout(resolve, 3000)) // Wait a bit for API requests to process
+          const client = axios.create({
+            baseURL: 'https://liquidity-dot-celo-mobile-alfajores.appspot.com',
+            validateStatus: () => true,
+          })
+          const response = await client.get(`/fiatconnect/webhook/history/${config.providerId}`)
+          expect(response.status).to.equal(200, `Error fetching webhook history: ${JSON.stringify(response.data)}`)
+          const coorespondingWebhook = response.data.transferHistory.find((transfer: any) => 
+            transfer.status === transferStatusResponse.unwrap().status &&
+            transfer.transfer_id === transferId &&
+            transfer.event_timestamp > beforeTransfer
+            )
+          expect(coorespondingWebhook).to.exist
+        }
 
         const duplicateTransferResponse = await fiatConnectClient.transferIn(
           transferInParams,
@@ -105,6 +124,7 @@ describe('/transfer', () => {
 
   if (config.quoteOutMock) {
     describe('/out', () => {
+      jest.setTimeout(10000)
       const wallet = ethers.Wallet.createRandom()
 
       const fiatConnectClient = new FiatConnectClient(
@@ -123,6 +143,7 @@ describe('/transfer', () => {
       }
 
       it('able to transfer crypto in for fiat out', async () => {
+        const beforeTransfer = new Date().toISOString()
         const loginResult = await fiatConnectClient.login()
         expect(loginResult.isOk).to.be.true
 
@@ -157,10 +178,10 @@ describe('/transfer', () => {
           TransferStatus.TransferStarted,
           TransferStatus.TransferReadyForUserToSendCryptoFunds,
         ])
-
-	const transferStatusResponse =
+        const transferId = transferOutResponse.unwrap().transferId
+	      const transferStatusResponse =
           await fiatConnectClient.getTransferStatus({
-            transferId: transferOutResponse.unwrap().transferId,
+            transferId
           })
         expect(transferStatusResponse.isOk).to.be.true
         await checkObjectAgainstModel(
@@ -168,6 +189,24 @@ describe('/transfer', () => {
           'TransferStatusResponse',
         )
 
+
+        // Webhook validation
+        if(config.clientApiKey && config.providerId) {
+          await new Promise((resolve) => setTimeout(resolve, 3000)) // Wait a bit for API requests to process
+          const client = axios.create({
+            baseURL: 'https://liquidity-dot-celo-mobile-alfajores.appspot.com',
+            validateStatus: () => true,
+          })
+          const response = await client.get(`/fiatconnect/webhook/history/${config.providerId}`)
+          expect(response.status).to.equal(200, `Error fetching webhook history: ${JSON.stringify(response.data)}`)
+          const coorespondingWebhook = response.data.transferHistory.find((transfer: any) => 
+            transfer.status === transferStatusResponse.unwrap().status &&
+            transfer.transfer_id === transferId &&
+            transfer.event_timestamp > beforeTransfer
+            )
+          expect(coorespondingWebhook).to.exist
+        }
+  
         const duplicateTransferResponse = await fiatConnectClient.transferOut(
           transferOutParams,
         )

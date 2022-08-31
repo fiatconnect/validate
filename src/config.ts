@@ -33,6 +33,11 @@ export const config = yargs
     type: 'string',
     demandOption: false,
   })
+  .option('provider-id', {
+    description: 'Provider ID',
+    type: 'string',
+    demandOption: false,
+  })
   .option('quote-in-mock', {
     description:
       'Mock data to use for a transfer in quote that should be offered',
