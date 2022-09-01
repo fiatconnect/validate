@@ -18,7 +18,6 @@ import { chaiPlugin } from 'api-contract-validator'
 import chaiAsPromised from 'chai-as-promised'
 import { randomUUID } from 'crypto'
 import path from 'path'
-import { checkObjectAgainstModel } from '../src/check-response-schema'
 import axios from 'axios'
 import {
   WEBHOOK_RECIPIENT_BASE_URL,
@@ -160,6 +159,10 @@ describe('webhooks', () => {
   if (config.quoteInMock) {
     describe('transfer in', () => {
       it('sends webhooks for transfer in requests', async () => {
+        expect(
+          !!(config.clientApiKey && config.providerId),
+          'clientApiKey & providerId are required parameters for webhook validation',
+        ).to.be.true
         // Setup
         const quoteInParams = {
           ...MOCK_QUOTE[config.quoteInMock],
@@ -205,16 +208,8 @@ describe('webhooks', () => {
             transferId,
           })
         expect(transferStatusResponse.isOk).to.be.true
-        await checkObjectAgainstModel(
-          transferStatusResponse.unwrap(),
-          'TransferStatusResponse',
-        )
 
         // Webhook Validation
-        expect(
-          !!(config.clientApiKey && config.providerId),
-          'clientApiKey & providerId are required parameters for webhook validation',
-        ).to.be.true
         await expect(
           validateTransferWebhook(
             {
@@ -231,6 +226,10 @@ describe('webhooks', () => {
   if (config.quoteOutMock) {
     describe('transfer out', () => {
       it('sends webhooks for transfer out requests', async () => {
+        expect(
+          !!(config.clientApiKey && config.providerId),
+          'clientApiKey & providerId are required parameters for webhook validation',
+        ).to.be.true
         // Setup
         const quoteOutParams = {
           ...MOCK_QUOTE[config.quoteOutMock],
@@ -276,16 +275,8 @@ describe('webhooks', () => {
             transferId,
           })
         expect(transferStatusResponse.isOk).to.be.true
-        await checkObjectAgainstModel(
-          transferStatusResponse.unwrap(),
-          'TransferStatusResponse',
-        )
 
         // Webhook Validation
-        expect(
-          !!(config.clientApiKey && config.providerId),
-          'clientApiKey & providerId are required parameters for webhook validation',
-        ).to.be.true
         await expect(
           validateTransferWebhook(
             {
@@ -301,6 +292,10 @@ describe('webhooks', () => {
   }
   describe('kyc', () => {
     it('sends webhooks for kyc status updates', async () => {
+      expect(
+        !!(config.clientApiKey && config.providerId),
+        'clientApiKey & providerId are required parameters for webhook validation',
+      ).to.be.true
       // Setup
       const loginResult = await fiatConnectClient.login()
       expect(loginResult.isOk).to.be.ok
@@ -312,15 +307,8 @@ describe('webhooks', () => {
         kycSchema: mockKYCInfo.kycSchemaName,
       })
       expect(getKycResult.isOk).to.be.true
-      expect(getKycResult.unwrap().kycStatus).to.be.oneOf(
-        Object.values(KycStatus),
-      )
 
       // Webhook Validation
-      expect(
-        !!(config.clientApiKey && config.providerId),
-        'clientApiKey & providerId are required parameters for webhook validation',
-      ).to.be.true
       await expect(
         validateKycWebhook(
           {
