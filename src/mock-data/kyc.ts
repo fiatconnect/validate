@@ -40,7 +40,20 @@ const personalDataAndDocumentsAustria: AddKycParams<KycSchema.PersonalDataAndDoc
     },
   }
 
+  const personalDataAndDocumentsXOF: AddKycParams<KycSchema.PersonalDataAndDocuments> =
+  {
+    ...personalDataAndDocumentsNigeria,
+    data: {
+      ...personalDataAndDocumentsNigeria.data,
+      address: {
+        ...personalDataAndDocumentsNigeria.data.address,
+        isoCountryCode: 'CI',
+      },
+    },
+  }
+
 export const MOCK_KYC: Record<string, AddKycParams<KycSchema>> = {
   personalDataAndDocumentsNigeria,
   personalDataAndDocumentsAustria,
+  personalDataAndDocumentsXOF
 }
