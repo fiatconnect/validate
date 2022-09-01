@@ -47,6 +47,15 @@ Run specific tests (see Jest documentation for
 yarn validate --testNamePattern='quote'
 ```
 
+### Validating Webhooks
+
+Validating webhooks takes a few additional steps that need to be done prior to running the script:
+
+1. Register a [client api key](https://github.com/fiatconnect/specification/blob/main/fiatconnect-api.md#332-client-api-key) for the validate script with your API. Send webhooks for this client api key to `https://liquidity-dot-celo-mobile-alfajores.appspot.com/fiatconnect/webhook/history/<provider-id>`. (Remember to replace `<provider-id>` with your actual provider ID.)
+1. Add `provider-id` and `client api key` as environment variables to this script. ex: `CLIENT_API_KEY=<insert-key>`, `PROVIDER_ID=<provider-id>`
+1. On discord, reach out to a Valora Engineer and request that they add your API to the allow list. Privately supply them with your [Webhook Signing Private Key](https://github.com/fiatconnect/specification/blob/main/fiatconnect-api.md#52-webhook-request-signing) and the `<provider-id>`.
+1. After a Valora Engineer has added your API to the allow list you may run the validation script with the `CLIENT_API_KEY` and `PROVIDER_ID` variables to validate webhooks.
+
 ## Contributing
 
 If you see an opportunity to improve this repo, perhaps by increasing test coverage or making existing

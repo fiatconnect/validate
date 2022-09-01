@@ -20,7 +20,7 @@ describe('/kyc', () => {
         baseUrl: config.baseUrl,
         network: Network.Alfajores,
         accountAddress: wallet.address,
-        apiKey: config.clientApiKey
+        apiKey: config.clientApiKey,
       },
       (message: string) => wallet.signMessage(message),
     )
@@ -40,7 +40,7 @@ describe('/kyc', () => {
         baseUrl: config.baseUrl,
         network: Network.Alfajores,
         accountAddress: wallet.address,
-        apiKey: config.clientApiKey
+        apiKey: config.clientApiKey,
       },
       (message: string) => wallet.signMessage(message),
     )
@@ -66,7 +66,7 @@ describe('/kyc', () => {
         baseUrl: config.baseUrl,
         network: Network.Alfajores,
         accountAddress: wallet.address,
-        apiKey: config.clientApiKey
+        apiKey: config.clientApiKey,
       },
       (message: string) => wallet.signMessage(message),
     )

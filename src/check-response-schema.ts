@@ -18,7 +18,9 @@ export function checkResponseSchema(response: AxiosResponse) {
   const versionPrefixMatch = response.request.path.match(/^\/v([0-9]+)/)
   if (versionPrefixMatch) {
     // removes /vX prefix, total hack to get api schema matcher to work
-    response.request.path = response.request.path.slice(versionPrefixMatch[0].length)
+    response.request.path = response.request.path.slice(
+      versionPrefixMatch[0].length,
+    )
   }
   expect(response).to.matchApiSchema()
 }

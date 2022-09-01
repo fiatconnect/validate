@@ -82,7 +82,7 @@ describe('/transfer', () => {
           Object.values(TransferStatus),
         )
 
-	const transferStatusResponse =
+        const transferStatusResponse =
           await fiatConnectClient.getTransferStatus({
             transferId: transferInResponse.unwrap().transferId,
           })
@@ -158,7 +158,7 @@ describe('/transfer', () => {
           TransferStatus.TransferReadyForUserToSendCryptoFunds,
         ])
 
-	const transferStatusResponse =
+        const transferStatusResponse =
           await fiatConnectClient.getTransferStatus({
             transferId: transferOutResponse.unwrap().transferId,
           })
