@@ -28,7 +28,6 @@ const ibanNumberAustria: PostFiatAccountRequestBody<FiatAccountSchema.IBANNumber
   },
 }
 
-
 const ibanNumberXOF: PostFiatAccountRequestBody<FiatAccountSchema.IBANNumber> =
 {
   fiatAccountSchema: FiatAccountSchema.IBANNumber,
