@@ -4,6 +4,6 @@ module.exports = {
     project: './tsconfig.eslint.json',
   },
   rules: {
-    'no-console': ['error', { allow: ['none'] }]
-  }
+    'no-console': ['error', { allow: ['none'] }],
+  },
 }
