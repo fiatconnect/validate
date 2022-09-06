@@ -1,3 +1,5 @@
+name: Workflow
+
 on:
   # Run on pushes to main..
   push:
@@ -7,7 +9,7 @@ on:
   pull_request:
 
 jobs:
-  test:
+  lint:
     name: Lint
     runs-on: ubuntu-latest
     steps:
