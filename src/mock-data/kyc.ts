@@ -40,7 +40,7 @@ const personalDataAndDocumentsAustria: AddKycParams<KycSchema.PersonalDataAndDoc
     },
   }
 
-  const personalDataAndDocumentsXOF: AddKycParams<KycSchema.PersonalDataAndDocuments> =
+const personalDataAndDocumentsXOF: AddKycParams<KycSchema.PersonalDataAndDocuments> =
   {
     ...personalDataAndDocumentsNigeria,
     data: {
@@ -55,5 +55,5 @@ const personalDataAndDocumentsAustria: AddKycParams<KycSchema.PersonalDataAndDoc
 export const MOCK_KYC: Record<string, AddKycParams<KycSchema>> = {
   personalDataAndDocumentsNigeria,
   personalDataAndDocumentsAustria,
-  personalDataAndDocumentsXOF
+  personalDataAndDocumentsXOF,
 }
