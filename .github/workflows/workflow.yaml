@@ -25,6 +25,6 @@ jobs:
             */*/node_modules
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
       - run: yarn
-      - run: yarm typecheck
+      - run: yarn typecheck
       - run: yarn lint
       - run: yarn format:check
