@@ -30,7 +30,7 @@ describe('/auth/login', () => {
       },
       (message: string) => wallet.signMessage(message),
     )
-    const loginResult = await fiatConnectClient.login()
+    const loginResult = await fiatConnectClient.login({ issuedAt: new Date() })
     expect(loginResult.isOk).to.be.ok
   })
   it('prevents replay attacks with nonce in use checks', async () => {
@@ -84,44 +84,44 @@ describe('/auth/login', () => {
     MOCK_KYC[config.kycMock as keyof typeof MOCK_KYC]
   const mockAccountData =
     MOCK_FIAT_ACCOUNTS[
-      config.fiatAccountMock as keyof typeof MOCK_FIAT_ACCOUNTS
+    config.fiatAccountMock as keyof typeof MOCK_FIAT_ACCOUNTS
     ]
   const requiresAuthCases: {
     method: 'get' | 'post' | 'delete'
     endpoint: string
     data: any
   }[] = [
-    {
-      method: 'get',
-      endpoint: `/kyc/${mockKYCInfo.kycSchemaName}/status`,
-      data: undefined,
-    },
-    {
-      method: 'post',
-      endpoint: `/kyc/${mockKYCInfo.kycSchemaName}`,
-      data: mockKYCInfo.data,
-    },
-    {
-      method: 'delete',
-      endpoint: `/kyc/${mockKYCInfo.kycSchemaName}`,
-      data: undefined,
-    },
-    {
-      method: 'get',
-      endpoint: '/accounts',
-      data: undefined,
-    },
-    {
-      method: 'post',
-      endpoint: '/accounts',
-      data: mockAccountData,
-    },
-    {
-      method: 'delete',
-      endpoint: '/accounts/fake-fiat-account-id', // shouldn't matter; should still get a 401
-      data: undefined,
-    },
-  ]
+      {
+        method: 'get',
+        endpoint: `/kyc/${mockKYCInfo.kycSchemaName}/status`,
+        data: undefined,
+      },
+      {
+        method: 'post',
+        endpoint: `/kyc/${mockKYCInfo.kycSchemaName}`,
+        data: mockKYCInfo.data,
+      },
+      {
+        method: 'delete',
+        endpoint: `/kyc/${mockKYCInfo.kycSchemaName}`,
+        data: undefined,
+      },
+      {
+        method: 'get',
+        endpoint: '/accounts',
+        data: undefined,
+      },
+      {
+        method: 'post',
+        endpoint: '/accounts',
+        data: mockAccountData,
+      },
+      {
+        method: 'delete',
+        endpoint: '/accounts/fake-fiat-account-id', // shouldn't matter; should still get a 401
+        data: undefined,
+      },
+    ]
   it.each(requiresAuthCases)(
     '$method $endpoint should reject with 401 if not logged in yet',
     async ({ method, endpoint, data }) => {
