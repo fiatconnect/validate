@@ -36,5 +36,5 @@ export const MOCK_QUOTE: Record<string, QuoteRequestBody> = {
   quoteInNigeriaCUSD,
   quoteOutNigeriaCUSD,
   quoteOutXOFCUSD,
-  quoteInXOFCUSD
+  quoteInXOFCUSD,
 }

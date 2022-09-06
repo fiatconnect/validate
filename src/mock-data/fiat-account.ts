@@ -16,7 +16,7 @@ const accountNumberNigeria: PostFiatAccountRequestBody<FiatAccountSchema.Account
     },
   }
 
-  const ibanNumberAustria: PostFiatAccountRequestBody<FiatAccountSchema.IBANNumber> =
+const ibanNumberAustria: PostFiatAccountRequestBody<FiatAccountSchema.IBANNumber> =
   {
     fiatAccountSchema: FiatAccountSchema.IBANNumber,
     data: {
@@ -27,7 +27,6 @@ const accountNumberNigeria: PostFiatAccountRequestBody<FiatAccountSchema.Account
       iban: 'mock-iban-number',
     },
   }
-
 
 const ibanNumberXOF: PostFiatAccountRequestBody<FiatAccountSchema.IBANNumber> =
   {
