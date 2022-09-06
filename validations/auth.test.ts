@@ -30,7 +30,7 @@ describe('/auth/login', () => {
       },
       (message: string) => wallet.signMessage(message),
     )
-    const loginResult = await fiatConnectClient.login({ issuedAt: new Date() })
+    const loginResult = await fiatConnectClient.login()
     expect(loginResult.isOk).to.be.ok
   })
   it('prevents replay attacks with nonce in use checks', async () => {
