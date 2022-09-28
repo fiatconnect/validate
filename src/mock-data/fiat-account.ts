@@ -28,19 +28,19 @@ const ibanNumberAustria: PostFiatAccountRequestBody<FiatAccountSchema.IBANNumber
     },
   }
 
-const ibanNumberXOF: PostFiatAccountRequestBody<FiatAccountSchema.IBANNumber> =
+const accountNumberXOF: PostFiatAccountRequestBody<FiatAccountSchema.AccountNumber> =
   {
-    fiatAccountSchema: FiatAccountSchema.IBANNumber,
+    fiatAccountSchema: FiatAccountSchema.AccountNumber,
     data: {
       institutionName: 'GUARANTEE TRUST BANK',
       accountName: 'My GTBANK Account',
-      country: 'CI',
+      country: 'BF',
       fiatAccountType: FiatAccountType.BankAccount,
-      iban: 'mock-iban-number',
+      accountNumber: '0123456789',
     },
   }
 
 export const MOCK_FIAT_ACCOUNTS: Record<
   string,
   PostFiatAccountRequestBody<FiatAccountSchema>
-> = { accountNumberNigeria, ibanNumberXOF, ibanNumberAustria }
+> = { accountNumberNigeria, accountNumberXOF, ibanNumberAustria }
