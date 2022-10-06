@@ -1,12 +1,11 @@
 import { AddKycParams, FiatConnectClient } from '@fiatconnect/fiatconnect-sdk'
 import {
-  CryptoType,
-  FiatType,
   KycSchema,
   KycStatus,
   Network,
   TransferStatus,
-  TransferType,
+  WebhookEventType,
+  WebhookRequestBody,
 } from '@fiatconnect/fiatconnect-types'
 import { ethers } from 'ethers'
 import { config } from '../src/config'
@@ -28,36 +27,6 @@ const apiDefinitionsPath = path.join(config.openapiSpec)
 use(chaiPlugin({ apiDefinitionsPath }))
 use(chaiAsPromised)
 
-interface WebhookTransferEventRecord {
-  provider: string // the field in the body sent by the provider
-  event_id: string
-  address: string
-  status: TransferStatus
-  transfer_type: TransferType
-  fiat_type: FiatType
-  crypto_type: CryptoType
-  amount_provided: string
-  amount_received: string
-  fee: string
-  fiat_account_id: string
-  transfer_id: string
-  transfer_address: string
-  event_timestamp: string
-  timestamp: string
-  provider_id: string // the URL path param, valora defined
-}
-
-interface WebhookKycStatusEventRecord {
-  event_id: string
-  provider: string // the field in the body sent by the provider
-  address: string
-  kyc_schema: string
-  kyc_status: string
-  event_timestamp: string
-  timestamp: string
-  provider_id: string // the URL path param, valora defined
-}
-
 async function validateTransferWebhook(
   params: { transferId: string; address: string; status: TransferStatus },
   retries: number,
@@ -72,7 +41,7 @@ async function validateTransferWebhook(
     validateStatus: () => true,
   })
   const response = await client.get(
-    `${WEBHOOK_RECIPIENT_HISTORY_ENDPOINT}/${config.providerId}`,
+    `${WEBHOOK_RECIPIENT_HISTORY_ENDPOINT}/${config.providerId}/${address}/transfer/${transferId}`,
   )
   if (response.status !== 200) {
     console.debug(
@@ -82,13 +51,15 @@ async function validateTransferWebhook(
     )
     return validateTransferWebhook(params, retries - 1)
   }
-  const coorespondingWebhook = response.data.transferHistory.find(
-    (transfer: WebhookTransferEventRecord) =>
-      transfer.address === address &&
-      transfer.status === status &&
-      transfer.transfer_id === transferId,
+  const correspondingWebhook = response.data.find(
+    (
+      transfer: WebhookRequestBody<
+        | WebhookEventType.TransferInStatusEvent
+        | WebhookEventType.TransferOutStatusEvent
+      >,
+    ) => transfer.payload.status === status,
   )
-  if (!coorespondingWebhook) {
+  if (!correspondingWebhook) {
     console.debug(`Could not find matching webhook. ${retries} retries left`)
     return validateTransferWebhook(params, retries - 1)
   }
@@ -108,7 +79,7 @@ async function validateKycWebhook(
     validateStatus: () => true,
   })
   const response = await client.get(
-    `${WEBHOOK_RECIPIENT_HISTORY_ENDPOINT}/${config.providerId}`,
+    `${WEBHOOK_RECIPIENT_HISTORY_ENDPOINT}/${config.providerId}/${address}/kyc/${kycSchema}`,
   )
   if (response.status !== 200) {
     console.debug(
@@ -118,13 +89,11 @@ async function validateKycWebhook(
     )
     return validateKycWebhook(params, retries - 1)
   }
-  const coorespondingWebhook = response.data.kycHistory.find(
-    (transfer: WebhookKycStatusEventRecord) =>
-      transfer.address === address &&
-      transfer.kyc_status === kycStatus &&
-      transfer.kyc_schema === kycSchema,
+  const correspondingWebhook = response.data.find(
+    (event: WebhookRequestBody<WebhookEventType.KycStatusEvent>) =>
+      event.payload.kycStatus === kycStatus,
   )
-  if (!coorespondingWebhook) {
+  if (!correspondingWebhook) {
     console.debug(`Could not find matching webhook. ${retries} retries left`)
     return validateKycWebhook(params, retries - 1)
   }
