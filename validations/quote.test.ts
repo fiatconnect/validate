@@ -22,7 +22,7 @@ describe('/quote', () => {
       ...MOCK_QUOTE[config.quoteOutMock],
       address: wallet.address,
     }
-    it('gives quote when it should', async () => {
+    it('gives quote with quoteId when it should', async () => {
       const client = axios.create({
         baseURL: config.baseUrl,
         validateStatus: () => true,
@@ -30,6 +30,7 @@ describe('/quote', () => {
       })
       const response = await client.post(`/quote/out`, quoteParams)
       expect(response).to.have.status(200)
+      expect(response.data.quote.quoteId).not.to.be.equal('')
       checkResponseSchema(response)
     })
     it('Doesnt support quotes for unreasonably large transfer out', async () => {
