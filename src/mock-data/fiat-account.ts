@@ -4,7 +4,7 @@ import {
   PostFiatAccountRequestBody,
 } from '@fiatconnect/fiatconnect-types'
 
-const accountNumberNigeria: PostFiatAccountRequestBody<FiatAccountSchema.AccountNumber> =
+const accountNumberNigeria: PostFiatAccountRequestBody =
   {
     fiatAccountSchema: FiatAccountSchema.AccountNumber,
     data: {
@@ -16,7 +16,7 @@ const accountNumberNigeria: PostFiatAccountRequestBody<FiatAccountSchema.Account
     },
   }
 
-const ibanNumberAustria: PostFiatAccountRequestBody<FiatAccountSchema.IBANNumber> =
+const ibanNumberAustria: PostFiatAccountRequestBody =
   {
     fiatAccountSchema: FiatAccountSchema.IBANNumber,
     data: {
@@ -28,7 +28,7 @@ const ibanNumberAustria: PostFiatAccountRequestBody<FiatAccountSchema.IBANNumber
     },
   }
 
-const accountNumberXOF: PostFiatAccountRequestBody<FiatAccountSchema.AccountNumber> =
+const accountNumberXOF: PostFiatAccountRequestBody =
   {
     fiatAccountSchema: FiatAccountSchema.AccountNumber,
     data: {
@@ -42,5 +42,5 @@ const accountNumberXOF: PostFiatAccountRequestBody<FiatAccountSchema.AccountNumb
 
 export const MOCK_FIAT_ACCOUNTS: Record<
   string,
-  PostFiatAccountRequestBody<FiatAccountSchema>
+  PostFiatAccountRequestBody
 > = { accountNumberNigeria, accountNumberXOF, ibanNumberAustria }

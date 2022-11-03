@@ -4,8 +4,9 @@ import {
   KycStatus,
   Network,
   TransferStatus,
-  WebhookEventType,
-  WebhookRequestBody,
+  WebhookRequestBodyKyc,
+  WebhookRequestBodyTransferIn,
+  WebhookRequestBodyTransferOut,
 } from '@fiatconnect/fiatconnect-types'
 import { ethers } from 'ethers'
 import { config } from '../src/config'
@@ -53,10 +54,7 @@ async function validateTransferWebhook(
   }
   const correspondingWebhook = response.data.find(
     (
-      transfer: WebhookRequestBody<
-        | WebhookEventType.TransferInStatusEvent
-        | WebhookEventType.TransferOutStatusEvent
-      >,
+      transfer: WebhookRequestBodyTransferIn | WebhookRequestBodyTransferOut,
     ) => transfer.payload.status === status,
   )
   if (!correspondingWebhook) {
@@ -90,7 +88,7 @@ async function validateKycWebhook(
     return validateKycWebhook(params, retries - 1)
   }
   const correspondingWebhook = response.data.find(
-    (event: WebhookRequestBody<WebhookEventType.KycStatusEvent>) =>
+    (event: WebhookRequestBodyKyc) =>
       event.payload.kycStatus === kycStatus,
   )
   if (!correspondingWebhook) {
