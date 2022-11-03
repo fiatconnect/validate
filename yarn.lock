@@ -699,10 +699,12 @@
     tough-cookie "^4.0.0"
     tslib "^2.4.0"
 
-"@fiatconnect/fiatconnect-types@^7.0.4":
-  version "7.0.4"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-types/-/fiatconnect-types-7.0.4.tgz#403c653b9fbfe717d7f0aba22f12824bd17964fc"
-  integrity sha512-eiYe2Nfy6vRHGo3JKZnaeMNL3hpW/p4BhpBqNosx64LygOMNDbcDNfaCLb+dvso2VNL8IAvq4Km/uIXX2DpzQw==
+"@fiatconnect/fiatconnect-types@^10.1.0":
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-types/-/fiatconnect-types-10.1.0.tgz#cf6acd894305bd281ee6d671334550b640269d2a"
+  integrity sha512-ncLwhVnbIrhRgbPSnbSMY/kdPKOmyu2LWeNdi5T1bgKZX7t6LV93cJbatl0zu1IcypOYjntWfmnkthKH+Ploiw==
+  dependencies:
+    zod "^3.19.1"
 
 "@fiatconnect/fiatconnect-types@^8.0.0":
   version "8.0.0"
@@ -4638,3 +4640,8 @@ z-schema@^5.0.1:
     validator "^13.7.0"
   optionalDependencies:
     commander "^2.20.3"
+
+zod@^3.19.1:
+  version "3.19.1"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-3.19.1.tgz#112f074a97b50bfc4772d4ad1576814bd8ac4473"
+  integrity sha512-LYjZsEDhCdYET9ikFu6dVPGp2YH9DegXjdJToSzD9rO6fy4qiRYFoyEYwps88OseJlPyl2NOe2iJuhEhL7IpEA==
