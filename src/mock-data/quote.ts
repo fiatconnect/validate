@@ -11,28 +11,28 @@ const quoteOutNigeriaCUSD: Omit<QuoteRequestBody, 'address'> = {
   country: 'NG',
 }
 
-const quoteInNigeriaCUSD:  Omit<QuoteRequestBody, 'address'> = {
+const quoteInNigeriaCUSD: Omit<QuoteRequestBody, 'address'> = {
   cryptoType: CryptoType.cUSD,
   fiatType: FiatType.NGN,
   cryptoAmount: '.01',
   country: 'NG',
 }
 
-const quoteOutXOFCUSD:  Omit<QuoteRequestBody, 'address'> = {
+const quoteOutXOFCUSD: Omit<QuoteRequestBody, 'address'> = {
   cryptoType: CryptoType.cUSD,
   fiatType: FiatType.XOF,
   cryptoAmount: '10',
   country: 'CI',
 }
 
-const quoteInXOFCUSD:  Omit<QuoteRequestBody, 'address'> = {
+const quoteInXOFCUSD: Omit<QuoteRequestBody, 'address'> = {
   cryptoType: CryptoType.cUSD,
   fiatType: FiatType.XOF,
   cryptoAmount: '.01',
   country: 'CI',
 }
 
-export const MOCK_QUOTE: Record<string,  Omit<QuoteRequestBody, 'address'>> = {
+export const MOCK_QUOTE: Record<string, Omit<QuoteRequestBody, 'address'>> = {
   quoteInNigeriaCUSD,
   quoteOutNigeriaCUSD,
   quoteOutXOFCUSD,
