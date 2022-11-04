@@ -7,6 +7,7 @@ import { config } from '../src/config'
 import { checkResponseSchema } from '../src/check-response-schema'
 import { MOCK_QUOTE } from '../src/mock-data/quote'
 import { ethers } from 'ethers'
+import { quoteResponseSchema } from '@fiatconnect/fiatconnect-types'
 
 const apiDefinitionsPath = path.join(config.openapiSpec)
 use(chaiPlugin({ apiDefinitionsPath }))
@@ -31,7 +32,7 @@ describe('/quote', () => {
       const response = await client.post(`/quote/out`, quoteParams)
       expect(response).to.have.status(200)
       expect(response.data.quote.quoteId).not.to.be.equal('')
-      checkResponseSchema(response)
+      checkResponseSchema(response, quoteResponseSchema)
     })
     it('Doesnt support quotes for unreasonably large transfer out', async () => {
       const client = axios.create({

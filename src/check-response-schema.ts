@@ -4,6 +4,7 @@ import { expect, use } from 'chai'
 import { chaiPlugin } from 'api-contract-validator'
 import { AxiosResponse } from 'axios'
 import * as SwaggerValidator from 'swagger-object-validator'
+import { AnyZodObject, ZodError } from 'zod'
 
 const apiDefinitionsPath = path.join(config.openapiSpec)
 const validator = new SwaggerValidator.Handler(config.openapiSpec)
@@ -13,8 +14,16 @@ use(chaiPlugin({ apiDefinitionsPath }))
  * Check that the response matches the API schema.
  *
  * Ignores /vX prefix
+ *
+ * @param response
+ * @param schema: If provided, runs additional check using a zod schema. The spec should be the
+ *  source of truth, but sometimes zod schemas allow for more granular checks-- for instance, with enum values.
  */
-export function checkResponseSchema(response: AxiosResponse) {
+export function checkResponseSchema<T extends AnyZodObject>(
+  response: AxiosResponse,
+  schema?: T,
+) {
+  // check response against FiatConnect spec
   const versionPrefixMatch = response.request.path.match(/^\/v([0-9]+)/)
   if (versionPrefixMatch) {
     // removes /vX prefix, total hack to get api schema matcher to work
@@ -23,6 +32,24 @@ export function checkResponseSchema(response: AxiosResponse) {
     )
   }
   expect(response).to.matchApiSchema()
+
+  if (!schema) {
+    return
+  }
+
+  // check response against zod schema
+  try {
+    schema.parse(response.data)
+  } catch (err) {
+    if (err instanceof ZodError) {
+      throw new Error(
+        `Error validating object with schema ${
+          schema.description
+        }: ${JSON.stringify(err.issues)}`,
+      )
+    }
+    throw err
+  }
 }
 
 /**
