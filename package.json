@@ -40,7 +40,7 @@
     "@fiatconnect/fiatconnect-types": "^10.1.0",
     "api-contract-validator": "^2.2.8",
     "axios": "^0.27.2",
-    "chai": "^4.3.6",
+    "chai": "^4.3.7",
     "chai-as-promised": "^7.1.1",
     "dotenv": "^16.0.0",
     "ethers": "^5.6.8",
