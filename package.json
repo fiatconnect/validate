@@ -16,7 +16,7 @@
   },
   "prettier": "@valora/prettier-config",
   "devDependencies": {
-    "@types/chai": "^4.3.3",
+    "@types/chai": "^4.3.4",
     "@types/chai-as-promised": "^7.1.5",
     "@types/jest": "^27.5.2",
     "@types/node": "^17.0.31",
