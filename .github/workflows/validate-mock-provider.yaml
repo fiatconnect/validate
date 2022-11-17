@@ -6,22 +6,15 @@ on:
   # Cron schedule for every weekday at 4 PM GMT
   schedule:
     - cron: '0 16 * * 1-5'
+  # Whenever this file is updated
   push:
-    branches:
-      - 'satish/validate-job'
+    paths:
+      - '.github/workflows/validate-mock-provider.yml'
 
 jobs:
   validate:
     name: Validate mock-provider
     runs-on: ubuntu-latest
-    env:
-      BASE_URL: ${{ secrets.MOCK_PROVIDER_BASE_URL }}
-      CLIENT_API_KEY: ${{ secrets.MOCK_PROVIDER_API_KEY }}
-      PROVIDER_ID: ${{ secrets.MOCK_PROVIDER_ID }}
-      OPENAPI_SPEC: specification-swagger.yaml
-      QUOTE_OUT_MOCK: quoteOutNigeriaCUSD
-      FIAT_ACCOUNT_MOCK: accountNumberNigeria
-      KYC_MOCK: personalDataAndDocumentsNigeria
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -40,7 +33,14 @@ jobs:
           args: -o specification-swagger.yaml https://raw.githubusercontent.com/fiatconnect/specification/main/swagger.yaml
       - run: yarn
       - run: yarn validate
-      - run: exit 1
+        env:
+          BASE_URL: ${{ secrets.MOCK_PROVIDER_BASE_URL }}
+          CLIENT_API_KEY: ${{ secrets.MOCK_PROVIDER_API_KEY }}
+          PROVIDER_ID: ${{ secrets.MOCK_PROVIDER_ID }}
+          OPENAPI_SPEC: specification-swagger.yaml
+          QUOTE_OUT_MOCK: quoteOutNigeriaCUSD
+          FIAT_ACCOUNT_MOCK: accountNumberNigeria
+          KYC_MOCK: personalDataAndDocumentsNigeria
       - uses: ravsamhq/notify-slack-action@v2
         if: always()
         with:
@@ -49,6 +49,7 @@ jobs:
           message_format: '{emoji} *{workflow}* {status_message}. <{run_url}|View Run>'
           footer: 'Repo: <{repo_url}|{repo}>'
           notify_when: 'failure'
+          # Tag @eng-activation on failures
           mention_groups: 'S02G1BH7D08'
           mention_groups_when: 'failure'
         env:
