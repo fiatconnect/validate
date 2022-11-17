@@ -6,10 +6,9 @@ on:
   # Cron schedule for every weekday at 4 PM GMT
   schedule:
     - cron: '0 16 * * 1-5'
-  # Whenever this file is updated
   push:
-    paths:
-      - '.github/workflows/validate-mock-provider.yml'
+    branches:
+      - 'satish/validate-job'
 
 jobs:
   validate:
