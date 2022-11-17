@@ -6,9 +6,6 @@ on:
   # Cron schedule for every weekday at 4 PM GMT
   schedule:
     - cron: '0 16 * * 1-5'
-  push:
-    branches:
-      - 'satish/validate-job'
 
 jobs:
   validate:
