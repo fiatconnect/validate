@@ -1,0 +1,52 @@
+name: Validate mock-provider
+
+on:
+  # Manual trigger
+  workflow_dispatch:
+  # Cron schedule for every weekday at 4 PM GMT
+  schedule:
+    - cron: '0 16 * * 1-5'
+
+jobs:
+  validate:
+    name: Validate mock-provider
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          check-latest: true
+      - uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+      - name: Get specification swagger
+        uses: wei/curl@v1
+        with:
+          args: -o specification-swagger.yaml https://raw.githubusercontent.com/fiatconnect/specification/main/swagger.yaml
+      - run: yarn
+      - run: yarn validate
+        env:
+          BASE_URL: ${{ secrets.MOCK_PROVIDER_BASE_URL }}
+          CLIENT_API_KEY: ${{ secrets.MOCK_PROVIDER_API_KEY }}
+          PROVIDER_ID: ${{ secrets.MOCK_PROVIDER_ID }}
+          OPENAPI_SPEC: specification-swagger.yaml
+          QUOTE_OUT_MOCK: quoteOutNigeriaCUSD
+          FIAT_ACCOUNT_MOCK: accountNumberNigeria
+          KYC_MOCK: personalDataAndDocumentsNigeria
+      - uses: ravsamhq/notify-slack-action@v2
+        if: always()
+        with:
+          status: ${{ job.status }}
+          notification_title: '{workflow} has {status_message}'
+          message_format: '{emoji} *{workflow}* {status_message}. <{run_url}|View Run>'
+          footer: 'Repo: <{repo_url}|{repo}>'
+          notify_when: 'failure'
+          # Tag @eng-activation on failures
+          mention_groups: 'S02G1BH7D08'
+          mention_groups_when: 'failure'
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
