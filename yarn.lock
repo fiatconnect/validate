@@ -700,12 +700,12 @@
     tslib "^2.4.0"
     zod "^3.19.1"
 
-"@fiatconnect/fiatconnect-types@^10.0.0", "@fiatconnect/fiatconnect-types@^10.2.1":
-  version "10.2.1"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-types/-/fiatconnect-types-10.2.1.tgz#4a58e7da0030edaaff98bc12f37a542f3f42859d"
-  integrity sha512-ohXE05qDQXkwJzVPm/vU1trX8rbTZZSXtr3x5/hdxsrWJ9tHcE1XJzUJPa5lyaxt3G/smIELGMF/T9hBa+fdbQ==
+"@fiatconnect/fiatconnect-types@^10.0.0", "@fiatconnect/fiatconnect-types@^10.2.2":
+  version "10.2.2"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-types/-/fiatconnect-types-10.2.2.tgz#3d2e50fc77ec50eb52e164f8b2721cf27043df36"
+  integrity sha512-+TJcakU0wQ1t5vwE+Rq3J/0pfJAFy7V70mg/IGPU4Zy5vUxJ20hbUwj6FWbyDzKezmKV1V6iEC/DrkL8zJiHnw==
   dependencies:
-    zod "^3.20.0"
+    zod "^3.20.2"
 
 "@humanwhocodes/config-array@^0.11.6":
   version "0.11.7"
@@ -4671,7 +4671,7 @@ z-schema@^5.0.1:
   optionalDependencies:
     commander "^2.20.3"
 
-zod@^3.19.1, zod@^3.20.0, zod@^3.20.2:
+zod@^3.19.1, zod@^3.20.2:
   version "3.20.2"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.20.2.tgz#068606642c8f51b3333981f91c0a8ab37dfc2807"
   integrity sha512-1MzNQdAvO+54H+EaK5YpyEy0T+Ejo/7YLHS93G3RnYWh5gaotGHwGeN/ZO687qEDU2y4CdStQYXVHIgrUl5UVQ==
