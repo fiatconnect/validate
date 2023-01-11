@@ -58,7 +58,7 @@ describe('/auth/login', () => {
       signature,
     })
     expect(response).to.have.status(200)
-    checkResponseSchema(response)
+    checkResponseSchema(response, config.pathPrefix)
 
     const response2 = await client.post('/auth/login', {
       message,

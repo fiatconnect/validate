@@ -32,7 +32,7 @@ describe('/quote', () => {
       const response = await client.post(`/quote/out`, quoteParams)
       expect(response).to.have.status(200)
       expect(response.data.quote.quoteId).not.to.be.equal('')
-      checkResponseSchema(response, quoteResponseSchema)
+      checkResponseSchema(response, config.pathPrefix, quoteResponseSchema)
     })
     it('Doesnt support quotes for unreasonably large transfer out', async () => {
       const client = axios.create({
