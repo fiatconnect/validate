@@ -30,21 +30,6 @@ const personalDataAndDocumentsNigeria: AddKycParams<KycSchema.PersonalDataAndDoc
     },
   }
 
-const {
-  identificationDocument: identificationDocumentNigeria,
-  ...remainingInformationNigeria
-} = personalDataAndDocumentsNigeria.data
-const personalDataAndDocumentsDetailedNigeria: AddKycParams<KycSchema.PersonalDataAndDocumentsDetailed> =
-  {
-    kycSchemaName: KycSchema.PersonalDataAndDocumentsDetailed,
-    data: {
-      ...remainingInformationNigeria,
-      email: 'some-email',
-      identificationDocumentType: IdentificationDocumentType.PAS,
-      identificationDocumentFront: 'Place base64 string of document here',
-    },
-  }
-
 const personalDataAndDocumentsAustria: AddKycParams<KycSchema.PersonalDataAndDocuments> =
   {
     ...personalDataAndDocumentsNigeria,
@@ -67,7 +52,7 @@ const personalDataAndDocumentsDetailedAustria: AddKycParams<KycSchema.PersonalDa
     kycSchemaName: KycSchema.PersonalDataAndDocumentsDetailed,
     data: {
       ...remainingInformationAustria,
-      email: 'some-email',
+      email: 'someemail@gmail.com',
       identificationDocumentType: IdentificationDocumentType.PAS,
       identificationDocumentFront: 'Place base64 string of document here',
     },
@@ -85,26 +70,9 @@ const personalDataAndDocumentsXOF: AddKycParams<KycSchema.PersonalDataAndDocumen
     },
   }
 
-const {
-  identificationDocument: identificationDocumentXOF,
-  ...remainingInformationXOF
-} = personalDataAndDocumentsAustria.data
-const personalDataAndDocumentsDetailedXOF: AddKycParams<KycSchema.PersonalDataAndDocumentsDetailed> =
-  {
-    kycSchemaName: KycSchema.PersonalDataAndDocumentsDetailed,
-    data: {
-      ...remainingInformationXOF,
-      email: 'some-email',
-      identificationDocumentType: IdentificationDocumentType.PAS,
-      identificationDocumentFront: 'Place base64 string of document here',
-    },
-  }
-
 export const MOCK_KYC: Record<string, AddKycParams<KycSchema>> = {
   personalDataAndDocumentsNigeria,
   personalDataAndDocumentsAustria,
   personalDataAndDocumentsXOF,
-  personalDataAndDocumentsDetailedNigeria,
   personalDataAndDocumentsDetailedAustria,
-  personalDataAndDocumentsDetailedXOF,
 }
