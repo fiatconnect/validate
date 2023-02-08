@@ -1,6 +1,7 @@
 import {
   FiatAccountSchema,
   FiatAccountType,
+  PIXKeyTypeEnum,
   PostFiatAccountRequestBody,
 } from '@fiatconnect/fiatconnect-types'
 
@@ -37,8 +38,20 @@ const accountNumberXOF: PostFiatAccountRequestBody = {
   },
 }
 
+const pixAccount: PostFiatAccountRequestBody = {
+  fiatAccountSchema: FiatAccountSchema.PIXAccount,
+  data: {
+    institutionName: 'PIX Bank',
+    accountName: 'My PIX Account',
+    fiatAccountType: FiatAccountType.BankAccount,
+    keyType: PIXKeyTypeEnum.RANDOM,
+    key: 'a'.repeat(32),
+  }
+}
+
 export const MOCK_FIAT_ACCOUNTS: Record<string, PostFiatAccountRequestBody> = {
   accountNumberNigeria,
   accountNumberXOF,
   ibanNumberAustria,
+  pixAccount
 }

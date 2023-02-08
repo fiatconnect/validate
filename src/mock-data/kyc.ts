@@ -1,5 +1,5 @@
-import { KycSchema } from '@fiatconnect/fiatconnect-types'
-import { AddKycParams } from '@fiatconnect/fiatconnect-sdk'
+import {IdentificationDocumentType, KycSchema} from '@fiatconnect/fiatconnect-types'
+import {AddKycParams} from '@fiatconnect/fiatconnect-sdk'
 
 const personalDataAndDocumentsNigeria: AddKycParams<KycSchema.PersonalDataAndDocuments> =
   {
@@ -52,8 +52,28 @@ const personalDataAndDocumentsXOF: AddKycParams<KycSchema.PersonalDataAndDocumen
     },
   }
 
+const personalDataWithDocumentsDetailedBrazil: AddKycParams<KycSchema.PersonalDataAndDocumentsDetailed> =
+  {
+    kycSchemaName: KycSchema.PersonalDataAndDocumentsDetailed,
+    data: {
+      ...personalDataAndDocumentsNigeria.data,
+      address: {
+        address1: '12 street ave',
+        city: 'Sao Paulo',
+        isoRegionCode: 'BR-SP',
+        isoCountryCode: 'BR'
+      },
+      email: 'mock@email.com',
+      phoneNumber: '15551234567',
+      identificationDocumentBack: 'id_back',
+      identificationDocumentType: IdentificationDocumentType.DL,
+      identificationDocumentFront: 'id_front'
+    }
+  }
+
 export const MOCK_KYC: Record<string, AddKycParams<KycSchema>> = {
   personalDataAndDocumentsNigeria,
   personalDataAndDocumentsAustria,
   personalDataAndDocumentsXOF,
+  personalDataWithDocumentsDetailedBrazil
 }

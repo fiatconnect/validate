@@ -1,8 +1,11 @@
-import {
-  CryptoType,
-  FiatType,
-  QuoteRequestBody,
-} from '@fiatconnect/fiatconnect-types'
+import {CryptoType, FiatType, QuoteRequestBody,} from '@fiatconnect/fiatconnect-types'
+
+const quoteBrazilCREAL: Omit<QuoteRequestBody, 'address'> = {
+  cryptoType: CryptoType.cREAL,
+  fiatType: FiatType.BRL,
+  cryptoAmount: '10',
+  country: 'BR'
+}
 
 const quoteOutNigeriaCUSD: Omit<QuoteRequestBody, 'address'> = {
   cryptoType: CryptoType.cUSD,
@@ -37,4 +40,5 @@ export const MOCK_QUOTE: Record<string, Omit<QuoteRequestBody, 'address'>> = {
   quoteOutNigeriaCUSD,
   quoteOutXOFCUSD,
   quoteInXOFCUSD,
+  quoteOutBrazilCREAL: quoteBrazilCREAL
 }
