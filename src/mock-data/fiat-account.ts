@@ -46,12 +46,12 @@ const pixAccount: PostFiatAccountRequestBody = {
     fiatAccountType: FiatAccountType.BankAccount,
     keyType: PIXKeyTypeEnum.RANDOM,
     key: 'a'.repeat(32),
-  }
+  },
 }
 
 export const MOCK_FIAT_ACCOUNTS: Record<string, PostFiatAccountRequestBody> = {
   accountNumberNigeria,
   accountNumberXOF,
   ibanNumberAustria,
-  pixAccount
+  pixAccount,
 }
