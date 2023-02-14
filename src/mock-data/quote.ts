@@ -44,5 +44,5 @@ export const MOCK_QUOTE: Record<string, Omit<QuoteRequestBody, 'address'>> = {
   quoteOutNigeriaCUSD,
   quoteOutXOFCUSD,
   quoteInXOFCUSD,
-  quoteOutBrazilCREAL: quoteBrazilCREAL,
+  quoteBrazilCREAL,
 }
