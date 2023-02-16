@@ -83,7 +83,8 @@ describe('accounts', () => {
     // Getting accounts should now yield empty response
     const getAccountsResultDuplicate = await fiatConnectClient.getFiatAccounts()
     expect(getAccountsResultDuplicate.isOk).to.be.true
-    expect(!!getAccountsResultDuplicate.unwrap().BankAccount?.length).to.be.false
+    expect(!!getAccountsResultDuplicate.unwrap().BankAccount?.length).to.be
+      .false
     await checkObjectAgainstModel(
       getAccountsResultDuplicate.unwrap(),
       'GetFiatAccountsResponse',
