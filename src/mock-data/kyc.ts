@@ -75,9 +75,31 @@ const personalDataAndDocumentsXOF: AddKycParams<KycSchema.PersonalDataAndDocumen
     },
   }
 
+const personalDataWithDocumentsDetailedBrazil: AddKycParams<KycSchema.PersonalDataAndDocumentsDetailed> =
+  {
+    kycSchemaName: KycSchema.PersonalDataAndDocumentsDetailed,
+    data: {
+      ...personalDataAndDocumentsNigeria.data,
+      address: {
+        address1: '12 street ave',
+        city: 'Sao Paulo',
+        isoRegionCode: 'BR-SP',
+        postalCode: '50000000',
+        isoCountryCode: 'BR',
+      },
+      email: 'mock@email.com',
+      phoneNumber: '15551234567',
+      selfieDocument: BASE64_IMAGE,
+      identificationDocumentBack: BASE64_IMAGE,
+      identificationDocumentType: IdentificationDocumentType.DL,
+      identificationDocumentFront: BASE64_IMAGE,
+    },
+  }
+
 export const MOCK_KYC: Record<string, AddKycParams<KycSchema>> = {
   personalDataAndDocumentsNigeria,
   personalDataAndDocumentsAustria,
   personalDataAndDocumentsXOF,
   personalDataAndDocumentsDetailedAustria,
+  personalDataWithDocumentsDetailedBrazil,
 }
