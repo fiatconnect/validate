@@ -83,7 +83,12 @@ describe('accounts', () => {
     // Getting accounts should now yield empty response
     const getAccountsResultDuplicate = await fiatConnectClient.getFiatAccounts()
     expect(getAccountsResultDuplicate.isOk).to.be.true
-    expect(getAccountsResultDuplicate.unwrap()).to.eql({})
+    expect(!!getAccountsResultDuplicate.unwrap().BankAccount?.length).to.be
+      .false
+    await checkObjectAgainstModel(
+      getAccountsResultDuplicate.unwrap(),
+      'GetFiatAccountsResponse',
+    )
 
     // Should fail when attempting to delete account a second time
     const deleteAccountResultDuplicate =
