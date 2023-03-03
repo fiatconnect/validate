@@ -4,6 +4,7 @@ import {
   PIXKeyTypeEnum,
   PostFiatAccountRequestBody,
 } from '@fiatconnect/fiatconnect-types'
+import crypto from 'crypto'
 
 const accountNumberNigeria: PostFiatAccountRequestBody = {
   fiatAccountSchema: FiatAccountSchema.AccountNumber,
@@ -44,7 +45,7 @@ const pixAccount: PostFiatAccountRequestBody = {
     accountName: 'My PIX Account',
     fiatAccountType: FiatAccountType.BankAccount,
     keyType: PIXKeyTypeEnum.RANDOM,
-    key: 'a'.repeat(32),
+    key: crypto.randomUUID(),
   },
 }
 
