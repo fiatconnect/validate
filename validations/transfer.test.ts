@@ -157,7 +157,9 @@ describe('/transfer', () => {
           TransferStatus.TransferStarted,
           TransferStatus.TransferReadyForUserToSendCryptoFunds,
         ])
-        expect(transferOutResponse.unwrap().transferAddress).to.match(/0x[a-fA-F0-9]{40}/)
+        expect(transferOutResponse.unwrap().transferAddress).to.match(
+          /0x[a-fA-F0-9]{40}/,
+        )
 
         const transferStatusResponse =
           await fiatConnectClient.getTransferStatus({
