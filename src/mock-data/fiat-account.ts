@@ -44,7 +44,7 @@ const pixAccount: PostFiatAccountRequestBody = {
     accountName: 'My PIX Account',
     fiatAccountType: FiatAccountType.BankAccount,
     keyType: PIXKeyTypeEnum.RANDOM,
-    key: 'a'.repeat(32),
+    key: 'a332fb0d-63d7-4cf6-af37-c607d9618714', // arbitrary uuid
   },
 }
 
