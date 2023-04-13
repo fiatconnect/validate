@@ -35,21 +35,6 @@ const personalDataAndDocumentsNigeria: AddKycParams<KycSchema.PersonalDataAndDoc
     },
   }
 
-const personalDataAndDocumentsKenya: AddKycParams<KycSchema.PersonalDataAndDocuments> = {
-  ...personalDataAndDocumentsNigeria,
-  data: {
-    ...personalDataAndDocumentsNigeria.data,
-    address: {
-      city: 'Mombasa',
-      address1: '1234 Malindi Road',
-      address2: 'Apartment 5B',
-      postalCode: '80100',
-      isoRegionCode: 'MBA',
-      isoCountryCode: 'KE',
-    },
-  }
-}
-
 const personalDataAndDocumentsAustria: AddKycParams<KycSchema.PersonalDataAndDocuments> =
   {
     ...personalDataAndDocumentsNigeria,
@@ -113,7 +98,6 @@ const personalDataWithDocumentsDetailedBrazil: AddKycParams<KycSchema.PersonalDa
 
 export const MOCK_KYC: Record<string, AddKycParams<KycSchema>> = {
   personalDataAndDocumentsNigeria,
-  personalDataAndDocumentsKenya,
   personalDataAndDocumentsAustria,
   personalDataAndDocumentsXOF,
   personalDataAndDocumentsDetailedAustria,
