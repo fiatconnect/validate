@@ -2,8 +2,8 @@ import {
   IdentificationDocumentType,
   KycSchema,
 } from '@fiatconnect/fiatconnect-types'
-import {AddKycParams} from '@fiatconnect/fiatconnect-sdk'
-import {BASE64_IMAGE} from './data'
+import { AddKycParams } from '@fiatconnect/fiatconnect-sdk'
+import { BASE64_IMAGE } from './data'
 
 const personalDetails = {
   firstName: 'Alice',
@@ -59,7 +59,7 @@ const personalDataAndDocumentsDetailedAustria: AddKycParams<KycSchema.PersonalDa
       email: 'someemail@gmail.com',
       identificationDocumentType: IdentificationDocumentType.PAS,
       identificationDocumentFront:
-      personalDataAndDocumentsAustria.data.identificationDocument,
+        personalDataAndDocumentsAustria.data.identificationDocument,
     },
   }
 
