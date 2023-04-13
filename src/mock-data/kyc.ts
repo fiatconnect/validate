@@ -2,8 +2,8 @@ import {
   IdentificationDocumentType,
   KycSchema,
 } from '@fiatconnect/fiatconnect-types'
-import { AddKycParams } from '@fiatconnect/fiatconnect-sdk'
-import { BASE64_IMAGE } from './data'
+import {AddKycParams} from '@fiatconnect/fiatconnect-sdk'
+import {BASE64_IMAGE} from './data'
 
 const personalDetails = {
   firstName: 'Alice',
@@ -35,6 +35,21 @@ const personalDataAndDocumentsNigeria: AddKycParams<KycSchema.PersonalDataAndDoc
     },
   }
 
+const personalDataAndDocumentsKenya: AddKycParams<KycSchema.PersonalDataAndDocuments> = {
+  ...personalDataAndDocumentsNigeria,
+  data: {
+    ...personalDataAndDocumentsNigeria.data,
+    address: {
+      city: 'Mombasa',
+      address1: '1234 Malindi Road',
+      address2: 'Apartment 5B',
+      postalCode: '80100',
+      isoRegionCode: 'MBA',
+      isoCountryCode: 'KE',
+    },
+  }
+}
+
 const personalDataAndDocumentsAustria: AddKycParams<KycSchema.PersonalDataAndDocuments> =
   {
     ...personalDataAndDocumentsNigeria,
@@ -59,7 +74,7 @@ const personalDataAndDocumentsDetailedAustria: AddKycParams<KycSchema.PersonalDa
       email: 'someemail@gmail.com',
       identificationDocumentType: IdentificationDocumentType.PAS,
       identificationDocumentFront:
-        personalDataAndDocumentsAustria.data.identificationDocument,
+      personalDataAndDocumentsAustria.data.identificationDocument,
     },
   }
 
@@ -98,6 +113,7 @@ const personalDataWithDocumentsDetailedBrazil: AddKycParams<KycSchema.PersonalDa
 
 export const MOCK_KYC: Record<string, AddKycParams<KycSchema>> = {
   personalDataAndDocumentsNigeria,
+  personalDataAndDocumentsKenya,
   personalDataAndDocumentsAustria,
   personalDataAndDocumentsXOF,
   personalDataAndDocumentsDetailedAustria,
