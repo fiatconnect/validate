@@ -25,7 +25,7 @@ const mobileMoneyKenya: PostFiatAccountRequestBody = {
     accountName: 'My MPESA Account',
     mobile: '07037205555',
     country: 'KE',
-  }
+  },
 }
 
 const ibanNumberAustria: PostFiatAccountRequestBody = {

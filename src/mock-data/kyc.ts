@@ -2,8 +2,8 @@ import {
   IdentificationDocumentType,
   KycSchema,
 } from '@fiatconnect/fiatconnect-types'
-import {AddKycParams} from '@fiatconnect/fiatconnect-sdk'
-import {BASE64_IMAGE} from './data'
+import { AddKycParams } from '@fiatconnect/fiatconnect-sdk'
+import { BASE64_IMAGE } from './data'
 
 const personalDetails = {
   firstName: 'Alice',
@@ -35,20 +35,21 @@ const personalDataAndDocumentsNigeria: AddKycParams<KycSchema.PersonalDataAndDoc
     },
   }
 
-const personalDataAndDocumentsKenya: AddKycParams<KycSchema.PersonalDataAndDocuments> = {
-  ...personalDataAndDocumentsNigeria,
-  data: {
-    ...personalDataAndDocumentsNigeria.data,
-    address: {
-      city: 'Nairobi',
-      address1: 'Jomo Kenyatta International Airport',
-      address2: 'Airport N Rd',
-      postalCode: '00501',
-      isoRegionCode: 'KE-30',
-      isoCountryCode: 'KE',
-    }
+const personalDataAndDocumentsKenya: AddKycParams<KycSchema.PersonalDataAndDocuments> =
+  {
+    ...personalDataAndDocumentsNigeria,
+    data: {
+      ...personalDataAndDocumentsNigeria.data,
+      address: {
+        city: 'Nairobi',
+        address1: 'Jomo Kenyatta International Airport',
+        address2: 'Airport N Rd',
+        postalCode: '00501',
+        isoRegionCode: 'KE-30',
+        isoCountryCode: 'KE',
+      },
+    },
   }
-}
 
 const personalDataAndDocumentsAustria: AddKycParams<KycSchema.PersonalDataAndDocuments> =
   {
@@ -74,7 +75,7 @@ const personalDataAndDocumentsDetailedAustria: AddKycParams<KycSchema.PersonalDa
       email: 'someemail@gmail.com',
       identificationDocumentType: IdentificationDocumentType.PAS,
       identificationDocumentFront:
-      personalDataAndDocumentsAustria.data.identificationDocument,
+        personalDataAndDocumentsAustria.data.identificationDocument,
     },
   }
 
