@@ -41,15 +41,14 @@ export const config = yargs
   .option('quote-in-mock', {
     description:
       'Mock data to use for a transfer in quote that should be offered',
-    demandOption: true,
+    demandOption: false,
     example: 'quoteInNigeriaCUSD',
     choices: Object.keys(MOCK_QUOTE),
-    default: '',
   })
   .option('quote-out-mock', {
     description:
       'Mock data to use for a transfer out quote that should be offered',
-    demandOption: true,
+    demandOption: false,
     example: 'quoteOutNigeriaCUSD',
     choices: Object.keys(MOCK_QUOTE),
   })
@@ -64,6 +63,14 @@ export const config = yargs
     demandOption: true,
     example: 'personalDataAndDocumentsNigeria',
     choices: Object.keys(MOCK_KYC),
+  })
+  .check(({ quoteInMock, quoteOutMock }) => {
+    if (!quoteOutMock && !quoteInMock) {
+      throw new Error(
+        'Must specify at least one of quote-in-mock or quote-out-mock',
+      )
+    }
+    return true
   })
   .help()
   .parseSync()
