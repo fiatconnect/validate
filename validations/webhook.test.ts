@@ -120,8 +120,8 @@ describe('webhooks', () => {
       (message: string) => wallet.signMessage(message),
     )
   })
-
-  if (config.quoteInMock) {
+  const { quoteInMock, quoteOutMock } = config
+  if (quoteInMock) {
     describe('transfer in', () => {
       it('sends webhooks for transfer in requests', async () => {
         expect(
@@ -130,7 +130,7 @@ describe('webhooks', () => {
         ).to.be.true
         // Setup
         const quoteInParams = {
-          ...MOCK_QUOTE[config.quoteInMock],
+          ...MOCK_QUOTE[quoteInMock],
           address: wallet.address,
         }
         const loginResult = await fiatConnectClient.login()
@@ -188,7 +188,7 @@ describe('webhooks', () => {
       })
     })
   }
-  if (config.quoteOutMock) {
+  if (quoteOutMock) {
     describe('transfer out', () => {
       it('sends webhooks for transfer out requests', async () => {
         expect(
@@ -197,7 +197,7 @@ describe('webhooks', () => {
         ).to.be.true
         // Setup
         const quoteOutParams = {
-          ...MOCK_QUOTE[config.quoteOutMock],
+          ...MOCK_QUOTE[quoteOutMock],
           address: wallet.address,
         }
         const loginResult = await fiatConnectClient.login()
