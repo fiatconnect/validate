@@ -27,7 +27,8 @@ describe('/transfer', () => {
   const mockKYCInfo: AddKycParams<KycSchema> =
     MOCK_KYC[config.kycMock as keyof typeof MOCK_KYC]
 
-  if (config.quoteInMock) {
+  const { quoteInMock, quoteOutMock } = config
+  if (quoteInMock) {
     describe('/in', () => {
       const wallet = ethers.Wallet.createRandom()
 
@@ -42,7 +43,7 @@ describe('/transfer', () => {
       )
 
       const quoteInParams = {
-        ...MOCK_QUOTE[config.quoteInMock],
+        ...MOCK_QUOTE[quoteInMock],
         address: wallet.address,
       }
 
@@ -103,7 +104,7 @@ describe('/transfer', () => {
     })
   }
 
-  if (config.quoteOutMock) {
+  if (quoteOutMock) {
     describe('/out', () => {
       const wallet = ethers.Wallet.createRandom()
 
@@ -118,7 +119,7 @@ describe('/transfer', () => {
       )
 
       const quoteOutParams = {
-        ...MOCK_QUOTE[config.quoteOutMock],
+        ...MOCK_QUOTE[quoteOutMock],
         address: wallet.address,
       }
 
@@ -157,6 +158,9 @@ describe('/transfer', () => {
           TransferStatus.TransferStarted,
           TransferStatus.TransferReadyForUserToSendCryptoFunds,
         ])
+        expect(transferOutResponse.unwrap().transferAddress).to.match(
+          /0x[a-fA-F0-9]{40}/,
+        )
 
         const transferStatusResponse =
           await fiatConnectClient.getTransferStatus({
