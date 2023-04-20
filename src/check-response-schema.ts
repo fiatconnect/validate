@@ -28,9 +28,7 @@ export function checkResponseSchema<T extends AnyZodObject>(
   // check response against FiatConnect spec
   if (pathPrefix !== '' && response.request.path.indexOf(pathPrefix) === 0) {
     // removes path prefix like /v1, total hack to get api schema matcher to work
-    response.request.path = response.request.path.slice(
-      pathPrefix.length,
-    )
+    response.request.path = response.request.path.slice(pathPrefix.length)
   }
   expect(response).to.matchApiSchema()
 

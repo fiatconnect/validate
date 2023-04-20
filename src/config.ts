@@ -23,10 +23,11 @@ export const config = yargs
     demandOption: true,
   })
   .option('path-prefix', {
-    description: 'Any prefix to the FiatConnect endpoints. This is used to help chai match request paths against the OpenAPI spec, which only recognizes paths like `/auth/login`, not `/v1/auth/login`',
+    description:
+      'Any prefix to the FiatConnect endpoints. This is used to help chai match request paths against the OpenAPI spec, which only recognizes paths like `/auth/login`, not `/v1/auth/login`',
     type: 'string',
     default: '',
-    example: '/v1'
+    example: '/v1',
   })
   .option('openapi-spec', {
     description: 'OpenAPI 2.0 specification file to test against',
