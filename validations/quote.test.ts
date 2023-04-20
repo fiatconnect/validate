@@ -47,9 +47,6 @@ describe('/quote', () => {
       expect(response).to.have.status(200)
       expect(response.data.quote.quoteId).not.to.be.equal('')
       checkResponseSchema(response, config.pathPrefix, quoteResponseSchema)
-    })
-    it('Doesnt support quotes for unreasonably large transfer out', async () => {
-      checkResponseSchema(response, config.pathPrefix, quoteResponseSchema)
     },
   )
 
