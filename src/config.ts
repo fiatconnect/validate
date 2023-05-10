@@ -71,7 +71,7 @@ export const config = yargs
     example: 'personalDataAndDocumentsNigeria',
     choices: Object.keys(MOCK_KYC),
   })
-  .check(({'quote-in-mock': quoteInMock, 'quote-out-mock': quoteOutMock}) => {
+  .check(({ 'quote-in-mock': quoteInMock, 'quote-out-mock': quoteOutMock }) => {
     if (!quoteOutMock && !quoteInMock) {
       throw new Error(
         'Must specify at least one of quote-in-mock or quote-out-mock',
