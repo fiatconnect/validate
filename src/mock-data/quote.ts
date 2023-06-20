@@ -39,10 +39,26 @@ const quoteInXOFCUSD: Omit<QuoteRequestBody, 'address'> = {
   country: 'CI',
 }
 
+const quoteInEURCEUR: Omit<QuoteRequestBody, 'address'> = {
+    cryptoType: CryptoType.cEUR,
+    fiatType: FiatType.EUR,
+    cryptoAmount: '1',
+    country: 'AT'
+  }
+  
+const quoteOutEURCEUR: Omit<QuoteRequestBody, 'address'> = {
+  cryptoType: CryptoType.cEUR,
+  fiatType: FiatType.EUR,
+  cryptoAmount: '1',
+  country: 'AT'
+}
+
 export const MOCK_QUOTE: Record<string, Omit<QuoteRequestBody, 'address'>> = {
   quoteInNigeriaCUSD,
   quoteOutNigeriaCUSD,
   quoteOutXOFCUSD,
   quoteInXOFCUSD,
   quoteBrazilCREAL,
+  quoteInEURCEUR,
+  quoteOutEURCEUR
 }

@@ -1,13 +1,14 @@
 import { config } from '../src/config'
-import { Network } from '@fiatconnect/fiatconnect-types'
+import { KycSchema, Network } from '@fiatconnect/fiatconnect-types'
 import { expect, use } from 'chai'
 import { ethers } from 'ethers'
-import { FiatConnectClient } from '@fiatconnect/fiatconnect-sdk'
+import { AddKycParams, FiatConnectClient } from '@fiatconnect/fiatconnect-sdk'
 import { FiatConnectError } from '@fiatconnect/fiatconnect-types'
 import path from 'path'
 import { chaiPlugin } from 'api-contract-validator'
 import { MOCK_FIAT_ACCOUNTS } from '../src/mock-data/fiat-account'
 import { checkObjectAgainstModel } from '../src/check-response-schema'
+import { MOCK_KYC } from '../src/mock-data/kyc'
 
 const apiDefinitionsPath = path.join(config.openapiSpec)
 use(chaiPlugin({ apiDefinitionsPath }))
@@ -17,6 +18,9 @@ describe('accounts', () => {
     MOCK_FIAT_ACCOUNTS[
       config.fiatAccountMock as keyof typeof MOCK_FIAT_ACCOUNTS
     ]
+  
+  const mockKYCInfo: AddKycParams<KycSchema> =
+  MOCK_KYC[config.kycMock as keyof typeof MOCK_KYC]
 
   it('gives empty list of accounts when none are posted yet', async () => {
     const wallet = ethers.Wallet.createRandom()
@@ -53,6 +57,10 @@ describe('accounts', () => {
     )
     const loginResult = await fiatConnectClient.login()
     expect(loginResult.isOk).to.be.ok
+
+    // Add Kyc
+    const addKycResult = await fiatConnectClient.addKyc(mockKYCInfo)
+    expect(addKycResult.isOk).to.be.true
 
     // Add an account and verify response
     const addAccountResult = await fiatConnectClient.addFiatAccount(
@@ -115,6 +123,10 @@ describe('accounts', () => {
     const loginResult = await fiatConnectClient.login()
     expect(loginResult.isOk).to.be.ok
 
+    // Add Kyc
+    const addKycResult = await fiatConnectClient.addKyc(mockKYCInfo)
+    expect(addKycResult.isOk).to.be.true
+
     // Add an account and verify response
     const addAccountResult = await fiatConnectClient.addFiatAccount(
       mockAccountData,
@@ -139,6 +151,10 @@ describe('accounts', () => {
     )
     const loginResult2 = await fiatConnectClient2.login()
     expect(loginResult2.isOk).to.be.true
+
+    // Add Kyc
+    const addKycResult2 = await fiatConnectClient.addKyc(mockKYCInfo)
+    expect(addKycResult2.isOk).to.be.true
 
     // Add the same account to the new address and verify response
     const addAccountResult2 = await fiatConnectClient2.addFiatAccount(

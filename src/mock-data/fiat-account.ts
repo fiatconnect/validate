@@ -23,7 +23,7 @@ const ibanNumberAustria: PostFiatAccountRequestBody = {
     institutionName: 'Austrian Bank',
     country: 'AT',
     fiatAccountType: FiatAccountType.BankAccount,
-    iban: 'mock-iban-number',
+    iban: 'AT611904300234573201',
   },
 }
 
