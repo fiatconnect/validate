@@ -29,10 +29,22 @@ use(chaiPlugin({ apiDefinitionsPath }))
 use(chaiAsPromised)
 
 async function validateTransferWebhook(
-  params: { transferId: string; address: string; status: TransferStatus },
+  params: {
+    transferId: string
+    address: string
+    status: TransferStatus
+    expectedAmountProvided: string
+    expectedAmountReceived: string
+  },
   retries: number,
 ): Promise<void> {
-  const { transferId, address, status } = params
+  const {
+    transferId,
+    address,
+    status,
+    expectedAmountReceived,
+    expectedAmountProvided,
+  } = params
   if (retries < 0) {
     throw new Error('Webhook event could not be found')
   }
@@ -52,6 +64,27 @@ async function validateTransferWebhook(
     )
     return validateTransferWebhook(params, retries - 1)
   }
+  response.data.forEach(
+    ({
+      payload: { amountReceived, amountProvided },
+    }: WebhookRequestBodyTransferIn | WebhookRequestBodyTransferOut) => {
+      if (
+        amountProvided !== expectedAmountProvided ||
+        amountReceived !== expectedAmountReceived
+      ) {
+        throw new Error(
+          `Webhook event has incorrect amountProvided or amountReceived. ${JSON.stringify(
+            {
+              amountProvided,
+              amountReceived,
+              expectedAmountProvided,
+              expectedAmountReceived,
+            },
+          )}`,
+        )
+      }
+    },
+  )
   const correspondingWebhook = response.data.find(
     (transfer: WebhookRequestBodyTransferIn | WebhookRequestBodyTransferOut) =>
       transfer.payload.status === status,
@@ -140,7 +173,8 @@ describe('webhooks', () => {
           quoteInParams,
         )
         expect(quoteInResponse.isOk).to.be.true
-        const quoteId = quoteInResponse.unwrap().quote.quoteId
+        const { quoteId, cryptoAmount, fiatAmount } =
+          quoteInResponse.unwrap().quote
 
         const addKycResult = await fiatConnectClient.addKyc(mockKYCInfo)
         expect(addKycResult.isOk).to.be.true
@@ -156,7 +190,7 @@ describe('webhooks', () => {
           idempotencyKey,
           data: {
             fiatAccountId: fiatAccountId,
-            quoteId: quoteId,
+            quoteId,
           },
         }
 
@@ -181,6 +215,8 @@ describe('webhooks', () => {
               transferId,
               address: wallet.address,
               status: transferStatusResponse.unwrap().status,
+              expectedAmountProvided: fiatAmount,
+              expectedAmountReceived: cryptoAmount,
             },
             2,
           ),
@@ -216,13 +252,14 @@ describe('webhooks', () => {
           quoteOutParams,
         )
         expect(quoteOutResponse.isOk).to.be.true
-        const quoteOutId = quoteOutResponse.unwrap().quote.quoteId
+        const { quoteId, fiatAmount, cryptoAmount } =
+          quoteOutResponse.unwrap().quote
 
         const transferOutParams = {
           idempotencyKey: randomUUID(),
           data: {
             fiatAccountId: fiatAccountId,
-            quoteId: quoteOutId,
+            quoteId,
           },
         }
 
@@ -248,6 +285,8 @@ describe('webhooks', () => {
               transferId,
               address: wallet.address,
               status: transferStatusResponse.unwrap().status,
+              expectedAmountReceived: fiatAmount,
+              expectedAmountProvided: cryptoAmount,
             },
             2,
           ),
