@@ -47,7 +47,7 @@ describe('/transfer', () => {
         address: wallet.address,
       }
 
-      it('able to transfer fiat in for crypto', async () => {
+      it('able to transfer in (fiat for crypto)', async () => {
         const loginResult = await fiatConnectClient.login()
         expect(loginResult.isOk).to.be.true
 
@@ -55,7 +55,8 @@ describe('/transfer', () => {
           quoteInParams,
         )
         expect(quoteInResponse.isOk).to.be.true
-        const quoteId = quoteInResponse.unwrap().quote.quoteId
+        const { quoteId, cryptoAmount, fiatAmount } =
+          quoteInResponse.unwrap().quote
 
         const addKycResult = await fiatConnectClient.addKyc(mockKYCInfo)
         expect(addKycResult.isOk).to.be.true
@@ -71,7 +72,7 @@ describe('/transfer', () => {
           idempotencyKey,
           data: {
             fiatAccountId: fiatAccountId,
-            quoteId: quoteId,
+            quoteId,
           },
         }
 
@@ -83,15 +84,18 @@ describe('/transfer', () => {
           Object.values(TransferStatus),
         )
 
-        const transferStatusResponse =
-          await fiatConnectClient.getTransferStatus({
-            transferId: transferInResponse.unwrap().transferId,
-          })
-        expect(transferStatusResponse.isOk).to.be.true
+        const transferStatusResult = await fiatConnectClient.getTransferStatus({
+          transferId: transferInResponse.unwrap().transferId,
+        })
+        expect(transferStatusResult.isOk).to.be.true
+        const transferStatusResponse = transferStatusResult.unwrap()
         await checkObjectAgainstModel(
-          transferStatusResponse.unwrap(),
+          transferStatusResponse,
           'TransferStatusResponse',
         )
+
+        expect(transferStatusResponse.amountProvided).to.equal(fiatAmount)
+        expect(transferStatusResponse.amountReceived).to.equal(cryptoAmount)
 
         const duplicateTransferResponse = await fiatConnectClient.transferIn(
           transferInParams,
@@ -123,7 +127,7 @@ describe('/transfer', () => {
         address: wallet.address,
       }
 
-      it('able to transfer crypto in for fiat out', async () => {
+      it('able to transfer out (crypto for fiat)', async () => {
         const loginResult = await fiatConnectClient.login()
         expect(loginResult.isOk).to.be.true
 
@@ -140,13 +144,14 @@ describe('/transfer', () => {
           quoteOutParams,
         )
         expect(quoteOutResponse.isOk).to.be.true
-        const quoteOutId = quoteOutResponse.unwrap().quote.quoteId
+        const { quoteId, cryptoAmount, fiatAmount } =
+          quoteOutResponse.unwrap().quote
 
         const transferOutParams = {
           idempotencyKey: randomUUID(),
           data: {
             fiatAccountId: fiatAccountId,
-            quoteId: quoteOutId,
+            quoteId,
           },
         }
 
@@ -162,15 +167,17 @@ describe('/transfer', () => {
           /0x[a-fA-F0-9]{40}/,
         )
 
-        const transferStatusResponse =
-          await fiatConnectClient.getTransferStatus({
-            transferId: transferOutResponse.unwrap().transferId,
-          })
-        expect(transferStatusResponse.isOk).to.be.true
+        const transferStatusResult = await fiatConnectClient.getTransferStatus({
+          transferId: transferOutResponse.unwrap().transferId,
+        })
+        expect(transferStatusResult.isOk).to.be.true
+        const transferStatusResponse = transferStatusResult.unwrap()
         await checkObjectAgainstModel(
-          transferStatusResponse.unwrap(),
+          transferStatusResponse,
           'TransferStatusResponse',
         )
+        expect(transferStatusResponse.amountProvided).to.equal(cryptoAmount)
+        expect(transferStatusResponse.amountReceived).to.equal(fiatAmount)
 
         const duplicateTransferResponse = await fiatConnectClient.transferOut(
           transferOutParams,
