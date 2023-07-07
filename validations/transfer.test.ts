@@ -58,18 +58,23 @@ describe('/transfer', () => {
 
         const quoteId = quoteInResponse.unwrap().quote.quoteId
 
-	if (ensureUserInitTransferIn) {
-	  // Get the fiat account schema information from the quote that corresponds
-	  // to the mock account being used
-	  const fiatAccountSchemaInfo = quoteInResponse.unwrap().fiatAccount[
-	  mockAccountData.data.fiatAccountType]!.fiatAccountSchemas.find(
-	    fiatInfo  => fiatInfo.fiatAccountSchema === mockAccountData.fiatAccountSchema
-	  )
-	  await checkObjectAgainstModel(
-	    fiatAccountSchemaInfo?.userActionType,
-	    'UserActionTypeEnum'
-	  )
-	}
+        if (ensureUserInitTransferIn) {
+          // Get the fiat account schema information from the quote that corresponds
+          // to the mock account being used
+          const fiatAccountSchemaInfo = quoteInResponse
+            .unwrap()
+            .fiatAccount[
+              mockAccountData.data.fiatAccountType
+            ]!.fiatAccountSchemas.find(
+              (fiatInfo) =>
+                fiatInfo.fiatAccountSchema ===
+                mockAccountData.fiatAccountSchema,
+            )
+          await checkObjectAgainstModel(
+            fiatAccountSchemaInfo?.userActionType,
+            'UserActionTypeEnum',
+          )
+        }
 
         const addKycResult = await fiatConnectClient.addKyc(mockKYCInfo)
         expect(addKycResult.isOk).to.be.true
@@ -98,15 +103,12 @@ describe('/transfer', () => {
           Object.values(TransferStatus),
         )
 
-	const r = transferInResponse.unwrap()
-	console.log(r)
-	if (ensureUserInitTransferIn) {
-
-	  await checkObjectAgainstModel(
-	    transferInResponse.unwrap(),
-	    'UserActionDetails'
-	  )
-	}
+        if (ensureUserInitTransferIn) {
+          await checkObjectAgainstModel(
+            transferInResponse.unwrap(),
+            'UserActionDetails',
+          )
+        }
 
         const transferStatusResponse =
           await fiatConnectClient.getTransferStatus({
@@ -120,12 +122,12 @@ describe('/transfer', () => {
           'TransferStatusResponse',
         )
 
-	if (ensureUserInitTransferIn) {
-	  await checkObjectAgainstModel(
-	    transferStatusResponse.unwrap().userActionDetails,
-	    'UserActionDetails'
-	  )
-	}
+        if (ensureUserInitTransferIn) {
+          await checkObjectAgainstModel(
+            transferStatusResponse.unwrap().userActionDetails,
+            'UserActionDetails',
+          )
+        }
 
         const duplicateTransferResponse = await fiatConnectClient.transferIn(
           transferInParams,
@@ -135,12 +137,12 @@ describe('/transfer', () => {
           transferInResponse.unwrap().transferId,
         )
 
-	if (ensureUserInitTransferIn) {
-	  await checkObjectAgainstModel(
-	    duplicateTransferResponse.unwrap(),
-	    'UserActionDetails2'
-	  )
-	}
+        if (ensureUserInitTransferIn) {
+          await checkObjectAgainstModel(
+            duplicateTransferResponse.unwrap(),
+            'UserActionDetails2',
+          )
+        }
       })
     })
   }

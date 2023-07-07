@@ -53,9 +53,10 @@ export const config = yargs
     choices: Object.keys(MOCK_QUOTE),
   })
   .option('ensure-user-init-transfer-in', {
-    description: 'If true, ensures that a transfer in test uses and supports user-initiated transfers',
+    description:
+      'If true, ensures that a transfer in test uses and supports user-initiated transfers',
     type: 'boolean',
-    default: true
+    default: true,
   })
   .option('quote-out-mock', {
     description:
