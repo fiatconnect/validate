@@ -28,7 +28,7 @@ const quoteOutKenyaCUSD: Omit<QuoteRequestBody, 'address'> = {
 const quoteInNigeriaCUSD: Omit<QuoteRequestBody, 'address'> = {
   cryptoType: CryptoType.cUSD,
   fiatType: FiatType.NGN,
-  cryptoAmount: '.01',
+  cryptoAmount: '20',
   country: 'NG',
 }
 

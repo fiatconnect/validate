@@ -27,7 +27,7 @@ describe('/transfer', () => {
   const mockKYCInfo: AddKycParams<KycSchema> =
     MOCK_KYC[config.kycMock as keyof typeof MOCK_KYC]
 
-  const { quoteInMock, quoteOutMock } = config
+  const { quoteInMock, quoteOutMock, ensureUserInitTransferIn } = config
   if (quoteInMock) {
     describe('/in', () => {
       const wallet = ethers.Wallet.createRandom()
@@ -55,7 +55,21 @@ describe('/transfer', () => {
           quoteInParams,
         )
         expect(quoteInResponse.isOk).to.be.true
+
         const quoteId = quoteInResponse.unwrap().quote.quoteId
+
+	if (ensureUserInitTransferIn) {
+	  // Get the fiat account schema information from the quote that corresponds
+	  // to the mock account being used
+	  const fiatAccountSchemaInfo = quoteInResponse.unwrap().fiatAccount[
+	  mockAccountData.data.fiatAccountType]!.fiatAccountSchemas.find(
+	    fiatInfo  => fiatInfo.fiatAccountSchema === mockAccountData.fiatAccountSchema
+	  )
+	  await checkObjectAgainstModel(
+	    fiatAccountSchemaInfo?.userActionType,
+	    'UserActionTypeEnum'
+	  )
+	}
 
         const addKycResult = await fiatConnectClient.addKyc(mockKYCInfo)
         expect(addKycResult.isOk).to.be.true
@@ -79,19 +93,39 @@ describe('/transfer', () => {
           transferInParams,
         )
         expect(transferInResponse.isOk).to.be.true
+
         expect(transferInResponse.unwrap().transferStatus).to.be.oneOf(
           Object.values(TransferStatus),
         )
+
+	const r = transferInResponse.unwrap()
+	console.log(r)
+	if (ensureUserInitTransferIn) {
+
+	  await checkObjectAgainstModel(
+	    transferInResponse.unwrap(),
+	    'UserActionDetails'
+	  )
+	}
 
         const transferStatusResponse =
           await fiatConnectClient.getTransferStatus({
             transferId: transferInResponse.unwrap().transferId,
           })
+
         expect(transferStatusResponse.isOk).to.be.true
+
         await checkObjectAgainstModel(
           transferStatusResponse.unwrap(),
           'TransferStatusResponse',
         )
+
+	if (ensureUserInitTransferIn) {
+	  await checkObjectAgainstModel(
+	    transferStatusResponse.unwrap().userActionDetails,
+	    'UserActionDetails'
+	  )
+	}
 
         const duplicateTransferResponse = await fiatConnectClient.transferIn(
           transferInParams,
@@ -100,6 +134,13 @@ describe('/transfer', () => {
         expect(duplicateTransferResponse.unwrap().transferId).to.equal(
           transferInResponse.unwrap().transferId,
         )
+
+	if (ensureUserInitTransferIn) {
+	  await checkObjectAgainstModel(
+	    duplicateTransferResponse.unwrap(),
+	    'UserActionDetails2'
+	  )
+	}
       })
     })
   }
