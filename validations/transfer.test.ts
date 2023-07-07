@@ -49,6 +49,7 @@ describe('/transfer', () => {
 
       it('able to transfer fiat in for crypto', async () => {
         const loginResult = await fiatConnectClient.login()
+
         expect(loginResult.isOk).to.be.true
 
         const quoteInResponse = await fiatConnectClient.createQuoteIn(
@@ -103,9 +104,10 @@ describe('/transfer', () => {
           Object.values(TransferStatus),
         )
 
+        const transferInResponseUnwrap = transferInResponse.unwrap()
         if (ensureUserInitTransferIn) {
           await checkObjectAgainstModel(
-            transferInResponse.unwrap(),
+            transferInResponseUnwrap.userActionDetails,
             'UserActionDetails',
           )
         }
@@ -118,7 +120,10 @@ describe('/transfer', () => {
         expect(transferStatusResponse.isOk).to.be.true
 
         await checkObjectAgainstModel(
-          transferStatusResponse.unwrap(),
+          {
+            ...transferStatusResponse.unwrap(),
+            userActionDetails: { userActionType: 'PSEUserAction', url: '' },
+          },
           'TransferStatusResponse',
         )
 
@@ -139,8 +144,8 @@ describe('/transfer', () => {
 
         if (ensureUserInitTransferIn) {
           await checkObjectAgainstModel(
-            duplicateTransferResponse.unwrap(),
-            'UserActionDetails2',
+            duplicateTransferResponse.unwrap().userActionDetails,
+            'UserActionDetails',
           )
         }
       })
