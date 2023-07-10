@@ -36,6 +36,22 @@ const personalDataAndDocumentsNigeria: AddKycParams<KycSchema.PersonalDataAndDoc
     },
   }
 
+const personalDataAndDocumentsKenya: AddKycParams<KycSchema.PersonalDataAndDocuments> =
+  {
+    ...personalDataAndDocumentsNigeria,
+    data: {
+      ...personalDataAndDocumentsNigeria.data,
+      address: {
+        city: 'Nairobi',
+        address1: 'Jomo Kenyatta International Airport',
+        address2: 'Airport N Rd',
+        postalCode: '00501',
+        isoRegionCode: 'KE-30',
+        isoCountryCode: 'KE',
+      },
+    },
+  }
+
 const personalDataAndDocumentsAustria: AddKycParams<KycSchema.PersonalDataAndDocuments> =
   {
     ...personalDataAndDocumentsNigeria,
@@ -101,6 +117,7 @@ const personalDataWithDocumentsDetailedBrazil: AddKycParams<KycSchema.PersonalDa
 
 export const MOCK_KYC: Record<string, AddKycParams<KycSchema>> = {
   personalDataAndDocumentsNigeria,
+  personalDataAndDocumentsKenya,
   personalDataAndDocumentsAustria,
   personalDataAndDocumentsXOF,
   personalDataAndDocumentsDetailedAustria,

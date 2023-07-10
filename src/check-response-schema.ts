@@ -16,20 +16,19 @@ use(chaiPlugin({ apiDefinitionsPath }))
  * Ignores /vX prefix
  *
  * @param response
+ * @param pathPrefix
  * @param schema: If provided, runs additional check using a zod schema. The spec should be the
  *  source of truth, but sometimes zod schemas allow for more granular checks-- for instance, with enum values.
  */
 export function checkResponseSchema<T extends AnyZodObject>(
   response: AxiosResponse,
+  pathPrefix: string,
   schema?: T,
 ) {
   // check response against FiatConnect spec
-  const versionPrefixMatch = response.request.path.match(/^\/v([0-9]+)/)
-  if (versionPrefixMatch) {
-    // removes /vX prefix, total hack to get api schema matcher to work
-    response.request.path = response.request.path.slice(
-      versionPrefixMatch[0].length,
-    )
+  if (pathPrefix !== '' && response.request.path.indexOf(pathPrefix) === 0) {
+    // removes path prefix like /v1, total hack to get api schema matcher to work
+    response.request.path = response.request.path.slice(pathPrefix.length)
   }
   expect(response).to.matchApiSchema()
 

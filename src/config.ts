@@ -22,6 +22,13 @@ export const config = yargs
     type: 'string',
     demandOption: true,
   })
+  .option('path-prefix', {
+    description:
+      'Any prefix to the FiatConnect endpoints. This is used to help chai match request paths against the OpenAPI spec, which only recognizes paths like `/auth/login`, not `/v1/auth/login`',
+    type: 'string',
+    default: '',
+    example: '/v1',
+  })
   .option('openapi-spec', {
     description: 'OpenAPI 2.0 specification file to test against',
     type: 'string',
@@ -41,33 +48,36 @@ export const config = yargs
   .option('quote-in-mock', {
     description:
       'Mock data to use for a transfer in quote that should be offered',
-    type: 'string',
-    demandOption: true,
+    demandOption: false,
     example: 'quoteInNigeriaCUSD',
-    options: Object.keys(MOCK_QUOTE),
-    default: '',
+    choices: Object.keys(MOCK_QUOTE),
   })
   .option('quote-out-mock', {
     description:
       'Mock data to use for a transfer out quote that should be offered',
-    type: 'string',
-    demandOption: true,
+    demandOption: false,
     example: 'quoteOutNigeriaCUSD',
-    options: Object.keys(MOCK_QUOTE),
+    choices: Object.keys(MOCK_QUOTE),
   })
   .option('fiat-account-mock', {
     description: 'Fiat account mock data to use',
-    type: 'string',
     demandOption: true,
     example: 'accountNumberNigeria',
-    options: Object.keys(MOCK_FIAT_ACCOUNTS),
+    choices: Object.keys(MOCK_FIAT_ACCOUNTS),
   })
   .option('kyc-mock', {
     description: 'KYC mock data to use',
-    type: 'string',
     demandOption: true,
     example: 'personalDataAndDocumentsNigeria',
-    options: Object.keys(MOCK_KYC),
+    choices: Object.keys(MOCK_KYC),
+  })
+  .check(({ quoteInMock, quoteOutMock }) => {
+    if (!quoteOutMock && !quoteInMock) {
+      throw new Error(
+        'Must specify at least one of quote-in-mock or quote-out-mock',
+      )
+    }
+    return true
   })
   .help()
   .parseSync()

@@ -16,6 +16,18 @@ const accountNumberNigeria: PostFiatAccountRequestBody = {
   },
 }
 
+const mobileMoneyKenya: PostFiatAccountRequestBody = {
+  fiatAccountSchema: FiatAccountSchema.MobileMoney,
+  data: {
+    fiatAccountType: FiatAccountType.MobileMoney,
+    institutionName: 'MPESA',
+    operator: 'MPESA',
+    accountName: 'My MPESA Account',
+    mobile: '07037205555',
+    country: 'KE',
+  },
+}
+
 const ibanNumberAustria: PostFiatAccountRequestBody = {
   fiatAccountSchema: FiatAccountSchema.IBANNumber,
   data: {
@@ -44,12 +56,13 @@ const pixAccount: PostFiatAccountRequestBody = {
     accountName: 'My PIX Account',
     fiatAccountType: FiatAccountType.BankAccount,
     keyType: PIXKeyTypeEnum.RANDOM,
-    key: 'a'.repeat(32),
+    key: 'a332fb0d-63d7-4cf6-af37-c607d9618714', // arbitrary uuid
   },
 }
 
 export const MOCK_FIAT_ACCOUNTS: Record<string, PostFiatAccountRequestBody> = {
   accountNumberNigeria,
+  mobileMoneyKenya,
   accountNumberXOF,
   ibanNumberAustria,
   pixAccount,

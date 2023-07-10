@@ -18,7 +18,7 @@ describe('/clock', () => {
     })
     const response = await client.get(`/clock`)
     expect(response).to.have.status(200)
-    checkResponseSchema(response, clockResponseSchema)
+    checkResponseSchema(response, config.pathPrefix, clockResponseSchema)
     const serverTimeStr = response.data?.time
     expect(!!serverTimeStr).to.be.true
     const serverTime = new Date(serverTimeStr)
