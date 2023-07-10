@@ -5,14 +5,13 @@ import { AddKycParams, FiatConnectClient } from '@fiatconnect/fiatconnect-sdk'
 import { KycSchema, KycStatus, Network } from '@fiatconnect/fiatconnect-types'
 import path from 'path'
 import { chaiPlugin } from 'api-contract-validator'
-import { MOCK_KYC } from '../src/mock-data/kyc'
+import { MOCK_KYC, getMockKyc } from '../src/mock-data/kyc'
 
 const apiDefinitionsPath = path.join(config.openapiSpec)
 use(chaiPlugin({ apiDefinitionsPath }))
 
 describe('/kyc', () => {
-  const mockKYCInfo: AddKycParams<KycSchema> =
-    MOCK_KYC[config.kycMock as keyof typeof MOCK_KYC]
+  let mockKYCInfo: AddKycParams<KycSchema>
   it('able to post kyc data if logged in first', async () => {
     const wallet = ethers.Wallet.createRandom()
     const fiatConnectClient = new FiatConnectClient(
@@ -27,6 +26,7 @@ describe('/kyc', () => {
     const loginResult = await fiatConnectClient.login()
     expect(loginResult.isOk).to.be.ok
 
+    mockKYCInfo = getMockKyc(config.kycMock as keyof typeof MOCK_KYC)
     const addKycResult = await fiatConnectClient.addKyc(mockKYCInfo)
     expect(addKycResult.isOk).to.be.true
     expect(addKycResult.unwrap().kycStatus).to.be.oneOf(
@@ -47,6 +47,7 @@ describe('/kyc', () => {
     const loginResult = await fiatConnectClient.login()
     expect(loginResult.isOk).to.be.ok
 
+    mockKYCInfo = getMockKyc(config.kycMock as keyof typeof MOCK_KYC)
     const addKycResult = await fiatConnectClient.addKyc(mockKYCInfo)
     expect(addKycResult.isOk).to.be.true
 
@@ -73,6 +74,7 @@ describe('/kyc', () => {
     const loginResult = await fiatConnectClient.login()
     expect(loginResult.isOk).to.be.ok
 
+    mockKYCInfo = getMockKyc(config.kycMock as keyof typeof MOCK_KYC)
     const addKycResult = await fiatConnectClient.addKyc(mockKYCInfo)
     expect(addKycResult.isOk).to.be.true
 
