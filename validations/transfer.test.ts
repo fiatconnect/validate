@@ -55,8 +55,15 @@ describe('/transfer', () => {
         )
         expect(quoteInResponse.isOk).to.be.true
         const quoteId = quoteInResponse.unwrap().quote.quoteId
-
-        const addKycResult = await fiatConnectClient.addKyc(mockKYCInfo)
+        
+        const renewedMockKycInfo: AddKycParams<KycSchema> = {
+          kycSchemaName: KycSchema.PersonalDataAndDocumentsDetailed,
+          data: {
+            ...mockKYCInfo.data,
+            email: `r${Date.now()}@gmail.com`
+          }
+        }
+        const addKycResult = await fiatConnectClient.addKyc(renewedMockKycInfo)
         expect(addKycResult.isOk).to.be.true
 
         const addAccountResult = await fiatConnectClient.addFiatAccount(
@@ -126,7 +133,14 @@ describe('/transfer', () => {
         const loginResult = await fiatConnectClient.login()
         expect(loginResult.isOk).to.be.true
 
-        const addKycResult = await fiatConnectClient.addKyc(mockKYCInfo)
+        const renewedMockKycInfo: AddKycParams<KycSchema> = {
+          kycSchemaName: KycSchema.PersonalDataAndDocumentsDetailed,
+          data: {
+            ...mockKYCInfo.data,
+            email: `r${Date.now()}@gmail.com`
+          }
+        }
+        const addKycResult = await fiatConnectClient.addKyc(renewedMockKycInfo)
         expect(addKycResult.isOk).to.be.true
 
         const addAccountResult = await fiatConnectClient.addFiatAccount(

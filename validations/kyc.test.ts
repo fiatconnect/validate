@@ -26,8 +26,15 @@ describe('/kyc', () => {
     )
     const loginResult = await fiatConnectClient.login()
     expect(loginResult.isOk).to.be.ok
-
-    const addKycResult = await fiatConnectClient.addKyc(mockKYCInfo)
+    
+    const renewedMockKycInfo: AddKycParams<KycSchema> = {
+      kycSchemaName: KycSchema.PersonalDataAndDocumentsDetailed,
+      data: {
+        ...mockKYCInfo.data,
+        email: `r${Date.now()}@gmail.com`
+      }
+    }
+    const addKycResult = await fiatConnectClient.addKyc(renewedMockKycInfo)
     expect(addKycResult.isOk).to.be.true
     expect(addKycResult.unwrap().kycStatus).to.be.oneOf(
       Object.values(KycStatus),
@@ -47,7 +54,14 @@ describe('/kyc', () => {
     const loginResult = await fiatConnectClient.login()
     expect(loginResult.isOk).to.be.ok
 
-    const addKycResult = await fiatConnectClient.addKyc(mockKYCInfo)
+    const renewedMockKycInfo: AddKycParams<KycSchema> = {
+      kycSchemaName: KycSchema.PersonalDataAndDocumentsDetailed,
+      data: {
+        ...mockKYCInfo.data,
+        email: `r${Date.now()}@gmail.com`
+      }
+    }
+    const addKycResult = await fiatConnectClient.addKyc(renewedMockKycInfo)
     expect(addKycResult.isOk).to.be.true
 
     const getKycResult = await fiatConnectClient.getKycStatus({
@@ -73,7 +87,14 @@ describe('/kyc', () => {
     const loginResult = await fiatConnectClient.login()
     expect(loginResult.isOk).to.be.ok
 
-    const addKycResult = await fiatConnectClient.addKyc(mockKYCInfo)
+    const renewedMockKycInfo: AddKycParams<KycSchema> = {
+      kycSchemaName: KycSchema.PersonalDataAndDocumentsDetailed,
+      data: {
+        ...mockKYCInfo.data,
+        email: `r${Date.now()}@gmail.com`
+      }
+    }
+    const addKycResult = await fiatConnectClient.addKyc(renewedMockKycInfo)
     expect(addKycResult.isOk).to.be.true
 
     const deleteKycResult = await fiatConnectClient.deleteKyc({

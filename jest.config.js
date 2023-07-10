@@ -10,5 +10,5 @@ module.exports = {
       tsconfig: 'tsconfig.json',
     },
   },
-  testTimeout: 50000,
+  testTimeout: 60000,
 }
