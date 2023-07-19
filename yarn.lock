@@ -714,16 +714,16 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@fiatconnect/fiatconnect-sdk@^0.5.4":
-  version "0.5.4"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.4.tgz#59474e220504dca2273d9cb5a55076fe7c72f3ec"
-  integrity sha512-owJB9ENR5HuiW6X2mnDYfFC/IZr8FUGREcWgVWsglMi8/I1j5M/nd1o+1hGMt81mYwbPzT1t1Nm3d+jSTkzo8g==
+"@fiatconnect/fiatconnect-sdk@^0.5.5":
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.5.tgz#d56565af624eef86ae7ff369b24a4077a210010d"
+  integrity sha512-X/A8cYOmznZ0QsmvaAAaltTPLcrVw1laEpyiRkWA7dlsud5o92IOIDJlmtQ9vC6QHMJAARAo22hbO48EAvUSLg==
   dependencies:
     "@badrap/result" "^0.2.13"
     "@fiatconnect/fiatconnect-types" "^13.1.0"
     cross-fetch "^4.0.0"
     ethers "^5.7.2"
-    fetch-cookie "^2.0.3"
+    fetch-cookie "^2.1.0"
     siwe "^2.1.4"
     tough-cookie "^4.0.0"
     tslib "^2.6.0"
@@ -2478,10 +2478,10 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "2.1.1"
 
-fetch-cookie@^2.0.3:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/fetch-cookie/-/fetch-cookie-2.0.5.tgz#d49b0886f79c71ce927245d928b9c230a2ddc69e"
-  integrity sha512-zsX/vrrLLCrLUKS/45u/NqZDwRSyopUscM/0huSH5clYe8dmkxIiDs3g4po+f5baWiXiTAOqPMtflP80CtR5rA==
+fetch-cookie@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/fetch-cookie/-/fetch-cookie-2.1.0.tgz#6e127909912f9e527533b045aab555c06b33801b"
+  integrity sha512-39+cZRbWfbibmj22R2Jy6dmTbAWC+oqun1f1FzQaNurkPDUP4C38jpeZbiXCR88RKRVDp8UcDrbFXkNhN+NjYg==
   dependencies:
     set-cookie-parser "^2.4.8"
     tough-cookie "^4.0.0"
