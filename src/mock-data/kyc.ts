@@ -3,7 +3,8 @@ import {
   KycSchema,
 } from '@fiatconnect/fiatconnect-types'
 import { AddKycParams } from '@fiatconnect/fiatconnect-sdk'
-import { BASE64_IMAGE } from './data'
+import { BASE64_IMAGE, BASE_64_SELFIE_IMAGE } from './data'
+import { v4 as uuidv4 } from 'uuid'
 
 const personalDetails = {
   firstName: 'Alice',
@@ -72,8 +73,10 @@ const personalDataAndDocumentsDetailedAustria: AddKycParams<KycSchema.PersonalDa
     data: {
       ...personalDetails,
       address: personalDataAndDocumentsAustria.data.address,
+      phoneNumber: '+351912111222',
       email: 'someemail@gmail.com',
       identificationDocumentType: IdentificationDocumentType.PAS,
+      selfieDocument: BASE_64_SELFIE_IMAGE,
       identificationDocumentFront:
         personalDataAndDocumentsAustria.data.identificationDocument,
     },
@@ -119,4 +122,21 @@ export const MOCK_KYC: Record<string, AddKycParams<KycSchema>> = {
   personalDataAndDocumentsXOF,
   personalDataAndDocumentsDetailedAustria,
   personalDataWithDocumentsDetailedBrazil,
+  detailedWithRandomEmail: personalDataAndDocumentsDetailedAustria,
+}
+
+export function getMockKyc(
+  mockKycKey: keyof typeof MOCK_KYC,
+): AddKycParams<KycSchema> {
+  if (mockKycKey === 'detailedWithRandomEmail') {
+    return {
+      ...personalDataAndDocumentsDetailedAustria,
+      data: {
+        ...personalDataAndDocumentsDetailedAustria.data,
+        email: `${uuidv4()}@gmail.com`,
+      },
+    }
+  }
+
+  return MOCK_KYC[mockKycKey]
 }

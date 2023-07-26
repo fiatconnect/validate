@@ -11,7 +11,7 @@ import {
 import { ethers } from 'ethers'
 import { config } from '../src/config'
 import { MOCK_FIAT_ACCOUNTS } from '../src/mock-data/fiat-account'
-import { MOCK_KYC } from '../src/mock-data/kyc'
+import { MOCK_KYC, getMockKyc } from '../src/mock-data/kyc'
 import { MOCK_QUOTE } from '../src/mock-data/quote'
 import { expect, use } from 'chai'
 import { chaiPlugin } from 'api-contract-validator'
@@ -102,9 +102,7 @@ describe('webhooks', () => {
       config.fiatAccountMock as keyof typeof MOCK_FIAT_ACCOUNTS
     ]
 
-  const mockKYCInfo: AddKycParams<KycSchema> =
-    MOCK_KYC[config.kycMock as keyof typeof MOCK_KYC]
-
+  let mockKYCInfo: AddKycParams<KycSchema>
   let wallet: ethers.Wallet
   let fiatConnectClient: FiatConnectClient
   beforeEach(() => {
@@ -142,6 +140,7 @@ describe('webhooks', () => {
         expect(quoteInResponse.isOk).to.be.true
         const quoteId = quoteInResponse.unwrap().quote.quoteId
 
+        mockKYCInfo = getMockKyc(config.kycMock as keyof typeof MOCK_KYC)
         const addKycResult = await fiatConnectClient.addKyc(mockKYCInfo)
         expect(addKycResult.isOk).to.be.true
 
@@ -203,6 +202,7 @@ describe('webhooks', () => {
         const loginResult = await fiatConnectClient.login()
         expect(loginResult.isOk).to.be.true
 
+        mockKYCInfo = getMockKyc(config.kycMock as keyof typeof MOCK_KYC)
         const addKycResult = await fiatConnectClient.addKyc(mockKYCInfo)
         expect(addKycResult.isOk).to.be.true
 
@@ -265,6 +265,7 @@ describe('webhooks', () => {
       const loginResult = await fiatConnectClient.login()
       expect(loginResult.isOk).to.be.ok
 
+      mockKYCInfo = getMockKyc(config.kycMock as keyof typeof MOCK_KYC)
       const addKycResult = await fiatConnectClient.addKyc(mockKYCInfo)
       expect(addKycResult.isOk).to.be.true
 
