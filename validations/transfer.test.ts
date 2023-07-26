@@ -120,7 +120,7 @@ describe('/transfer', () => {
         expect(transferStatusResponse.isOk).to.be.true
 
         await checkObjectAgainstModel(
-	  transferStatusResponse.unwrap(),
+          transferStatusResponse.unwrap(),
           'TransferStatusResponse',
         )
 
