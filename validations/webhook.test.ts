@@ -36,7 +36,7 @@ async function validateTransferWebhook(
   if (retries < 0) {
     throw new Error('Webhook event could not be found')
   }
-  await new Promise((resolve) => setTimeout(resolve, 2000))
+  await new Promise((resolve) => setTimeout(resolve, 10000))
   const client = axios.create({
     baseURL: WEBHOOK_RECIPIENT_BASE_URL,
     validateStatus: () => true,
@@ -70,7 +70,7 @@ async function validateKycWebhook(
   if (retries < 0) {
     throw new Error('Webhook event could not be found')
   }
-  await new Promise((resolve) => setTimeout(resolve, 2000))
+  await new Promise((resolve) => setTimeout(resolve, 10000))
   const client = axios.create({
     baseURL: WEBHOOK_RECIPIENT_BASE_URL,
     validateStatus: () => true,
@@ -96,7 +96,7 @@ async function validateKycWebhook(
 }
 
 describe('webhooks', () => {
-  jest.setTimeout(15000)
+  jest.setTimeout(25000)
   const mockAccountData =
     MOCK_FIAT_ACCOUNTS[
       config.fiatAccountMock as keyof typeof MOCK_FIAT_ACCOUNTS

@@ -52,6 +52,12 @@ export const config = yargs
     example: 'quoteInNigeriaCUSD',
     choices: Object.keys(MOCK_QUOTE),
   })
+  .option('ensure-user-init-transfer-in', {
+    description:
+      'If true, ensures that a transfer in test uses and supports user-initiated transfers',
+    type: 'boolean',
+    default: true,
+  })
   .option('quote-out-mock', {
     description:
       'Mock data to use for a transfer out quote that should be offered',
