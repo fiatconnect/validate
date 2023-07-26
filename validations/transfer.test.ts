@@ -120,10 +120,7 @@ describe('/transfer', () => {
         expect(transferStatusResponse.isOk).to.be.true
 
         await checkObjectAgainstModel(
-          {
-            ...transferStatusResponse.unwrap(),
-            userActionDetails: { userActionType: 'PSEUserAction', url: '' },
-          },
+	  transferStatusResponse.unwrap(),
           'TransferStatusResponse',
         )
 
