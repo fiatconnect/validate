@@ -23,7 +23,7 @@
     "@types/uuid": "^9.0.2",
     "@types/yargs": "^17.0.24",
     "@typescript-eslint/eslint-plugin": "^6.1.0",
-    "@valora/eslint-config-typescript": "^1.0.1",
+    "@valora/eslint-config-typescript": "^1.0.2",
     "@valora/prettier-config": "^0.0.1",
     "eslint": "^8.45.0",
     "eslint-plugin-chai-expect": "^3.0.0",
