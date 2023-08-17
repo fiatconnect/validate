@@ -722,10 +722,10 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@fiatconnect/fiatconnect-sdk@^0.5.6":
-  version "0.5.6"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.6.tgz#e7e6d298b1b1501bb7653181e4e7fbd1efe9d7ff"
-  integrity sha512-TQMGJZCYBoxyKRva9yMyS4tD6ZaCepIQJQM0VzRnrbq9NZKRYgD+n13tI2BrYFUToRFQkOg5iWlrkC31VSLC1g==
+"@fiatconnect/fiatconnect-sdk@^0.5.7":
+  version "0.5.7"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.7.tgz#00381fa8f6c32c5c0963a0b1e470102019ca8e3a"
+  integrity sha512-LFDte1ivBKVYYuqAK88QrYB+0yzUDNsEbFtRC/agl06neai+cdKtjyJ8lHaMQKCTSu/4OIhZDpMDMTgYz4LQNw==
   dependencies:
     "@badrap/result" "^0.2.13"
     "@fiatconnect/fiatconnect-types" "^13.1.0"
@@ -735,14 +735,14 @@
     siwe "^2.1.4"
     tough-cookie "^4.0.0"
     tslib "^2.6.1"
-    zod "^3.21.4"
+    zod "^3.22.0"
 
-"@fiatconnect/fiatconnect-types@^13.1.0":
-  version "13.1.0"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-types/-/fiatconnect-types-13.1.0.tgz#3101843a52a13f05809b0e562f7a202cc91ae6d4"
-  integrity sha512-cef62s6cZHQ8IsSV8p03VjrZegZ6DZqSGlx+3cru4G1u8SIf85tVqfFy5+iGau63ck1EO/Kla+6cfqlFVvfL0A==
+"@fiatconnect/fiatconnect-types@^13.1.0", "@fiatconnect/fiatconnect-types@^13.1.1":
+  version "13.1.1"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-types/-/fiatconnect-types-13.1.1.tgz#e478e1e84fbc91e1f783b3e8dd284d7cd69e3f21"
+  integrity sha512-YGSIr5+hX0fPQfjeSrXJBI2aD7lP5ECASz5bSihKdXy7qFOPu5c9/YGHt9YYZN/8cFoTp+e9ET4iUAVISwmuTA==
   dependencies:
-    zod "^3.21.4"
+    zod "^3.22.0"
 
 "@humanwhocodes/config-array@^0.11.10":
   version "0.11.10"
@@ -4838,7 +4838,7 @@ z-schema@^5.0.1:
   optionalDependencies:
     commander "^10.0.0"
 
-zod@^3.21.4:
-  version "3.21.4"
-  resolved "https://registry.yarnpkg.com/zod/-/zod-3.21.4.tgz#10882231d992519f0a10b5dd58a38c9dabbb64db"
-  integrity sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==
+zod@^3.21.4, zod@^3.22.0:
+  version "3.22.1"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-3.22.1.tgz#815f850baf933fef96c1061322dbe579b1a80c27"
+  integrity sha512-+qUhAMl414+Elh+fRNtpU+byrwjDFOS1N7NioLY+tSlcADTx4TkCUua/hxJvxwDXcV4397/nZ420jy4n4+3WUg==
