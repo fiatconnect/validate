@@ -37,7 +37,7 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "@fiatconnect/fiatconnect-sdk": "^0.5.8",
+    "@fiatconnect/fiatconnect-sdk": "^0.5.9",
     "@fiatconnect/fiatconnect-types": "^13.1.1",
     "api-contract-validator": "^2.2.8",
     "axios": "^0.27.2",
