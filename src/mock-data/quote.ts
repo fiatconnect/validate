@@ -7,7 +7,8 @@ import {
 // NOTE: quotes here must include both amounts, tests will omit one of the
 // fields and test whether the endpoint supports fetching quotes for both
 // amounts
-type MockQuote = Omit<QuoteRequestBody, 'address'> & Required<Pick<QuoteRequestBody, 'fiatAmount' | 'cryptoAmount'>>
+type MockQuote = Omit<QuoteRequestBody, 'address'> &
+  Required<Pick<QuoteRequestBody, 'fiatAmount' | 'cryptoAmount'>>
 
 const quoteBrazilCREAL: MockQuote = {
   cryptoType: CryptoType.cREAL,
