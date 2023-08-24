@@ -39,17 +39,26 @@ describe('/quote', () => {
   }
 
   describe.each(cases)('/$quoteType', ({ quoteParams, quoteType }) => {
-    it('gives quote with quoteId for transfer', async () => {
-      const client = axios.create({
-        baseURL: config.baseUrl,
-        validateStatus: () => true,
-        headers,
-      })
-      const response = await client.post(`/quote/${quoteType}`, quoteParams)
-      expect(response).to.have.status(200)
-      expect(response.data.quote.quoteId).not.to.be.equal('')
-      checkResponseSchema(response, config.pathPrefix, quoteResponseSchema)
-    })
+    it.each([
+      { included: 'cryptoAmount', omitted: 'fiatAmount' },
+      { included: 'fiatAmount', omitted: 'cryptoAmount' },
+    ])(
+      'gives quote with quoteId for transfer for requests with $included',
+      async ({ omitted }) => {
+        const client = axios.create({
+          baseURL: config.baseUrl,
+          validateStatus: () => true,
+          headers,
+        })
+        const response = await client.post(
+          `/quote/${quoteType}`,
+          omit(quoteParams, omitted),
+        )
+        expect(response).to.have.status(200)
+        expect(response.data.quote.quoteId).not.to.be.equal('')
+        checkResponseSchema(response, config.pathPrefix, quoteResponseSchema)
+      },
+    )
 
     it('Doesnt support quotes for unreasonably large transfer', async () => {
       const client = axios.create({
@@ -57,10 +66,14 @@ describe('/quote', () => {
         validateStatus: () => true,
         headers,
       })
-      quoteParams.cryptoAmount = Number.MAX_VALUE.toString()
-      const response = await client.post(`/quote/${quoteType}`, quoteParams)
+      const response = await client.post(`/quote/${quoteType}`, {
+        ...omit(quoteParams, 'fiatAmount'),
+        cryptoAmount: Number.MAX_VALUE.toString(),
+      })
       expect(response).to.have.status(400)
-      expect(response.data.error).to.be.equal('CryptoAmountTooHigh')
+      expect(response.data.error).to.be.equal(
+        FiatConnectError.CryptoAmountTooHigh,
+      )
     })
 
     it.each(['address', 'country', 'cryptoType', 'fiatType'] as const)(
