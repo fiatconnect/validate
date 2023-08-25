@@ -8,9 +8,11 @@ import { checkResponseSchema } from '../src/check-response-schema'
 import { MOCK_QUOTE } from '../src/mock-data/quote'
 import { ethers } from 'ethers'
 import {
+  FiatConnectError,
   QuoteRequestBody,
   quoteResponseSchema,
 } from '@fiatconnect/fiatconnect-types'
+import omit from 'lodash.omit'
 
 const apiDefinitionsPath = path.join(config.openapiSpec)
 use(chaiPlugin({ apiDefinitionsPath }))
@@ -35,33 +37,100 @@ describe('/quote', () => {
       quoteType: 'out',
     })
   }
-  it.each(cases)(
-    'gives quote with quoteId for transfer $quoteType',
-    async ({ quoteParams, quoteType }) => {
+
+  describe.each(cases)('/$quoteType', ({ quoteParams, quoteType }) => {
+    it('gives quote with quoteId for transfer for requests with cryptoAmount', async () => {
       const client = axios.create({
         baseURL: config.baseUrl,
         validateStatus: () => true,
         headers,
       })
-      const response = await client.post(`/quote/${quoteType}`, quoteParams)
+      const response = await client.post(
+        `/quote/${quoteType}`,
+        omit(quoteParams, 'fiatAmount'),
+      )
       expect(response).to.have.status(200)
       expect(response.data.quote.quoteId).not.to.be.equal('')
       checkResponseSchema(response, config.pathPrefix, quoteResponseSchema)
-    },
-  )
+    })
 
-  it.each(cases)(
-    'Doesnt support quotes for unreasonably large transfer $quoteType',
-    async ({ quoteParams, quoteType }) => {
+    it('gives quote with quoteId for transfer for requests with fiatAmount', async () => {
       const client = axios.create({
         baseURL: config.baseUrl,
         validateStatus: () => true,
         headers,
       })
-      quoteParams.cryptoAmount = Number.MAX_VALUE.toString()
+      const response = await client.post(
+        `/quote/${quoteType}`,
+        omit(quoteParams, 'cryptoAmount'),
+      )
+      expect(response).to.have.status(200)
+      expect(response.data.quote.quoteId).not.to.be.equal('')
+      checkResponseSchema(response, config.pathPrefix, quoteResponseSchema)
+    })
+
+    it('Doesnt support quotes for unreasonably large transfer', async () => {
+      const client = axios.create({
+        baseURL: config.baseUrl,
+        validateStatus: () => true,
+        headers,
+      })
+      const response = await client.post(`/quote/${quoteType}`, {
+        ...omit(quoteParams, 'fiatAmount'),
+        cryptoAmount: Number.MAX_VALUE.toString(),
+      })
+      expect(response).to.have.status(400)
+      expect(response.data.error).to.be.equal(
+        FiatConnectError.CryptoAmountTooHigh,
+      )
+    })
+
+    it.each(['address', 'country', 'cryptoType', 'fiatType'] as const)(
+      'returns 400 if %s is missing',
+      async (field) => {
+        const client = axios.create({
+          baseURL: config.baseUrl,
+          validateStatus: () => true,
+          headers,
+        })
+        const response = await client.post(
+          `/quote/${quoteType}`,
+          omit(quoteParams, field),
+        )
+        expect(response).to.have.status(400)
+        expect(response.data.error).to.be.equal(
+          FiatConnectError.InvalidParameters,
+        )
+      },
+    )
+
+    it('returns 400 if both amounts are missing', async () => {
+      const client = axios.create({
+        baseURL: config.baseUrl,
+        validateStatus: () => true,
+        headers,
+      })
+      const response = await client.post(
+        `/quote/${quoteType}`,
+        omit(quoteParams, ['cryptoAmount', 'fiatAmount']),
+      )
+      expect(response).to.have.status(400)
+      expect(response.data.error).to.be.equal(
+        FiatConnectError.InvalidParameters,
+      )
+    })
+
+    it('returns 400 if both amounts are present', async () => {
+      const client = axios.create({
+        baseURL: config.baseUrl,
+        validateStatus: () => true,
+        headers,
+      })
       const response = await client.post(`/quote/${quoteType}`, quoteParams)
       expect(response).to.have.status(400)
-      expect(response.data.error).to.be.equal('CryptoAmountTooHigh')
-    },
-  )
+      expect(response.data.error).to.be.equal(
+        FiatConnectError.InvalidParameters,
+      )
+    })
+  })
 })

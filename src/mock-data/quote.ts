@@ -4,61 +4,56 @@ import {
   QuoteRequestBody,
 } from '@fiatconnect/fiatconnect-types'
 
-const quoteBrazilCREAL: Omit<QuoteRequestBody, 'address'> = {
+// NOTE: quotes here must include both amounts, tests will omit one of the
+// fields and test whether the endpoint supports fetching quotes for both
+// amounts
+type MockQuote = Omit<QuoteRequestBody, 'address'> &
+  Required<Pick<QuoteRequestBody, 'fiatAmount' | 'cryptoAmount'>>
+
+const quoteBrazilCREAL: MockQuote = {
   cryptoType: CryptoType.cREAL,
   fiatType: FiatType.BRL,
-  cryptoAmount: '10',
+  cryptoAmount: '20',
+  fiatAmount: '20',
   country: 'BR',
 }
 
-const quoteOutNigeriaCUSD: Omit<QuoteRequestBody, 'address'> = {
-  cryptoType: CryptoType.cUSD,
-  fiatType: FiatType.NGN,
-  cryptoAmount: '10',
-  country: 'NG',
-}
-
-const quoteOutKenyaCUSD: Omit<QuoteRequestBody, 'address'> = {
+const quoteKenyaCUSD: MockQuote = {
   cryptoType: CryptoType.cUSD,
   fiatType: FiatType.KES,
-  cryptoAmount: '10',
+  cryptoAmount: '20',
+  fiatAmount: '2900',
   country: 'KE',
 }
 
-const quoteInNigeriaCUSD: Omit<QuoteRequestBody, 'address'> = {
+const quoteNigeriaCUSD: MockQuote = {
   cryptoType: CryptoType.cUSD,
   fiatType: FiatType.NGN,
   cryptoAmount: '20',
+  fiatAmount: '15120',
   country: 'NG',
 }
 
-const quoteOutXOFCUSD: Omit<QuoteRequestBody, 'address'> = {
+const quoteXOFCUSD: MockQuote = {
   cryptoType: CryptoType.cUSD,
   fiatType: FiatType.XOF,
-  cryptoAmount: '10',
+  cryptoAmount: '20',
+  fiatAmount: '12070',
   country: 'CI',
 }
 
-const quoteInXOFCUSD: Omit<QuoteRequestBody, 'address'> = {
-  cryptoType: CryptoType.cUSD,
-  fiatType: FiatType.XOF,
-  cryptoAmount: '.01',
-  country: 'CI',
-}
-
-const quoteOutAustriaEURCEUR: Omit<QuoteRequestBody, 'address'> = {
+const quoteAustriaEURCEUR: MockQuote = {
   cryptoType: CryptoType.cEUR,
   fiatType: FiatType.EUR,
-  cryptoAmount: '10',
+  cryptoAmount: '20',
+  fiatAmount: '20',
   country: 'AT',
 }
 
-export const MOCK_QUOTE: Record<string, Omit<QuoteRequestBody, 'address'>> = {
-  quoteInNigeriaCUSD,
-  quoteOutKenyaCUSD,
-  quoteOutNigeriaCUSD,
-  quoteOutXOFCUSD,
-  quoteInXOFCUSD,
+export const MOCK_QUOTE: Record<string, MockQuote> = {
+  quoteNigeriaCUSD,
+  quoteKenyaCUSD,
+  quoteXOFCUSD,
   quoteBrazilCREAL,
-  quoteOutAustriaEURCEUR,
+  quoteAustriaEURCEUR,
 }

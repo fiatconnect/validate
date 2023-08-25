@@ -23,6 +23,7 @@ import {
   WEBHOOK_RECIPIENT_BASE_URL,
   WEBHOOK_RECIPIENT_HISTORY_ENDPOINT,
 } from '../src/constants'
+import omit from 'lodash.omit'
 
 const apiDefinitionsPath = path.join(config.openapiSpec)
 use(chaiPlugin({ apiDefinitionsPath }))
@@ -135,7 +136,7 @@ describe('webhooks', () => {
         expect(loginResult.isOk).to.be.true
 
         const quoteInResponse = await fiatConnectClient.createQuoteIn(
-          quoteInParams,
+          omit(quoteInParams, 'fiatAmount'),
         )
         expect(quoteInResponse.isOk).to.be.true
         const quoteId = quoteInResponse.unwrap().quote.quoteId
@@ -213,7 +214,7 @@ describe('webhooks', () => {
         const fiatAccountId = addAccountResult.unwrap().fiatAccountId
 
         const quoteOutResponse = await fiatConnectClient.createQuoteOut(
-          quoteOutParams,
+          omit(quoteOutParams, 'fiatAmount'),
         )
         expect(quoteOutResponse.isOk).to.be.true
         const quoteOutId = quoteOutResponse.unwrap().quote.quoteId
