@@ -13,28 +13,20 @@ type MockQuote = Omit<QuoteRequestBody, 'address'> &
 const quoteBrazilCREAL: MockQuote = {
   cryptoType: CryptoType.cREAL,
   fiatType: FiatType.BRL,
-  cryptoAmount: '10',
-  fiatAmount: '10',
+  cryptoAmount: '20',
+  fiatAmount: '20',
   country: 'BR',
 }
 
-const quoteOutNigeriaCUSD: MockQuote = {
-  cryptoType: CryptoType.cUSD,
-  fiatType: FiatType.NGN,
-  cryptoAmount: '10',
-  fiatAmount: '7560',
-  country: 'NG',
-}
-
-const quoteOutKenyaCUSD: MockQuote = {
+const quoteKenyaCUSD: MockQuote = {
   cryptoType: CryptoType.cUSD,
   fiatType: FiatType.KES,
-  cryptoAmount: '10',
-  fiatAmount: '1450',
+  cryptoAmount: '20',
+  fiatAmount: '2900',
   country: 'KE',
 }
 
-const quoteInNigeriaCUSD: MockQuote = {
+const quoteNigeriaCUSD: MockQuote = {
   cryptoType: CryptoType.cUSD,
   fiatType: FiatType.NGN,
   cryptoAmount: '20',
@@ -42,36 +34,26 @@ const quoteInNigeriaCUSD: MockQuote = {
   country: 'NG',
 }
 
-const quoteOutXOFCUSD: MockQuote = {
+const quoteXOFCUSD: MockQuote = {
   cryptoType: CryptoType.cUSD,
   fiatType: FiatType.XOF,
-  cryptoAmount: '10',
-  fiatAmount: '6035',
+  cryptoAmount: '20',
+  fiatAmount: '12070',
   country: 'CI',
 }
 
-const quoteInXOFCUSD: MockQuote = {
-  cryptoType: CryptoType.cUSD,
-  fiatType: FiatType.XOF,
-  cryptoAmount: '.01',
-  fiatAmount: '6',
-  country: 'CI',
-}
-
-const quoteOutAustriaEURCEUR: MockQuote = {
+const quoteAustriaEURCEUR: MockQuote = {
   cryptoType: CryptoType.cEUR,
   fiatType: FiatType.EUR,
-  cryptoAmount: '10',
-  fiatAmount: '10',
+  cryptoAmount: '20',
+  fiatAmount: '20',
   country: 'AT',
 }
 
 export const MOCK_QUOTE: Record<string, MockQuote> = {
-  quoteInNigeriaCUSD,
-  quoteOutKenyaCUSD,
-  quoteOutNigeriaCUSD,
-  quoteOutXOFCUSD,
-  quoteInXOFCUSD,
+  quoteNigeriaCUSD,
+  quoteKenyaCUSD,
+  quoteXOFCUSD,
   quoteBrazilCREAL,
-  quoteOutAustriaEURCEUR,
+  quoteAustriaEURCEUR,
 }
