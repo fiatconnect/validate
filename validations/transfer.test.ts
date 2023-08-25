@@ -14,6 +14,7 @@ import { MOCK_QUOTE } from '../src/mock-data/quote'
 import { MOCK_KYC, getMockKyc } from '../src/mock-data/kyc'
 import { MOCK_FIAT_ACCOUNTS } from '../src/mock-data/fiat-account'
 import { checkObjectAgainstModel } from '../src/check-response-schema'
+import omit from 'lodash.omit'
 
 const apiDefinitionsPath = path.join(config.openapiSpec)
 use(chaiPlugin({ apiDefinitionsPath }))
@@ -42,7 +43,7 @@ describe('/transfer', () => {
       )
 
       const quoteInParams = {
-        ...MOCK_QUOTE[quoteInMock],
+        ...omit(MOCK_QUOTE[quoteInMock], 'fiatAmount'),
         address: wallet.address,
       }
 
@@ -164,7 +165,7 @@ describe('/transfer', () => {
       )
 
       const quoteOutParams = {
-        ...MOCK_QUOTE[quoteOutMock],
+        ...omit(MOCK_QUOTE[quoteOutMock], 'fiatAmount'),
         address: wallet.address,
       }
 
