@@ -47,7 +47,7 @@ describe('/quote', () => {
       })
       const response = await client.post(
         `/quote/${quoteType}`,
-        omit(quoteParams, 'cryptoAmount'),
+        omit(quoteParams, 'fiatAmount'),
       )
       expect(response).to.have.status(200)
       expect(response.data.quote.quoteId).not.to.be.equal('')
