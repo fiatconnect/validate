@@ -5,6 +5,9 @@
   "repository": "git@github.com:fiatconnect/validate.git",
   "author": "Valora Inc",
   "license": "MIT",
+  "engines": {
+    "node": "^16"
+  },
   "scripts": {
     "build": "tsc",
     "typecheck": "yarn build",
