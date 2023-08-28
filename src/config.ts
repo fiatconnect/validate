@@ -49,7 +49,7 @@ export const config = yargs
     description:
       'Mock data to use for a transfer in quote that should be offered',
     demandOption: false,
-    example: 'quoteInNigeriaCUSD',
+    example: 'quoteNigeriaCUSD',
     choices: Object.keys(MOCK_QUOTE),
   })
   .option('ensure-user-init-transfer-in', {
@@ -62,7 +62,7 @@ export const config = yargs
     description:
       'Mock data to use for a transfer out quote that should be offered',
     demandOption: false,
-    example: 'quoteOutNigeriaCUSD',
+    example: 'quoteNigeriaCUSD',
     choices: Object.keys(MOCK_QUOTE),
   })
   .option('fiat-account-mock', {

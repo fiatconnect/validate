@@ -22,7 +22,7 @@ Setup a config file (remember to customize):
 ```
 echo BASE_URL=https://some.api.fiatconnect.org > .env
 echo OPENAPI_SPEC=/path/to/swagger.yaml >> .env
-echo QUOTE_OUT_MOCK=quoteOutNigeriaCUSD
+echo QUOTE_OUT_MOCK=quoteNigeriaCUSD
 echo FIAT_ACCOUNT_MOCK=accountNumberNigeria
 echo KYC_MOCK=personalDataAndDocumentsNigeria
 ```
