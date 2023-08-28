@@ -1,5 +1,5 @@
 import { config } from '../src/config'
-import { Network } from '@fiatconnect/fiatconnect-types'
+import { FiatAccountType, Network } from '@fiatconnect/fiatconnect-types'
 import { expect, use } from 'chai'
 import { ethers } from 'ethers'
 import { FiatConnectClient } from '@fiatconnect/fiatconnect-sdk'
@@ -34,7 +34,16 @@ describe('accounts', () => {
 
     const getAccountsResult = await fiatConnectClient.getFiatAccounts()
     expect(getAccountsResult.isOk).to.be.true
-    expect(!!getAccountsResult.unwrap().BankAccount?.length).to.be.false
+
+    Object.values(FiatAccountType).forEach((accountType) => {
+      expect(
+        !!getAccountsResult.unwrap()[accountType]?.length,
+        `${accountType} has non zero length. ${JSON.stringify(
+          getAccountsResult.unwrap(),
+        )}`,
+      ).to.be.false
+    })
+
     await checkObjectAgainstModel(
       getAccountsResult.unwrap(),
       'GetFiatAccountsResponse',
@@ -71,7 +80,9 @@ describe('accounts', () => {
       getAccountsResult.unwrap(),
       'GetFiatAccountsResponse',
     )
-    expect(getAccountsResult.unwrap().BankAccount?.length).to.be.gt(0)
+    expect(
+      getAccountsResult.unwrap()[mockAccountData.data.fiatAccountType]?.length,
+    ).to.be.gt(0)
 
     // Delete account
     const fiatAccountId = addAccountResult.unwrap().fiatAccountId
@@ -83,8 +94,14 @@ describe('accounts', () => {
     // Getting accounts should now yield empty response
     const getAccountsResultDuplicate = await fiatConnectClient.getFiatAccounts()
     expect(getAccountsResultDuplicate.isOk).to.be.true
-    expect(!!getAccountsResultDuplicate.unwrap().BankAccount?.length).to.be
-      .false
+    Object.values(FiatAccountType).forEach((accountType) => {
+      expect(
+        !!getAccountsResultDuplicate.unwrap()[accountType]?.length,
+        `${accountType} has non zero length. ${JSON.stringify(
+          getAccountsResultDuplicate.unwrap(),
+        )}`,
+      ).to.be.false
+    })
     await checkObjectAgainstModel(
       getAccountsResultDuplicate.unwrap(),
       'GetFiatAccountsResponse',
