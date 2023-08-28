@@ -36,7 +36,12 @@ describe('accounts', () => {
     expect(getAccountsResult.isOk).to.be.true
 
     Object.values(FiatAccountType).forEach((accountType) => {
-      expect(!!getAccountsResult.unwrap()[accountType]?.length).to.be.false
+      expect(
+        !!getAccountsResult.unwrap()[accountType]?.length,
+        `${accountType} has non zero length. ${JSON.stringify(
+          getAccountsResult.unwrap(),
+        )}`,
+      ).to.be.false
     })
 
     await checkObjectAgainstModel(
@@ -75,7 +80,9 @@ describe('accounts', () => {
       getAccountsResult.unwrap(),
       'GetFiatAccountsResponse',
     )
-    expect(getAccountsResult.unwrap()[mockAccountData.data.fiatAccountType]?.length).to.be.gt(0)
+    expect(
+      getAccountsResult.unwrap()[mockAccountData.data.fiatAccountType]?.length,
+    ).to.be.gt(0)
 
     // Delete account
     const fiatAccountId = addAccountResult.unwrap().fiatAccountId
@@ -88,7 +95,12 @@ describe('accounts', () => {
     const getAccountsResultDuplicate = await fiatConnectClient.getFiatAccounts()
     expect(getAccountsResultDuplicate.isOk).to.be.true
     Object.values(FiatAccountType).forEach((accountType) => {
-      expect(!!getAccountsResultDuplicate.unwrap()[accountType]?.length, `${accountType} has non zero length. ${JSON.stringify(getAccountsResultDuplicate.unwrap())}`).to.be.false
+      expect(
+        !!getAccountsResultDuplicate.unwrap()[accountType]?.length,
+        `${accountType} has non zero length. ${JSON.stringify(
+          getAccountsResultDuplicate.unwrap(),
+        )}`,
+      ).to.be.false
     })
     await checkObjectAgainstModel(
       getAccountsResultDuplicate.unwrap(),
