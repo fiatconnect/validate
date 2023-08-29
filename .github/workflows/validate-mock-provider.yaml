@@ -34,7 +34,7 @@ jobs:
           CLIENT_API_KEY: ${{ secrets.MOCK_PROVIDER_API_KEY }}
           PROVIDER_ID: ${{ secrets.MOCK_PROVIDER_ID }}
           OPENAPI_SPEC: specification-swagger.yaml
-          QUOTE_OUT_MOCK: quoteOutNigeriaCUSD
+          QUOTE_OUT_MOCK: quoteNigeriaCUSD
           FIAT_ACCOUNT_MOCK: accountNumberNigeria
           KYC_MOCK: personalDataAndDocumentsNigeria
       - uses: ravsamhq/notify-slack-action@v2
