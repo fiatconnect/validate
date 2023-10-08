@@ -722,10 +722,10 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@fiatconnect/fiatconnect-sdk@^0.5.16":
-  version "0.5.16"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.16.tgz#341957c21922eb8b94ae657c246793ac36593da8"
-  integrity sha512-CSSzkmqsrnnUb5eWqmdv18isACt8n/nBS+h6SiJPRiJJkbWxnnbUUKWlyQ3ODRQ19KwNw3u0ytlKd4qtBZSq4g==
+"@fiatconnect/fiatconnect-sdk@^0.5.17":
+  version "0.5.17"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.17.tgz#a5f9349da11c4a7c93a3df18702bac55050d74a8"
+  integrity sha512-vZDONc3Mc9AAOjNh1t7j9UNhWSyU7FfkTNZFMnSrY6QTmmIYsKPekJ9va9VTATgrbevahZ0VtZROvgewYnKM4g==
   dependencies:
     "@badrap/result" "^0.2.13"
     "@fiatconnect/fiatconnect-types" "^13.2.1"
@@ -735,14 +735,14 @@
     siwe "^2.1.4"
     tough-cookie "^4.0.0"
     tslib "^2.6.2"
-    zod "^3.22.3"
+    zod "^3.22.4"
 
-"@fiatconnect/fiatconnect-types@^13.2.1":
-  version "13.2.1"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-types/-/fiatconnect-types-13.2.1.tgz#ca09f37fdc18deb5b250383c028011f6795e910c"
-  integrity sha512-dxaGPV/ZvC+U+ulE60G7DkVckYCGvJgQCCUAx9mcWS4K3s8nfwlogEDUUozcTe5d5aHEeYj1iCA4xqDbJbH76w==
+"@fiatconnect/fiatconnect-types@^13.2.1", "@fiatconnect/fiatconnect-types@^13.2.2":
+  version "13.2.2"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-types/-/fiatconnect-types-13.2.2.tgz#e9debf40a17324de150b5ab526c197cd65761ba7"
+  integrity sha512-K4A+mmahOA70U2UjLFaV7cKeUmzkR2LgRWiBi2WtKxtFs9lbFCErm+joTAnRz6IxEV8zuPGoIhO9Aq8vZV8WJA==
   dependencies:
-    zod "^3.22.3"
+    zod "^3.22.4"
 
 "@humanwhocodes/config-array@^0.11.10":
   version "0.11.10"
@@ -4996,7 +4996,7 @@ z-schema@^5.0.1:
   optionalDependencies:
     commander "^10.0.0"
 
-zod@^3.22.3, zod@^3.22.4:
+zod@^3.22.4:
   version "3.22.4"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.22.4.tgz#f31c3a9386f61b1f228af56faa9255e845cf3fff"
   integrity sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==
