@@ -1,5 +1,8 @@
 {
   extends: ['github>valora-inc/renovate-config:default.json5'],
-  // ignore node, which is forced to v16
-  ignoreDeps: ['node'],
+  ignoreDeps: [
+    'node', // ignore node, which is forced to v16
+    'chai', // ignore chai, which 5.x breaks tests
+    'chai-as-promised',
+  ],
 }
