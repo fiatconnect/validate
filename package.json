@@ -19,7 +19,7 @@
   },
   "prettier": "@valora/prettier-config",
   "devDependencies": {
-    "@types/chai": "^4.3.12",
+    "@types/chai": "^4.3.14",
     "@types/chai-as-promised": "^7.1.8",
     "@types/jest": "^29.5.12",
     "@types/lodash.omit": "^4.5.9",
