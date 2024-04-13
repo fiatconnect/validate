@@ -727,17 +727,17 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@fiatconnect/fiatconnect-sdk@^0.5.30":
-  version "0.5.30"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.30.tgz#7b84e0cb0e5f6983ffecac4a8f57fc76d045ce1f"
-  integrity sha512-jXtjCOjVuWFsiAWLYc59lUqW4S9uba9s7p5Ld5yk1sOgbutI615SKYP6gvvNNc1tujUeyZ3yhAIvg5JLg2S81A==
+"@fiatconnect/fiatconnect-sdk@^0.5.31":
+  version "0.5.31"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.31.tgz#7bd05f7b2e8f0bb164d5b8ad6aaa2d546e3da644"
+  integrity sha512-/v3Mctq/+OMbKNZg69U5Q6rQ7/JM+Iypz8mef0Za5F935LjVusgtcnW4TBOCb5UanJ/EEH1nl/u+WO2PHXSNjA==
   dependencies:
     "@badrap/result" "^0.2.13"
     "@fiatconnect/fiatconnect-types" "^13.3.0"
     cross-fetch "^4.0.0"
     ethers "^6.11.1"
     fetch-cookie "^3.0.1"
-    siwe "^2.1.4"
+    siwe "^2.2.0"
     tough-cookie "^4.0.0"
     tslib "^2.6.2"
     zod "^3.22.4"
@@ -4459,7 +4459,7 @@ sisteransi@^1.0.5:
   resolved "https://registry.yarnpkg.com/sisteransi/-/sisteransi-1.0.5.tgz#134d681297756437cc05ca01370d3a7a571075ed"
   integrity sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==
 
-siwe@^2.1.4, siwe@^2.2.0:
+siwe@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/siwe/-/siwe-2.2.0.tgz#dc025007acb210179396f5f099e618f9d941cfd2"
   integrity sha512-P8It3ztpGJM4pum3larVVXpR6KeP7G1wnul4EEmuT3LSPVcab+kkX9reoFcErHRPcBt+eVyrEJkAYD50vVRJ0A==
