@@ -727,13 +727,13 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@fiatconnect/fiatconnect-sdk@^0.5.35":
-  version "0.5.35"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.35.tgz#56a542a8834fbcfc08c759c9494bc954d27c1a6a"
-  integrity sha512-1Fs2IMAc7QJ2HjMxUQ2G035RRFbdx4eI0Gg7ERTlS+iGxo8w9t4Sbaf4EHzZpmTpb/ZKQxJ5erIA3xZDo5AEgA==
+"@fiatconnect/fiatconnect-sdk@^0.5.36":
+  version "0.5.36"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.36.tgz#e7a3de4536f033767ad336ba482709a581577079"
+  integrity sha512-fWoY6quTOvy0V89+RvrDlSCGhrPg9Je3CJPvESdesf//xM5bu10rlFvin6RSUYmFj8WeLBudj12pBzHrsavbgQ==
   dependencies:
     "@badrap/result" "^0.2.13"
-    "@fiatconnect/fiatconnect-types" "^13.3.0"
+    "@fiatconnect/fiatconnect-types" "^13.3.1"
     cross-fetch "^4.0.0"
     ethers "^6.12.0"
     fetch-cookie "^3.0.1"
@@ -742,12 +742,12 @@
     tslib "^2.6.2"
     zod "^3.22.5"
 
-"@fiatconnect/fiatconnect-types@^13.3.0":
-  version "13.3.0"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-types/-/fiatconnect-types-13.3.0.tgz#4fac2160cf69923fc5c9f9ac1ef48e79de222af3"
-  integrity sha512-MXi/M76piNiD6L+dihwjU3wPeihZ4/tEccRObId2XK+qZsCDi76fB38J7eo6LmfWsxBq1V0WwrFM/aagjgtkNQ==
+"@fiatconnect/fiatconnect-types@^13.3.1":
+  version "13.3.1"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-types/-/fiatconnect-types-13.3.1.tgz#7b5be0cbc89f8da776675022f91c991f798c4a16"
+  integrity sha512-8ORc5iSjHEULZAg0oeo1IlNlMU1dE//6SuI/WEMbiROJmP3/pwP7+nJXzYCMhVnPH1PxMAl7qXEEvEpPuE99qA==
   dependencies:
-    zod "^3.22.4"
+    zod "^3.22.5"
 
 "@humanwhocodes/config-array@^0.11.10":
   version "0.11.10"
@@ -5056,7 +5056,7 @@ z-schema@^5.0.1:
   optionalDependencies:
     commander "^10.0.0"
 
-zod@^3.22.4, zod@^3.22.5:
+zod@^3.22.5:
   version "3.23.0"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.23.0.tgz#a25dab5052702834233e0041e9dd8b6a8480e744"
   integrity sha512-OFLT+LTocvabn6q76BTwVB0hExEBS0IduTr3cqZyMqEDbOnYmcU+y0tUAYbND4uwclpBGi4I4UUBGzylWpjLGA==
