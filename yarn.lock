@@ -727,10 +727,10 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@fiatconnect/fiatconnect-sdk@^0.5.39":
-  version "0.5.39"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.39.tgz#932383a8a5b19eedf48b7714238acdfc343b45d7"
-  integrity sha512-ZscJVt4Ft33DDivcfC+i2yG3SzWCMmaKWj0GJmflLfRVRYxhLHBPiTEZj3qUVpmXnJillDvg8f/KnHGZZbx1Xg==
+"@fiatconnect/fiatconnect-sdk@^0.5.40":
+  version "0.5.40"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.40.tgz#6c439ca248d2b9a6d1114c248f45327de36d1213"
+  integrity sha512-8Stzxw7XBD5MZo75DG2mnsrC4VHy0uPifKeJkoyDqre+Xf4detufdpKUSHAMLdSbjNU0M7aFKoCQ+SS0xHCzDQ==
   dependencies:
     "@badrap/result" "^0.2.13"
     "@fiatconnect/fiatconnect-types" "^13.3.3"
@@ -740,7 +740,7 @@
     siwe "^2.3.2"
     tough-cookie "^4.0.0"
     tslib "^2.6.2"
-    zod "^3.23.0"
+    zod "^3.23.3"
 
 "@fiatconnect/fiatconnect-types@^13.3.3":
   version "13.3.3"
