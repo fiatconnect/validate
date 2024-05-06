@@ -727,27 +727,27 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@fiatconnect/fiatconnect-sdk@^0.5.45":
-  version "0.5.45"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.45.tgz#1650038e37dad204bb824e9fc28009cdd4926129"
-  integrity sha512-lzR1sBeqmUskRJ3N0fF3qOVG+FeE77Ed3it0veCC5yTDTq1YmLok5Qvgs6c+tlcz1EXImXIEV14jQr8VS31tSA==
+"@fiatconnect/fiatconnect-sdk@^0.5.47":
+  version "0.5.47"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.47.tgz#ef9b8977e6df6fbe203c782ce86347f6e88a6973"
+  integrity sha512-GiWxJy9awuzkPeugldax9OBI5VjvArr/qKS/L4EInyyCySctHkfwecpP3Do28/C7XsHiivpSWXuFPYBrDZvanQ==
   dependencies:
     "@badrap/result" "^0.2.13"
-    "@fiatconnect/fiatconnect-types" "^13.3.5"
+    "@fiatconnect/fiatconnect-types" "^13.3.6"
     cross-fetch "^4.0.0"
     ethers "^6.12.1"
     fetch-cookie "^3.0.1"
     siwe "^2.3.2"
     tough-cookie "^4.0.0"
     tslib "^2.6.2"
-    zod "^3.23.5"
+    zod "^3.23.6"
 
-"@fiatconnect/fiatconnect-types@^13.3.5":
-  version "13.3.5"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-types/-/fiatconnect-types-13.3.5.tgz#007e7050d8415609eea5c22e77ede5692ea59f1d"
-  integrity sha512-P1iLwEroijuDl5qmoRQtvqNe9zkDRI/oHjeo6mxb+vuM5P9RZCZkOP80YLfoyBQs3tTBDco21AFLNzABy8P4xg==
+"@fiatconnect/fiatconnect-types@^13.3.6":
+  version "13.3.6"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-types/-/fiatconnect-types-13.3.6.tgz#a6539863654b728228556ec5373dbe0a9d6987de"
+  integrity sha512-WZMKUEuQ0tm1f9BEYwebrffI5uy5Y/VTTzAqzfwrqb1Xhnj7wreK3wZ46TE742RGk3t1FoWFg337BtJBbiAPWw==
   dependencies:
-    zod "^3.23.5"
+    zod "^3.23.6"
 
 "@humanwhocodes/config-array@^0.11.10":
   version "0.11.10"
@@ -5056,7 +5056,7 @@ z-schema@^5.0.1:
   optionalDependencies:
     commander "^10.0.0"
 
-zod@^3.23.5, zod@^3.23.6:
+zod@^3.23.6:
   version "3.23.6"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.23.6.tgz#c08a977e2255dab1fdba933651584a05fcbf19e1"
   integrity sha512-RTHJlZhsRbuA8Hmp/iNL7jnfc4nZishjsanDAfEY1QpDQZCahUp3xDzl+zfweE9BklxMUcgBgS1b7Lvie/ZVwA==
