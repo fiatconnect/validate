@@ -6,7 +6,7 @@
   "author": "Valora Inc",
   "license": "MIT",
   "engines": {
-    "node": "^16"
+    "node": ">=16"
   },
   "scripts": {
     "build": "tsc",
