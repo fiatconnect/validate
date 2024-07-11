@@ -26,4 +26,15 @@ describe('/clock', () => {
       FIFTEEN_MINUTES_IN_MS,
     )
   })
+  it('return non-200 status if using http', async () => {
+    // downgrade to http
+    const baseURL = config.baseUrl.replace(/^https:\/\//, 'http://')
+    const client = axios.create({
+      baseURL,
+      validateStatus: () => true,
+    })
+    const response = await client.get(`/clock`, { maxRedirects: 0 })
+    // Anything non-2** because of spec https://github.com/dawsbot/specification/blob/main/fiatconnect-api.md#333-https
+    expect(response.status).to.not.be.within(200, 299)
+  })
 })
