@@ -14,7 +14,7 @@
     "validate": "jest",
     "format": "prettier --loglevel error --write .",
     "format:check": "prettier --check .",
-    "lint": "eslint --ext=.tsx,.ts,.json src/",
+    "lint": "eslint .",
     "lint:fix": "yarn lint --fix"
   },
   "prettier": "@valora/prettier-config",
