@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { AddKycParams, FiatConnectClient } from '@fiatconnect/fiatconnect-sdk'
 import {
   KycSchema,
