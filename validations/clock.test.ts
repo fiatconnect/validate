@@ -1,3 +1,4 @@
+/* eslint-disable jest/no-disabled-tests */
 import axios from 'axios'
 import { config } from '../src/config'
 import { expect, use } from 'chai'
