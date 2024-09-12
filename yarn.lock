@@ -727,10 +727,10 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@fiatconnect/fiatconnect-sdk@^0.5.57":
-  version "0.5.57"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.57.tgz#883ab767f5f7dfba79741cdc4406386f6fc8e454"
-  integrity sha512-GkXKl8KYWh14wjl8lLrf6axyIc2s79A2gSCarqEpVd+7wpnw9M9aqPxuuyfEeOBsjXQKkngKdDzGBPKwIqFkAg==
+"@fiatconnect/fiatconnect-sdk@^0.5.58":
+  version "0.5.58"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.58.tgz#50f16032e45ce7e2f30eb1fa79cd5fb4887c3e85"
+  integrity sha512-X4BfeJT1BjQkv9LMf7zyrp66wUUsA8EZUB6IRD5li2Aom082CG2FXxL6CYeudVT2HT8uGK7REfkQrz8XzYQnwA==
   dependencies:
     "@badrap/result" "^0.2.13"
     "@fiatconnect/fiatconnect-types" "^13.3.8"
@@ -738,7 +738,7 @@
     ethers "^6.13.2"
     fetch-cookie "^3.0.1"
     siwe "^2.3.2"
-    tough-cookie "^4.0.0"
+    tough-cookie "^5.0.0"
     tslib "^2.7.0"
     zod "^3.23.8"
 
@@ -4673,6 +4673,18 @@ text-table@^0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==
 
+tldts-core@^6.1.44:
+  version "6.1.44"
+  resolved "https://registry.yarnpkg.com/tldts-core/-/tldts-core-6.1.44.tgz#9d42548e332daa064248e02d1a9fa8fbeaf9aa29"
+  integrity sha512-DMOTcn8pGmuY65zDPH+M1xAOVtBj7Phrah0HxuspKEu33hOArCDmk3R4UEVymtuN+HveeUlVgX0+RNf4mFkoAw==
+
+tldts@^6.1.32:
+  version "6.1.44"
+  resolved "https://registry.yarnpkg.com/tldts/-/tldts-6.1.44.tgz#a50ca6e6707a914b397e19862000a7a7606dd31f"
+  integrity sha512-Id5Kq3vy4fAHgrMasofrYZ4ghMa9rX64BfstBFgnGN+CAPdXYeZ0xWA2BXk3F+VgS+/jJ9PdYEQrP8LEZvGrCw==
+  dependencies:
+    tldts-core "^6.1.44"
+
 tmpl@1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/tmpl/-/tmpl-1.0.5.tgz#8683e0b902bb9c20c4f726e3c0b69f36518c07cc"
@@ -4699,6 +4711,13 @@ tough-cookie@^4.0.0:
     punycode "^2.1.1"
     universalify "^0.2.0"
     url-parse "^1.5.3"
+
+tough-cookie@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/tough-cookie/-/tough-cookie-5.0.0.tgz#6b6518e2b5c070cf742d872ee0f4f92d69eac1af"
+  integrity sha512-FRKsF7cz96xIIeMZ82ehjC3xW2E+O2+v11udrDYewUbszngYhsGa8z6YUMMzO9QJZzzyd0nGGXnML/TReX6W8Q==
+  dependencies:
+    tldts "^6.1.32"
 
 tr46@~0.0.3:
   version "0.0.3"
