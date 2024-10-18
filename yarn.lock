@@ -727,10 +727,10 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@fiatconnect/fiatconnect-sdk@^0.5.60":
-  version "0.5.60"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.60.tgz#5108c3d3deda9482e9da57a47992713605dc018e"
-  integrity sha512-5fkSYINTYT1zxs2CxL7wPQ56pwIznadxV5iWREA332m23Vdwz+8f2Ya7tvjlS2OfxXCusEOoT7r45az6MQaUlw==
+"@fiatconnect/fiatconnect-sdk@^0.5.61":
+  version "0.5.61"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.61.tgz#62f3bf3a4b65f54bd14f4be510c0d0863c9545b3"
+  integrity sha512-nK/k+1N0dbk8tISfTRucOpEfZcgoBY26Ui+xs8chDlsGYBjbPgphfqURzyqc7mWSYoTfmlunHzcXbJedgsYkjg==
   dependencies:
     "@badrap/result" "^0.2.13"
     "@fiatconnect/fiatconnect-types" "^13.3.8"
@@ -739,7 +739,7 @@
     fetch-cookie "^3.0.1"
     siwe "^2.3.2"
     tough-cookie "^5.0.0"
-    tslib "^2.7.0"
+    tslib "^2.8.0"
     zod "^3.23.8"
 
 "@fiatconnect/fiatconnect-types@^13.3.8":
@@ -4780,7 +4780,7 @@ tsconfig-paths@^3.14.2:
     minimist "^1.2.6"
     strip-bom "^3.0.0"
 
-tslib@2.7.0, tslib@^2.7.0:
+tslib@2.7.0:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.7.0.tgz#d9b40c5c40ab59e8738f297df3087bf1a2690c01"
   integrity sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==
@@ -4789,6 +4789,11 @@ tslib@^1.8.1:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
+
+tslib@^2.8.0:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.8.0.tgz#d124c86c3c05a40a91e6fdea4021bd31d377971b"
+  integrity sha512-jWVzBLplnCmoaTr13V9dYbiQ99wvZRd0vNWaDRg+aVYRcjDF3nDksxFDE/+fkXnKhpnUUkmx5pK/v8mCtLVqZA==
 
 tsutils@^3.21.0:
   version "3.21.0"
