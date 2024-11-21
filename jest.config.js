@@ -6,9 +6,12 @@ module.exports = {
   },
   testPathIgnorePatterns: ['dist'],
   globals: {
-    'ts-jest': {
-      tsconfig: 'tsconfig.json',
-    },
+    '^.+\\.tsx?$': [
+      'ts-jest',
+      {
+        tsconfig: 'tsconfig.json',
+      },
+    ],
   },
   testTimeout: 10000,
   setupFilesAfterEnv: ['<rootDir>/setup-jest.js'],
