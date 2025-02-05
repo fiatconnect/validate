@@ -727,10 +727,10 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@fiatconnect/fiatconnect-sdk@^0.5.70":
-  version "0.5.70"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.70.tgz#79208e15d5e5c0254e507e3edaee0280af3c245c"
-  integrity sha512-1i5wWi+0U3cYySqYxEYDhojtlk0Pn2+w2rjb1OdZwaTsN73MxrKxn9UM00k+aeLAyTr2NQFPzoBG4g6R7ULoLQ==
+"@fiatconnect/fiatconnect-sdk@^0.5.71":
+  version "0.5.71"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.71.tgz#b259b5fea27dc7a987fd311097a2b54f4b306367"
+  integrity sha512-aJDtzjfwzzX7yuVivPvbDr8O4VXH0nKHiaRHkRXL2I3UEZKTEv3UXn5S+NJp37ezA02WcTFayYsZSAt4zDdiGw==
   dependencies:
     "@badrap/result" "^0.2.13"
     "@fiatconnect/fiatconnect-types" "^13.3.10"
