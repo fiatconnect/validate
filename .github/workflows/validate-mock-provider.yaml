@@ -12,19 +12,19 @@ jobs:
     name: Validate mock-provider
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4
         with:
           node-version: '16'
           check-latest: true
-      - uses: actions/cache@v4
+      - uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4
         with:
           path: |
             node_modules
             */*/node_modules
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
       - name: Get specification swagger
-        uses: wei/curl@v1
+        uses: wei/curl@012398a392d02480afa2720780031f8621d5f94c # v1
         with:
           args: -o specification-swagger.yaml https://raw.githubusercontent.com/fiatconnect/specification/main/swagger.yaml
       - run: yarn
@@ -37,7 +37,7 @@ jobs:
           QUOTE_OUT_MOCK: quoteNigeriaCUSD
           FIAT_ACCOUNT_MOCK: accountNumberNigeria
           KYC_MOCK: personalDataAndDocumentsNigeria
-      - uses: ravsamhq/notify-slack-action@v2
+      - uses: ravsamhq/notify-slack-action@be814b201e233b2dc673608aa46e5447c8ab13f2 # v2
         if: always()
         with:
           status: ${{ job.status }}
