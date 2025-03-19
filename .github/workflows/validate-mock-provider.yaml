@@ -24,7 +24,7 @@ jobs:
             */*/node_modules
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
       - name: Get specification swagger
-        uses: wei/curl@012398a392d02480afa2720780031f8621d5f94c # v1
+        uses: wei/curl@61d92b5169ea0425820dd13cf6fbad66b483e9f1 # v1.1.1
         with:
           args: -o specification-swagger.yaml https://raw.githubusercontent.com/fiatconnect/specification/main/swagger.yaml
       - run: yarn
