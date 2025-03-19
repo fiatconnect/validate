@@ -37,7 +37,7 @@ jobs:
           QUOTE_OUT_MOCK: quoteNigeriaCUSD
           FIAT_ACCOUNT_MOCK: accountNumberNigeria
           KYC_MOCK: personalDataAndDocumentsNigeria
-      - uses: ravsamhq/notify-slack-action@be814b201e233b2dc673608aa46e5447c8ab13f2 # v2
+      - uses: ravsamhq/notify-slack-action@be814b201e233b2dc673608aa46e5447c8ab13f2 # 2.5.0
         if: always()
         with:
           status: ${{ job.status }}
