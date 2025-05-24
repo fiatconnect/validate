@@ -727,27 +727,27 @@
     "@ethersproject/properties" "^5.8.0"
     "@ethersproject/strings" "^5.8.0"
 
-"@fiatconnect/fiatconnect-sdk@^0.5.87":
-  version "0.5.87"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.87.tgz#9c9b475d7a2c0cd2d41dbfacef56ac3285769d87"
-  integrity sha512-8lDVxjz4r0C+ayX8MyNR9J1oBEEPcLY53NL7jsW/IYHqrICW8a9D53thhFI6TUUmn4+KqEO2PaG/5Bkfy1hz/w==
+"@fiatconnect/fiatconnect-sdk@^0.5.92":
+  version "0.5.92"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.92.tgz#be7558adb77aa3fe37a80b4adea88ec5de8f2347"
+  integrity sha512-9pd1JH0G7wXtaqkweZvHtSpYL5kWbGgbhrHMuHxgpIpBz8CWaRHfGUHNOuzEItQiZm4q8Wnq6pt10uNBF5PrNg==
   dependencies:
     "@badrap/result" "^0.2.13"
-    "@fiatconnect/fiatconnect-types" "^13.3.15"
+    "@fiatconnect/fiatconnect-types" "^13.3.18"
     cross-fetch "^4.1.0"
     ethers "^6.14.1"
     fetch-cookie "^3.0.1"
     siwe "^3.0.0"
     tough-cookie "^5.1.2"
     tslib "^2.8.1"
-    zod "^3.25.7"
+    zod "^3.25.13"
 
-"@fiatconnect/fiatconnect-types@^13.3.15":
-  version "13.3.15"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-types/-/fiatconnect-types-13.3.15.tgz#0f9c7c99cea1e07056d8d7dc2703374bfc391dce"
-  integrity sha512-YLJPjr3SLbo0QmGqCuv8+EnkCxziqaLg4pXFJ3O/JaP7zgoEDTFLQRuPXufdOg9QcKcLpi/ZE2MXsa+z6bDPKQ==
+"@fiatconnect/fiatconnect-types@^13.3.18", "@fiatconnect/fiatconnect-types@^13.3.19":
+  version "13.3.19"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-types/-/fiatconnect-types-13.3.19.tgz#0c7cdb6a4f97d9c865b5df6f57a6dc9f520a2214"
+  integrity sha512-YdXfFJfW8myH3ls4Sey1IH43pTOmcUi8gUpldtat6EfH67wLQZpmTiqeJo1oM+JzqOII+dTy5PEIcH+1iokYdQ==
   dependencies:
-    zod "^3.25.7"
+    zod "^3.25.17"
 
 "@humanwhocodes/config-array@^0.11.10":
   version "0.11.10"
@@ -5114,7 +5114,7 @@ z-schema@^5.0.1:
   optionalDependencies:
     commander "^10.0.0"
 
-zod@^3.25.17, zod@^3.25.7:
+zod@^3.25.13, zod@^3.25.17:
   version "3.25.28"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.25.28.tgz#8ab13d04afa05933598fd9fca32490ca92c7ea3a"
   integrity sha512-/nt/67WYKnr5by3YS7LroZJbtcCBurDKKPBPWWzaxvVCGuG/NOsiKkrjoOhI8mJ+SQUXEbUzeB3S+6XDUEEj7Q==
