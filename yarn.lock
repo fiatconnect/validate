@@ -727,22 +727,22 @@
     "@ethersproject/properties" "^5.8.0"
     "@ethersproject/strings" "^5.8.0"
 
-"@fiatconnect/fiatconnect-sdk@^0.5.92":
-  version "0.5.92"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.92.tgz#be7558adb77aa3fe37a80b4adea88ec5de8f2347"
-  integrity sha512-9pd1JH0G7wXtaqkweZvHtSpYL5kWbGgbhrHMuHxgpIpBz8CWaRHfGUHNOuzEItQiZm4q8Wnq6pt10uNBF5PrNg==
+"@fiatconnect/fiatconnect-sdk@^0.5.94":
+  version "0.5.94"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.94.tgz#081f14c0cdc2449943cfca489a19ea479dd4a7aa"
+  integrity sha512-DMNibS//RttXBMwxueCKbOvs7+O/Oz8Ye8rhmShbclKyRQT42TVg2DGrTfz3aqrWcSFjX6tm5ljsVaf++DHgxg==
   dependencies:
     "@badrap/result" "^0.2.13"
-    "@fiatconnect/fiatconnect-types" "^13.3.18"
+    "@fiatconnect/fiatconnect-types" "^13.3.19"
     cross-fetch "^4.1.0"
     ethers "^6.14.1"
     fetch-cookie "^3.0.1"
     siwe "^3.0.0"
     tough-cookie "^5.1.2"
     tslib "^2.8.1"
-    zod "^3.25.13"
+    zod "^3.25.20"
 
-"@fiatconnect/fiatconnect-types@^13.3.18", "@fiatconnect/fiatconnect-types@^13.3.19":
+"@fiatconnect/fiatconnect-types@^13.3.19":
   version "13.3.19"
   resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-types/-/fiatconnect-types-13.3.19.tgz#0c7cdb6a4f97d9c865b5df6f57a6dc9f520a2214"
   integrity sha512-YdXfFJfW8myH3ls4Sey1IH43pTOmcUi8gUpldtat6EfH67wLQZpmTiqeJo1oM+JzqOII+dTy5PEIcH+1iokYdQ==
@@ -5114,7 +5114,7 @@ z-schema@^5.0.1:
   optionalDependencies:
     commander "^10.0.0"
 
-zod@^3.25.13, zod@^3.25.17:
+zod@^3.25.17, zod@^3.25.20:
   version "3.25.28"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.25.28.tgz#8ab13d04afa05933598fd9fca32490ca92c7ea3a"
   integrity sha512-/nt/67WYKnr5by3YS7LroZJbtcCBurDKKPBPWWzaxvVCGuG/NOsiKkrjoOhI8mJ+SQUXEbUzeB3S+6XDUEEj7Q==
