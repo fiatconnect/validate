@@ -5114,7 +5114,7 @@ z-schema@^5.0.1:
   optionalDependencies:
     commander "^10.0.0"
 
-zod@^3.25.28:
-  version "3.25.30"
-  resolved "https://registry.yarnpkg.com/zod/-/zod-3.25.30.tgz#ffd1b5cc06ff6de4ab35134d8eadb945314c4898"
-  integrity sha512-VolhdEtu6TJr/fzGuHA/SZ5ixvXqA6ADOG9VRcQ3rdOKmF5hkmcJbyaQjUH5BgmpA9gej++zYRX7zjSmdReIwA==
+zod@^3.25.28, zod@^3.25.30:
+  version "3.25.39"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-3.25.39.tgz#110fa5c3048fc8ba896625a49448c8553f69c8f6"
+  integrity sha512-yrva2T2x4R+FMFTPBVD/YPS7ct8njqjnV93zNx/MlwqLAxcnxwRGbXWyWF63/nErl3rdRd8KARObon7BiWzabQ==
