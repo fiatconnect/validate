@@ -727,13 +727,13 @@
     "@ethersproject/properties" "^5.8.0"
     "@ethersproject/strings" "^5.8.0"
 
-"@fiatconnect/fiatconnect-sdk@^0.5.123":
-  version "0.5.123"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.123.tgz#084d16c1571d88cb410731d95485e3aea6e36f4d"
-  integrity sha512-KWdBTdSxcJmg/cmIKPSJY46MVuZZgYKd9yMgFhqLR8vOIYFWLL4wcO6TE+iUo1SNzQmUrOzd5zfkxPHv8tCEyw==
+"@fiatconnect/fiatconnect-sdk@^0.5.124":
+  version "0.5.124"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.124.tgz#04931b6b7a6925cd96c8a6e385c364e40a5aced3"
+  integrity sha512-/KpkM0Oto9uLHwNZ4utXENQ6XJq9m5FhuwOyFsADxSCnLknEn12touMAz6uQeiy0/e/cxNARqoBLK7g6KHYXPA==
   dependencies:
     "@badrap/result" "^0.2.13"
-    "@fiatconnect/fiatconnect-types" "^13.3.33"
+    "@fiatconnect/fiatconnect-types" "^13.3.34"
     cross-fetch "^4.1.0"
     ethers "^6.14.3"
     fetch-cookie "^3.0.1"
@@ -742,12 +742,12 @@
     tslib "^2.8.1"
     zod "^3.25.51"
 
-"@fiatconnect/fiatconnect-types@^13.3.33":
-  version "13.3.33"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-types/-/fiatconnect-types-13.3.33.tgz#b1b0732dae4be21ea2ffa0b04b2531e727833711"
-  integrity sha512-UGSg7g94Nlp+EN6p4blk8yDuqUEaBrNdBiib349Lc1Wj/8ZAFhnrr3AMIdO4pwFsMmwyYL6e9XKtpEftxr+nKg==
+"@fiatconnect/fiatconnect-types@^13.3.34":
+  version "13.3.34"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-types/-/fiatconnect-types-13.3.34.tgz#8883ade2e248688372830978e87ce06f66b59fef"
+  integrity sha512-bnWGUG7mUXbXmMeTfFMbKQYSh5yfmO7poVpeIDK18vViTP0FEBYQTutDHgFP1jznk+FHuU0yctBZX9+CdUFeog==
   dependencies:
-    zod "^3.25.50"
+    zod "^3.25.51"
 
 "@humanwhocodes/config-array@^0.11.10":
   version "0.11.10"
@@ -5114,7 +5114,7 @@ z-schema@^5.0.1:
   optionalDependencies:
     commander "^10.0.0"
 
-zod@^3.25.50, zod@^3.25.51:
+zod@^3.25.51:
   version "3.25.56"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.25.56.tgz#4cff0340b7cd3778314dac1e74d6a663ffeef914"
   integrity sha512-rd6eEF3BTNvQnR2e2wwolfTmUTnp70aUTqr0oaGbHifzC3BKJsoV+Gat8vxUMR1hwOKBs6El+qWehrHbCpW6SQ==
