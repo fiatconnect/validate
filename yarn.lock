@@ -727,27 +727,27 @@
     "@ethersproject/properties" "^5.8.0"
     "@ethersproject/strings" "^5.8.0"
 
-"@fiatconnect/fiatconnect-sdk@^0.5.130":
-  version "0.5.130"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.130.tgz#d69fb1649a18128bef7e7fe6f77f7101ad3f494f"
-  integrity sha512-jLCc+JA+6vbDNr2mkLAb5IhNgIoztpmHxVmODezxlvEje3LdyVmG+GxEt1SKhCsWnUCdCNbwPElcaJtjVlsBvg==
+"@fiatconnect/fiatconnect-sdk@^0.5.140":
+  version "0.5.140"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.140.tgz#ab282453953c793f141589f177fb043371ab5c0f"
+  integrity sha512-GwI5fRkERw57nUaa9npmNwuFTifi/W7g6NO/MM9HtD3P+MLUSV1FsPu7NmscTYxAdzM92kYid/gz1vyjH0WPhA==
   dependencies:
     "@badrap/result" "^0.2.13"
-    "@fiatconnect/fiatconnect-types" "^13.3.37"
+    "@fiatconnect/fiatconnect-types" "^13.3.42"
     cross-fetch "^4.1.0"
     ethers "^6.14.3"
     fetch-cookie "^3.0.1"
     siwe "^3.0.0"
     tough-cookie "^5.1.2"
     tslib "^2.8.1"
-    zod "^3.25.56"
+    zod "^3.25.63"
 
-"@fiatconnect/fiatconnect-types@^13.3.37":
-  version "13.3.37"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-types/-/fiatconnect-types-13.3.37.tgz#8fc0b1936a6973a4b2f0a1ba07d7a3b55848f69d"
-  integrity sha512-coq2/G79ibauuzfb2UwlCbv33h6WkM/P8rtn/pRarb6lJwJKn4Ia4TMZ93fTeRUk6w+VgzjCbp8OFeHFI3PuAg==
+"@fiatconnect/fiatconnect-types@^13.3.42":
+  version "13.3.42"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-types/-/fiatconnect-types-13.3.42.tgz#ece20e16b67d355bd8ff8a97668689d59bddd243"
+  integrity sha512-eiTQmYqsm35RmRkPUUGF85Py49c0UXTV4nfHPRE7LlujiUe5KBeckRxMWOIfAnA3SLfPSMpjtr1G7yZrKheiwA==
   dependencies:
-    zod "^3.25.56"
+    zod "^3.25.63"
 
 "@humanwhocodes/config-array@^0.11.10":
   version "0.11.10"
@@ -5114,7 +5114,7 @@ z-schema@^5.0.1:
   optionalDependencies:
     commander "^10.0.0"
 
-zod@^3.25.56, zod@^3.25.63:
+zod@^3.25.63:
   version "3.25.64"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.25.64.tgz#57b5c7e76dd64e447f7e710285fcdb396b32f803"
   integrity sha512-hbP9FpSZf7pkS7hRVUrOjhwKJNyampPgtXKc3AN6DsWtoHsg2Sb4SQaS4Tcay380zSwd2VPo9G9180emBACp5g==
