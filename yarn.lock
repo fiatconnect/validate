@@ -727,15 +727,15 @@
     "@ethersproject/properties" "^5.8.0"
     "@ethersproject/strings" "^5.8.0"
 
-"@fiatconnect/fiatconnect-sdk@^0.5.140":
-  version "0.5.140"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.140.tgz#ab282453953c793f141589f177fb043371ab5c0f"
-  integrity sha512-GwI5fRkERw57nUaa9npmNwuFTifi/W7g6NO/MM9HtD3P+MLUSV1FsPu7NmscTYxAdzM92kYid/gz1vyjH0WPhA==
+"@fiatconnect/fiatconnect-sdk@^0.5.141":
+  version "0.5.141"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.141.tgz#9a7eb1e3cbdf2e7f56e811b284ee8328d23de112"
+  integrity sha512-iEmd4vUp5XQQgtg6ToCABH0IZcCvcvyjZCXTJHUf73uAaRl3LY4R5psWe2lR+stj1ymo4LRW5vKiefffQpAmKQ==
   dependencies:
     "@badrap/result" "^0.2.13"
     "@fiatconnect/fiatconnect-types" "^13.3.42"
     cross-fetch "^4.1.0"
-    ethers "^6.14.3"
+    ethers "^6.14.4"
     fetch-cookie "^3.0.1"
     siwe "^3.0.0"
     tough-cookie "^5.1.2"
@@ -2576,10 +2576,10 @@ ethers@^5.8.0:
     "@ethersproject/web" "5.8.0"
     "@ethersproject/wordlists" "5.8.0"
 
-ethers@^6.14.3:
-  version "6.14.3"
-  resolved "https://registry.yarnpkg.com/ethers/-/ethers-6.14.3.tgz#7c4443c165ee59b2964e691600fd4586004b2000"
-  integrity sha512-qq7ft/oCJohoTcsNPFaXSQUm457MA5iWqkf1Mb11ujONdg7jBI6sAOrHaTi3j0CBqIGFSCeR/RMc+qwRRub7IA==
+ethers@^6.14.4:
+  version "6.14.4"
+  resolved "https://registry.yarnpkg.com/ethers/-/ethers-6.14.4.tgz#0f6fbc562a8425c7c888da307fa71ef796be0c04"
+  integrity sha512-Jm/dzRs2Z9iBrT6e9TvGxyb5YVKAPLlpna7hjxH7KH/++DSh2T/JVmQUv7iHI5E55hDbp/gEVvstWYXVxXFzsA==
   dependencies:
     "@adraffy/ens-normalize" "1.10.1"
     "@noble/curves" "1.2.0"
