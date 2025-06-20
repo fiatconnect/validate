@@ -727,27 +727,27 @@
     "@ethersproject/properties" "^5.8.0"
     "@ethersproject/strings" "^5.8.0"
 
-"@fiatconnect/fiatconnect-sdk@^0.5.143":
-  version "0.5.143"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.143.tgz#a7d1c46332596e7f5695f407d98b3b1e9fd507aa"
-  integrity sha512-sM/t74yiodcNbybgbQVGouHQ0w8M6nn9w98EWVShwJpdNl7wMVBfm/9M1hDaWq+VucTOuBvKhqn/eDWnMQwNKw==
+"@fiatconnect/fiatconnect-sdk@^0.5.145":
+  version "0.5.145"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.145.tgz#87e7546ece9959a6470b1b02ce294ee4bbb6b3b9"
+  integrity sha512-B6ozINCrAxy+evmevoJfXz1UEyodN0hpmiyFBmZomvSXhP6IpgIxvbe8LWDT7SSfbo+x356thQQKj1zyv/EAxg==
   dependencies:
     "@badrap/result" "^0.2.13"
-    "@fiatconnect/fiatconnect-types" "^13.3.43"
+    "@fiatconnect/fiatconnect-types" "^13.3.44"
     cross-fetch "^4.1.0"
     ethers "^6.14.4"
     fetch-cookie "^3.0.1"
     siwe "^3.0.0"
     tough-cookie "^5.1.2"
     tslib "^2.8.1"
-    zod "^3.25.64"
+    zod "^3.25.65"
 
-"@fiatconnect/fiatconnect-types@^13.3.43":
-  version "13.3.43"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-types/-/fiatconnect-types-13.3.43.tgz#6abd75b4bfd909b77c65fa83443c0931c2999f09"
-  integrity sha512-MsGf0VMEcTC2RMSFnPXBW8pqSR1qxSea6eRjfFOOxCaT3sgPEUVHpz+K1WzeY/io+Pluy8SaQg/SmI+a8HpXdA==
+"@fiatconnect/fiatconnect-types@^13.3.44", "@fiatconnect/fiatconnect-types@^13.3.45":
+  version "13.3.45"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-types/-/fiatconnect-types-13.3.45.tgz#dceb39bd9345c815566c1c0ce9e635281f2fb45f"
+  integrity sha512-SSxtXokPOHU41lzo/91YoG8gtGjtVS5fsG5Zv/xakvfJVP+rg+a+GF8WwWpwauTJZGp9uucQk46dDW60MQ2www==
   dependencies:
-    zod "^3.25.64"
+    zod "^3.25.67"
 
 "@humanwhocodes/config-array@^0.11.10":
   version "0.11.10"
@@ -5113,7 +5113,7 @@ z-schema@^5.0.1:
   optionalDependencies:
     commander "^10.0.0"
 
-zod@^3.25.64, zod@^3.25.67:
+zod@^3.25.65, zod@^3.25.67:
   version "3.25.67"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.25.67.tgz#62987e4078e2ab0f63b491ef0c4f33df24236da8"
   integrity sha512-idA2YXwpCdqUSKRCACDE6ItZD9TZzy3OZMtpfLoh6oPR47lipysRrJfjzMqFxQ3uJuUPyUeWe1r9vLH33xO/Qw==
