@@ -727,27 +727,27 @@
     "@ethersproject/properties" "^5.8.0"
     "@ethersproject/strings" "^5.8.0"
 
-"@fiatconnect/fiatconnect-sdk@^0.5.147":
-  version "0.5.147"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.147.tgz#f5b1d939060f1cd7a18ab5bcdbe5890da02d5a8f"
-  integrity sha512-LARFKlX54vXHzmLMGctQha9yVnr5KKLk8Ro/o8T5NLEhpE1SlU7IrC8OyUz9oQvf8mwZ2932eZZVXUe1L94GOg==
+"@fiatconnect/fiatconnect-sdk@^0.5.149":
+  version "0.5.149"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.149.tgz#08c2337cf710cdc7876d69fcd54f06a9ddfc7a58"
+  integrity sha512-YDxVYx7SC2yIyOYqH93p4tixz4Bl30CrF/vRraFveJMzqJfN9QANXwN01fj3LIkaZXBPUfah9Hsiu6MDZbLzOQ==
   dependencies:
     "@badrap/result" "^0.2.13"
-    "@fiatconnect/fiatconnect-types" "^13.3.45"
+    "@fiatconnect/fiatconnect-types" "^13.3.46"
     cross-fetch "^4.1.0"
-    ethers "^6.14.4"
+    ethers "^6.15.0"
     fetch-cookie "^3.0.1"
     siwe "^3.0.0"
     tough-cookie "^5.1.2"
     tslib "^2.8.1"
     zod "^3.25.67"
 
-"@fiatconnect/fiatconnect-types@^13.3.45":
-  version "13.3.45"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-types/-/fiatconnect-types-13.3.45.tgz#dceb39bd9345c815566c1c0ce9e635281f2fb45f"
-  integrity sha512-SSxtXokPOHU41lzo/91YoG8gtGjtVS5fsG5Zv/xakvfJVP+rg+a+GF8WwWpwauTJZGp9uucQk46dDW60MQ2www==
+"@fiatconnect/fiatconnect-types@^13.3.46":
+  version "13.3.46"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-types/-/fiatconnect-types-13.3.46.tgz#6c84dc7117fe294819a4b5a46d20ff3cb21b7796"
+  integrity sha512-+lk4EM07HI+AJBy4wC6fpYeKK+hadmfn7WY+2KfPDygXMWGBA9KVrUhW0ow2ZdTBzYSXrj9GzrWHVIxHeu7N4Q==
   dependencies:
-    zod "^3.25.67"
+    zod "^3.25.69"
 
 "@humanwhocodes/config-array@^0.11.10":
   version "0.11.10"
@@ -2576,10 +2576,10 @@ ethers@^5.8.0:
     "@ethersproject/web" "5.8.0"
     "@ethersproject/wordlists" "5.8.0"
 
-ethers@^6.14.4:
-  version "6.14.4"
-  resolved "https://registry.yarnpkg.com/ethers/-/ethers-6.14.4.tgz#0f6fbc562a8425c7c888da307fa71ef796be0c04"
-  integrity sha512-Jm/dzRs2Z9iBrT6e9TvGxyb5YVKAPLlpna7hjxH7KH/++DSh2T/JVmQUv7iHI5E55hDbp/gEVvstWYXVxXFzsA==
+ethers@^6.15.0:
+  version "6.15.0"
+  resolved "https://registry.yarnpkg.com/ethers/-/ethers-6.15.0.tgz#2980f2a3baf0509749b7e21f8692fa8a8349c0e3"
+  integrity sha512-Kf/3ZW54L4UT0pZtsY/rf+EkBU7Qi5nnhonjUb8yTXcxH3cdcWrV2cRyk0Xk/4jK6OoHhxxZHriyhje20If2hQ==
   dependencies:
     "@adraffy/ens-normalize" "1.10.1"
     "@noble/curves" "1.2.0"
