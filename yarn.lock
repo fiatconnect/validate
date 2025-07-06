@@ -727,27 +727,27 @@
     "@ethersproject/properties" "^5.8.0"
     "@ethersproject/strings" "^5.8.0"
 
-"@fiatconnect/fiatconnect-sdk@^0.5.149":
-  version "0.5.149"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.149.tgz#08c2337cf710cdc7876d69fcd54f06a9ddfc7a58"
-  integrity sha512-YDxVYx7SC2yIyOYqH93p4tixz4Bl30CrF/vRraFveJMzqJfN9QANXwN01fj3LIkaZXBPUfah9Hsiu6MDZbLzOQ==
+"@fiatconnect/fiatconnect-sdk@^0.5.152":
+  version "0.5.152"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-sdk/-/fiatconnect-sdk-0.5.152.tgz#b4f3e51e7d9313f1898ce0a2677f448ab7278d7d"
+  integrity sha512-mlhXc6vYWQJJZvVHki9eW0AuJzegjfFRBDOT5xVeS8Mi3U0KRmfD8xogkTOr/tY6nU7kZRMtdJng3tYpOnJVDg==
   dependencies:
     "@badrap/result" "^0.2.13"
-    "@fiatconnect/fiatconnect-types" "^13.3.46"
+    "@fiatconnect/fiatconnect-types" "^13.3.48"
     cross-fetch "^4.1.0"
     ethers "^6.15.0"
     fetch-cookie "^3.0.1"
     siwe "^3.0.0"
     tough-cookie "^5.1.2"
     tslib "^2.8.1"
-    zod "^3.25.67"
-
-"@fiatconnect/fiatconnect-types@^13.3.46":
-  version "13.3.46"
-  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-types/-/fiatconnect-types-13.3.46.tgz#6c84dc7117fe294819a4b5a46d20ff3cb21b7796"
-  integrity sha512-+lk4EM07HI+AJBy4wC6fpYeKK+hadmfn7WY+2KfPDygXMWGBA9KVrUhW0ow2ZdTBzYSXrj9GzrWHVIxHeu7N4Q==
-  dependencies:
     zod "^3.25.69"
+
+"@fiatconnect/fiatconnect-types@^13.3.48":
+  version "13.3.48"
+  resolved "https://registry.yarnpkg.com/@fiatconnect/fiatconnect-types/-/fiatconnect-types-13.3.48.tgz#29872257f4fb408bceada4cd8436813577d4c30f"
+  integrity sha512-2RWSnXmXCwoxQdhORv9kOV3MRdeiqUIvLlOC4d51liiAKhXtZSeln9TK7ZpZ1VLavMYV0z7RUibk0VhLtbie9Q==
+  dependencies:
+    zod "^3.25.71"
 
 "@humanwhocodes/config-array@^0.11.10":
   version "0.11.10"
@@ -5113,7 +5113,7 @@ z-schema@^5.0.1:
   optionalDependencies:
     commander "^10.0.0"
 
-zod@^3.25.67, zod@^3.25.69, zod@^3.25.71:
+zod@^3.25.69, zod@^3.25.71:
   version "3.25.74"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.25.74.tgz#9368a3986fe756bd94b9a5baad9919660ff3f250"
   integrity sha512-J8poo92VuhKjNknViHRAIuuN6li/EwFbAC8OedzI8uxpEPGiXHGQu9wemIAioIpqgfB4SySaJhdk0mH5Y4ICBg==
