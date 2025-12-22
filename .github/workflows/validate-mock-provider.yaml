@@ -4,8 +4,8 @@ on:
   # Manual trigger
   workflow_dispatch:
   # Cron schedule for every weekday at 4 PM GMT
-  schedule:
-    - cron: '0 16 * * 1-5'
+  # schedule:
+  #   - cron: '0 16 * * 1-5'
 
 jobs:
   validate:
